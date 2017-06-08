@@ -1,0 +1,21 @@
+PODS:
+  - CZPicker (0.4.3)
+  - IQDropDownTextField (1.1.0)
+  - IQKeyboardManagerSwift (4.0.8)
+  - MFSideMenu (0.5.5)
+
+DEPENDENCIES:
+  - CZPicker
+  - IQDropDownTextField
+  - IQKeyboardManagerSwift (= 4.0.8)
+  - MFSideMenu
+
+SPEC CHECKSUMS:
+  CZPicker: 55aa1751ea26e209814552da1a9a08cba8bbf72a
+  IQDropDownTextField: 614f79ca905529c992045eaa112d0fc9ebb875d1
+  IQKeyboardManagerSwift: c04bc9f68473823f825eb44d958fce98d921bead
+  MFSideMenu: 268122e6894f2747fc3a2b48578100b232506c60
+
+PODFILE CHECKSUM: bf40acf8e7db0dbbb54e690cc6a25d877e958cd4
+
+COCOAPODS: 1.0.1
