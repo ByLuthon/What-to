@@ -18,6 +18,33 @@
 		9A1BC2751EE9822000A9D802 /* taxi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A1BC2721EE9822000A9D802 /* taxi@2x.png */; };
 		9A1BC2761EE9822000A9D802 /* taxi@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A1BC2731EE9822000A9D802 /* taxi@3x.png */; };
 		9A1BC2791EE98CC600A9D802 /* sideMenuList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A1BC2781EE98CC600A9D802 /* sideMenuList.plist */; };
+		9A2BDCB71EEA73CA00F86690 /* UIButton+EventBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2BDCB61EEA73CA00F86690 /* UIButton+EventBlocks.m */; };
+		9A2BDCBB1EEA780E00F86690 /* UIButton+EventBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2BDCBA1EEA780E00F86690 /* UIButton+EventBlocks.m */; };
+		9A2BDCC11EEA832B00F86690 /* emptyProfilePic.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A2BDCC01EEA832B00F86690 /* emptyProfilePic.png */; };
+		9A2BDCC31EEA99A800F86690 /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2BDCC21EEA99A800F86690 /* AddLocationViewController.swift */; };
+		9A2BDCCA1EEA9B6000F86690 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A2BDCC41EEA9B6000F86690 /* back.png */; };
+		9A2BDCCB1EEA9B6000F86690 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A2BDCC51EEA9B6000F86690 /* back@2x.png */; };
+		9A2BDCCC1EEA9B6000F86690 /* back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A2BDCC61EEA9B6000F86690 /* back@3x.png */; };
+		9A2BDCCD1EEA9B6000F86690 /* forword.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A2BDCC71EEA9B6000F86690 /* forword.png */; };
+		9A2BDCCE1EEA9B6000F86690 /* forword@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A2BDCC81EEA9B6000F86690 /* forword@2x.png */; };
+		9A2BDCCF1EEA9B6000F86690 /* forword@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A2BDCC91EEA9B6000F86690 /* forword@3x.png */; };
+		9A2BDCDA1EEAA26700F86690 /* briefcase.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A2BDCD11EEAA26700F86690 /* briefcase.png */; };
+		9A2BDCDB1EEAA26700F86690 /* briefcase@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A2BDCD21EEAA26700F86690 /* briefcase@2x.png */; };
+		9A2BDCDC1EEAA26700F86690 /* briefcase@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A2BDCD31EEAA26700F86690 /* briefcase@3x.png */; };
+		9A2BDCDD1EEAA26700F86690 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A2BDCD41EEAA26700F86690 /* home.png */; };
+		9A2BDCDE1EEAA26700F86690 /* home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A2BDCD51EEAA26700F86690 /* home@2x.png */; };
+		9A2BDCDF1EEAA26700F86690 /* home@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A2BDCD61EEAA26700F86690 /* home@3x.png */; };
+		9A2BDCE01EEAA26700F86690 /* pinLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A2BDCD71EEAA26700F86690 /* pinLocation.png */; };
+		9A2BDCE11EEAA26700F86690 /* pinLocation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A2BDCD81EEAA26700F86690 /* pinLocation@2x.png */; };
+		9A2BDCE21EEAA26700F86690 /* pinLocation@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A2BDCD91EEAA26700F86690 /* pinLocation@3x.png */; };
+		9A2BDCE61EEAA32000F86690 /* Cell_setLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2BDCE41EEAA32000F86690 /* Cell_setLocation.swift */; };
+		9A2BDCE71EEAA32000F86690 /* Cell_setLocation.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A2BDCE51EEAA32000F86690 /* Cell_setLocation.xib */; };
+		9A2BDCE91EEAAE6900F86690 /* PickupTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2BDCE81EEAAE6900F86690 /* PickupTimeViewController.swift */; };
+		9A2BDCEB1EEAB5AC00F86690 /* PinLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2BDCEA1EEAB5AC00F86690 /* PinLocationViewController.swift */; };
+		9A2BDCEF1EEAB71F00F86690 /* mapCurrentLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A2BDCEC1EEAB71F00F86690 /* mapCurrentLocation.png */; };
+		9A2BDCF01EEAB71F00F86690 /* mapCurrentLocation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A2BDCED1EEAB71F00F86690 /* mapCurrentLocation@2x.png */; };
+		9A2BDCF11EEAB71F00F86690 /* mapCurrentLocation@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A2BDCEE1EEAB71F00F86690 /* mapCurrentLocation@3x.png */; };
+		9A2BDCF61EEAD26A00F86690 /* GoogleMapsAPIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2BDCF51EEAD26A00F86690 /* GoogleMapsAPIKey.swift */; };
 		9A5F974D1EE941B200146FCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A5F974B1EE941B200146FCD /* Main.storyboard */; };
 		9A5F974F1EE941B200146FCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A5F974E1EE941B200146FCD /* Assets.xcassets */; };
 		9A5F97521EE941B200146FCD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A5F97501EE941B200146FCD /* LaunchScreen.storyboard */; };
@@ -41,6 +68,35 @@
 		9A1BC2721EE9822000A9D802 /* taxi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "taxi@2x.png"; sourceTree = "<group>"; };
 		9A1BC2731EE9822000A9D802 /* taxi@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "taxi@3x.png"; sourceTree = "<group>"; };
 		9A1BC2781EE98CC600A9D802 /* sideMenuList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sideMenuList.plist; sourceTree = "<group>"; };
+		9A2BDCB51EEA73CA00F86690 /* UIButton+EventBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+EventBlocks.h"; sourceTree = "<group>"; };
+		9A2BDCB61EEA73CA00F86690 /* UIButton+EventBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+EventBlocks.m"; sourceTree = "<group>"; };
+		9A2BDCB91EEA780E00F86690 /* UIButton+EventBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+EventBlocks.h"; sourceTree = "<group>"; };
+		9A2BDCBA1EEA780E00F86690 /* UIButton+EventBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+EventBlocks.m"; sourceTree = "<group>"; };
+		9A2BDCC01EEA832B00F86690 /* emptyProfilePic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emptyProfilePic.png; sourceTree = "<group>"; };
+		9A2BDCC21EEA99A800F86690 /* AddLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
+		9A2BDCC41EEA9B6000F86690 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		9A2BDCC51EEA9B6000F86690 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
+		9A2BDCC61EEA9B6000F86690 /* back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@3x.png"; sourceTree = "<group>"; };
+		9A2BDCC71EEA9B6000F86690 /* forword.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forword.png; sourceTree = "<group>"; };
+		9A2BDCC81EEA9B6000F86690 /* forword@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "forword@2x.png"; sourceTree = "<group>"; };
+		9A2BDCC91EEA9B6000F86690 /* forword@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "forword@3x.png"; sourceTree = "<group>"; };
+		9A2BDCD11EEAA26700F86690 /* briefcase.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = briefcase.png; sourceTree = "<group>"; };
+		9A2BDCD21EEAA26700F86690 /* briefcase@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "briefcase@2x.png"; sourceTree = "<group>"; };
+		9A2BDCD31EEAA26700F86690 /* briefcase@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "briefcase@3x.png"; sourceTree = "<group>"; };
+		9A2BDCD41EEAA26700F86690 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
+		9A2BDCD51EEAA26700F86690 /* home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home@2x.png"; sourceTree = "<group>"; };
+		9A2BDCD61EEAA26700F86690 /* home@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home@3x.png"; sourceTree = "<group>"; };
+		9A2BDCD71EEAA26700F86690 /* pinLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinLocation.png; sourceTree = "<group>"; };
+		9A2BDCD81EEAA26700F86690 /* pinLocation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinLocation@2x.png"; sourceTree = "<group>"; };
+		9A2BDCD91EEAA26700F86690 /* pinLocation@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinLocation@3x.png"; sourceTree = "<group>"; };
+		9A2BDCE41EEAA32000F86690 /* Cell_setLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cell_setLocation.swift; sourceTree = "<group>"; };
+		9A2BDCE51EEAA32000F86690 /* Cell_setLocation.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cell_setLocation.xib; sourceTree = "<group>"; };
+		9A2BDCE81EEAAE6900F86690 /* PickupTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickupTimeViewController.swift; sourceTree = "<group>"; };
+		9A2BDCEA1EEAB5AC00F86690 /* PinLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinLocationViewController.swift; sourceTree = "<group>"; };
+		9A2BDCEC1EEAB71F00F86690 /* mapCurrentLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapCurrentLocation.png; sourceTree = "<group>"; };
+		9A2BDCED1EEAB71F00F86690 /* mapCurrentLocation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapCurrentLocation@2x.png"; sourceTree = "<group>"; };
+		9A2BDCEE1EEAB71F00F86690 /* mapCurrentLocation@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapCurrentLocation@3x.png"; sourceTree = "<group>"; };
+		9A2BDCF51EEAD26A00F86690 /* GoogleMapsAPIKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapsAPIKey.swift; sourceTree = "<group>"; };
 		9A5F97441EE941B200146FCD /* WhatTo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatTo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A5F974C1EE941B200146FCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9A5F974E1EE941B200146FCD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -88,12 +144,21 @@
 		9A1BC26A1EE97E5500A9D802 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				9A2BDCC41EEA9B6000F86690 /* back.png */,
+				9A2BDCC51EEA9B6000F86690 /* back@2x.png */,
+				9A2BDCC61EEA9B6000F86690 /* back@3x.png */,
+				9A2BDCC71EEA9B6000F86690 /* forword.png */,
+				9A2BDCC81EEA9B6000F86690 /* forword@2x.png */,
+				9A2BDCC91EEA9B6000F86690 /* forword@3x.png */,
 				9A1BC2711EE9822000A9D802 /* taxi.png */,
 				9A1BC2721EE9822000A9D802 /* taxi@2x.png */,
 				9A1BC2731EE9822000A9D802 /* taxi@3x.png */,
 				9A1BC26B1EE97E9C00A9D802 /* menuicon.png */,
 				9A1BC26C1EE97E9C00A9D802 /* menuicon@2x.png */,
 				9A1BC26D1EE97E9C00A9D802 /* menuicon@3x.png */,
+				9A2BDCEC1EEAB71F00F86690 /* mapCurrentLocation.png */,
+				9A2BDCED1EEAB71F00F86690 /* mapCurrentLocation@2x.png */,
+				9A2BDCEE1EEAB71F00F86690 /* mapCurrentLocation@3x.png */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -104,6 +169,66 @@
 				9A1BC2781EE98CC600A9D802 /* sideMenuList.plist */,
 			);
 			path = plist;
+			sourceTree = "<group>";
+		};
+		9A2BDCB41EEA73A500F86690 /* UIButton+block */ = {
+			isa = PBXGroup;
+			children = (
+				9A2BDCB51EEA73CA00F86690 /* UIButton+EventBlocks.h */,
+				9A2BDCB61EEA73CA00F86690 /* UIButton+EventBlocks.m */,
+			);
+			path = "UIButton+block";
+			sourceTree = "<group>";
+		};
+		9A2BDCB81EEA780E00F86690 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				9A2BDCB91EEA780E00F86690 /* UIButton+EventBlocks.h */,
+				9A2BDCBA1EEA780E00F86690 /* UIButton+EventBlocks.m */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		9A2BDCBC1EEA830600F86690 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				9A2BDCC01EEA832B00F86690 /* emptyProfilePic.png */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		9A2BDCD01EEAA25700F86690 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				9A2BDCD11EEAA26700F86690 /* briefcase.png */,
+				9A2BDCD21EEAA26700F86690 /* briefcase@2x.png */,
+				9A2BDCD31EEAA26700F86690 /* briefcase@3x.png */,
+				9A2BDCD41EEAA26700F86690 /* home.png */,
+				9A2BDCD51EEAA26700F86690 /* home@2x.png */,
+				9A2BDCD61EEAA26700F86690 /* home@3x.png */,
+				9A2BDCD71EEAA26700F86690 /* pinLocation.png */,
+				9A2BDCD81EEAA26700F86690 /* pinLocation@2x.png */,
+				9A2BDCD91EEAA26700F86690 /* pinLocation@3x.png */,
+			);
+			name = Location;
+			path = Menu/Location;
+			sourceTree = "<group>";
+		};
+		9A2BDCE31EEAA2F700F86690 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				9A2BDCE41EEAA32000F86690 /* Cell_setLocation.swift */,
+				9A2BDCE51EEAA32000F86690 /* Cell_setLocation.xib */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		9A2BDCF41EEAD24900F86690 /* GoogleServices */ = {
+			isa = PBXGroup;
+			children = (
+				9A2BDCF51EEAD26A00F86690 /* GoogleMapsAPIKey.swift */,
+			);
+			path = GoogleServices;
 			sourceTree = "<group>";
 		};
 		9A5F973B1EE941B200146FCD = {
@@ -132,6 +257,7 @@
 				9A5F975C1EE956BA00146FCD /* OtherClasses */,
 				9A1BC2771EE98CB200A9D802 /* plist */,
 				9A5F975B1EE956A600146FCD /* CustomFONT */,
+				9A2BDCF41EEAD24900F86690 /* GoogleServices */,
 				9A5F975A1EE9569700146FCD /* Common */,
 				9A5F97591EE9568700146FCD /* Application */,
 				9A5F974B1EE941B200146FCD /* Main.storyboard */,
@@ -171,6 +297,7 @@
 		9A5F975C1EE956BA00146FCD /* OtherClasses */ = {
 			isa = PBXGroup;
 			children = (
+				9A2BDCB41EEA73A500F86690 /* UIButton+block */,
 			);
 			path = OtherClasses;
 			sourceTree = "<group>";
@@ -178,8 +305,10 @@
 		9A5F975D1EE956C500146FCD /* Design */ = {
 			isa = PBXGroup;
 			children = (
-				9A1BC26A1EE97E5500A9D802 /* Menu */,
 				9A1BC2671EE9758200A9D802 /* Launch */,
+				9A2BDCBC1EEA830600F86690 /* Profile */,
+				9A2BDCD01EEAA25700F86690 /* Location */,
+				9A1BC26A1EE97E5500A9D802 /* Menu */,
 			);
 			path = Design;
 			sourceTree = "<group>";
@@ -187,6 +316,7 @@
 		9A5F975E1EE956D400146FCD /* Appdelegate */ = {
 			isa = PBXGroup;
 			children = (
+				9A2BDCB81EEA780E00F86690 /* cell */,
 				9A5F97611EE9572900146FCD /* AppDelegate.swift */,
 			);
 			path = Appdelegate;
@@ -204,7 +334,11 @@
 		9A5F97651EE9575400146FCD /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				9A2BDCE31EEAA2F700F86690 /* cell */,
 				9A5F97661EE957D000146FCD /* MainViewController.swift */,
+				9A2BDCC21EEA99A800F86690 /* AddLocationViewController.swift */,
+				9A2BDCE81EEAAE6900F86690 /* PickupTimeViewController.swift */,
+				9A2BDCEA1EEAB5AC00F86690 /* PinLocationViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -293,12 +427,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A1BC2691EE9759400A9D802 /* splash.jpg in Resources */,
+				9A2BDCCD1EEA9B6000F86690 /* forword.png in Resources */,
+				9A2BDCDF1EEAA26700F86690 /* home@3x.png in Resources */,
+				9A2BDCDD1EEAA26700F86690 /* home.png in Resources */,
 				9A1BC2741EE9822000A9D802 /* taxi.png in Resources */,
+				9A2BDCF11EEAB71F00F86690 /* mapCurrentLocation@3x.png in Resources */,
+				9A2BDCCF1EEA9B6000F86690 /* forword@3x.png in Resources */,
+				9A2BDCCE1EEA9B6000F86690 /* forword@2x.png in Resources */,
+				9A2BDCE11EEAA26700F86690 /* pinLocation@2x.png in Resources */,
+				9A2BDCC11EEA832B00F86690 /* emptyProfilePic.png in Resources */,
+				9A2BDCE21EEAA26700F86690 /* pinLocation@3x.png in Resources */,
+				9A2BDCF01EEAB71F00F86690 /* mapCurrentLocation@2x.png in Resources */,
+				9A2BDCCB1EEA9B6000F86690 /* back@2x.png in Resources */,
 				9A1BC2751EE9822000A9D802 /* taxi@2x.png in Resources */,
+				9A2BDCDE1EEAA26700F86690 /* home@2x.png in Resources */,
+				9A2BDCE71EEAA32000F86690 /* Cell_setLocation.xib in Resources */,
+				9A2BDCCC1EEA9B6000F86690 /* back@3x.png in Resources */,
+				9A2BDCDC1EEAA26700F86690 /* briefcase@3x.png in Resources */,
+				9A2BDCEF1EEAB71F00F86690 /* mapCurrentLocation.png in Resources */,
 				9A1BC2761EE9822000A9D802 /* taxi@3x.png in Resources */,
 				9A5F97521EE941B200146FCD /* LaunchScreen.storyboard in Resources */,
+				9A2BDCCA1EEA9B6000F86690 /* back.png in Resources */,
 				9A1BC26F1EE97E9C00A9D802 /* menuicon@2x.png in Resources */,
+				9A2BDCDB1EEAA26700F86690 /* briefcase@2x.png in Resources */,
+				9A2BDCE01EEAA26700F86690 /* pinLocation.png in Resources */,
 				9A5F974F1EE941B200146FCD /* Assets.xcassets in Resources */,
+				9A2BDCDA1EEAA26700F86690 /* briefcase.png in Resources */,
 				9A1BC2791EE98CC600A9D802 /* sideMenuList.plist in Resources */,
 				9A1BC2701EE97E9C00A9D802 /* menuicon@3x.png in Resources */,
 				9A5F974D1EE941B200146FCD /* Main.storyboard in Resources */,
@@ -361,10 +515,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A2BDCBB1EEA780E00F86690 /* UIButton+EventBlocks.m in Sources */,
+				9A2BDCEB1EEAB5AC00F86690 /* PinLocationViewController.swift in Sources */,
 				9A5F976B1EE9684A00146FCD /* Constants.swift in Sources */,
 				9A5F97671EE957D000146FCD /* MainViewController.swift in Sources */,
+				9A2BDCC31EEA99A800F86690 /* AddLocationViewController.swift in Sources */,
+				9A2BDCE61EEAA32000F86690 /* Cell_setLocation.swift in Sources */,
+				9A2BDCE91EEAAE6900F86690 /* PickupTimeViewController.swift in Sources */,
+				9A2BDCB71EEA73CA00F86690 /* UIButton+EventBlocks.m in Sources */,
 				9A5F97641EE9573C00146FCD /* ViewController.swift in Sources */,
 				9A5F97691EE9669E00146FCD /* GlobalData.swift in Sources */,
+				9A2BDCF61EEAD26A00F86690 /* GoogleMapsAPIKey.swift in Sources */,
 				9A5F97621EE9572900146FCD /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

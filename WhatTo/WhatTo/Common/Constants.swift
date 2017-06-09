@@ -41,6 +41,17 @@ class Constants {
     static let WIDTH = screenSize.width
     static let HEIGHT = screenSize.height
 
+    //MARK:- FONT
+    //static let setFont(s) UIFont(name: "HelveticaNeue-Regular", size: CGFloat(s))
+    
+    /*
+    #define setFont(s) [UIFont fontWithName:@"HelveticaNeue-Regular" size:s]
+    #define setFontSemiBold(s) [UIFont fontWithName:@"HelveticaNeue-SemiBold" size:s]
+    #define setFontMedium(s) [UIFont fontWithName:@"HelveticaNeue-Medium" size:s]
+    #define setFontLight(s) [UIFont fontWithName:@"HelveticaNeue-Light" size:s]
+    #define setFontItalic(s) [UIFont fontWithName:@"HelveticaNeue-Italic" size:s]
+    #define setFontBold(s) [UIFont fontWithName:@"HelveticaNeue-Bold" size:s]
+     */
     
     static func hexStringToUIColor (hex:String) -> UIColor {
         
@@ -73,6 +84,13 @@ class Constants {
         subview.layer.shadowOpacity = 0.8
         subview.layer.cornerRadius = 0.0
         subview.layer.masksToBounds = false
+    }
+
+    static func setBorderTo(_ view: UIView, withBorderWidth widthView: Float, radiousView: Float, color bordercolor: UIColor) {
+        view.layer.borderWidth = CGFloat(widthView)
+        view.layer.borderColor = bordercolor.cgColor
+        view.layer.cornerRadius = CGFloat(radiousView)
+        view.layer.masksToBounds = true
     }
 
 }

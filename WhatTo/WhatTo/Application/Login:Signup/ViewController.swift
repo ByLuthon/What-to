@@ -11,6 +11,10 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    //MARK:-  IBOutlets
+
+    
+    
     override func viewDidLoad()
     {
         navigationController?.isNavigationBarHidden = true

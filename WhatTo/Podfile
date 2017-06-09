@@ -11,6 +11,8 @@ pod "CZPicker"
 pod 'IQKeyboardManagerSwift', '4.0.8'
 pod 'IQDropDownTextField'
 pod 'MFSideMenu'
-
+pod 'SDWebImage', '~>3.8'
+pod 'GoogleMaps'
+pod 'GooglePlaces'
 
 end

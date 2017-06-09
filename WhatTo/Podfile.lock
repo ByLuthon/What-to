@@ -1,21 +1,37 @@
 PODS:
   - CZPicker (0.4.3)
+  - GoogleMaps (2.2.0):
+    - GoogleMaps/Maps (= 2.2.0)
+  - GoogleMaps/Base (2.2.0)
+  - GoogleMaps/Maps (2.2.0):
+    - GoogleMaps/Base
+  - GooglePlaces (2.2.0):
+    - GoogleMaps/Base (= 2.2.0)
   - IQDropDownTextField (1.1.0)
   - IQKeyboardManagerSwift (4.0.8)
   - MFSideMenu (0.5.5)
+  - SDWebImage (3.8.2):
+    - SDWebImage/Core (= 3.8.2)
+  - SDWebImage/Core (3.8.2)
 
 DEPENDENCIES:
   - CZPicker
+  - GoogleMaps
+  - GooglePlaces
   - IQDropDownTextField
   - IQKeyboardManagerSwift (= 4.0.8)
   - MFSideMenu
+  - SDWebImage (~> 3.8)
 
 SPEC CHECKSUMS:
   CZPicker: 55aa1751ea26e209814552da1a9a08cba8bbf72a
+  GoogleMaps: 104c418d61ab8a05dff06ed0784c25ea9d37da45
+  GooglePlaces: bca867d5e9da15384c794b945e4226848bc6e9d9
   IQDropDownTextField: 614f79ca905529c992045eaa112d0fc9ebb875d1
   IQKeyboardManagerSwift: c04bc9f68473823f825eb44d958fce98d921bead
   MFSideMenu: 268122e6894f2747fc3a2b48578100b232506c60
+  SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
 
-PODFILE CHECKSUM: bf40acf8e7db0dbbb54e690cc6a25d877e958cd4
+PODFILE CHECKSUM: cf1109e9b5e1a9db3d13217dd6f3a7b94a49c5f0
 
 COCOAPODS: 1.0.1

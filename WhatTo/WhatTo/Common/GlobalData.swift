@@ -8,6 +8,8 @@
 
 import UIKit
 import SystemConfiguration
+import GoogleMaps
+import GooglePlaces
 
 
 extension UINavigationController {
