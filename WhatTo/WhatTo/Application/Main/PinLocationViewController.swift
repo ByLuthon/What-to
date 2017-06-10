@@ -13,7 +13,7 @@ import GoogleMaps
 import GooglePlaces
 
 
-class PinLocationViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerDelegate{
+class PinLocationViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerDelegate,GMSMapViewDelegate{
 
     //MARK:-  IBOutlets
     @IBOutlet weak var viewHeader: UIView!
@@ -38,7 +38,8 @@ class PinLocationViewController: UIViewController ,MKMapViewDelegate,CLLocationM
     var myLocationMarker = GMSMarker()
     var destinationMarker = GMSMarker()
 
-    
+    //MARK:- viewDidLoad
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -56,6 +57,7 @@ class PinLocationViewController: UIViewController ,MKMapViewDelegate,CLLocationM
         
         self.zoomToRegion()
         self.getMapsDetails()
+
 
         // Do any additional setup after loading the view.
     }
@@ -85,6 +87,8 @@ class PinLocationViewController: UIViewController ,MKMapViewDelegate,CLLocationM
         mapview.camera = camera
         
         mapview.isMyLocationEnabled = true
+        mapview.delegate = self
+        mapview.settings.myLocationButton = true
 
         
         let params = [
@@ -127,7 +131,6 @@ class PinLocationViewController: UIViewController ,MKMapViewDelegate,CLLocationM
 
     //MARK:- Zoom to region
     func zoomToRegion() {
-        
         let location:CLLocationCoordinate2D = locationManager.location!.coordinate
         let region = MKCoordinateRegionMakeWithDistance(location, 5000.0, 7000.0)
         print(region)
@@ -156,8 +159,69 @@ class PinLocationViewController: UIViewController ,MKMapViewDelegate,CLLocationM
 
         mapview.animate(toLocation: CLLocationCoordinate2D(latitude: lattitude!, longitude: longitude!))*/
         
-        self.getMapsDetails()
+        lattitude = locationManager.location?.coordinate.latitude
+        longitude = locationManager.location?.coordinate.longitude
 
+        
+        let camera = GMSCameraPosition.camera(withLatitude: lattitude!, longitude: lattitude!, zoom: mapview.camera.zoom)
+        mapview.camera = camera
+
+    }
+    
+    // MARK: - MAPVIE DELEGATE
+
+    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+        //activityIndicator.isHidden = false
+        //locationLabel.isHidden = true
+    }
+
+    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
+        
+        //activityIndicator.isHidden = true
+        //locationLabel.isHidden = false
+        
+        let lat = mapView.camera.target.latitude
+        let lon = mapView.camera.target.longitude
+        
+        let params = [
+            "latlng": "\(lat),\(lon)",
+            "key": GoogleMapsRestClient.GEOCODING_API_KEY
+        ]
+        
+        GoogleMapsRestClient.geocodeAddress(params: params) { (response) in
+            if response != nil {
+                
+                var responceArr = response!["results"]
+                print(responceArr)
+
+                if responceArr.count > 0
+                {
+                    var address_components = response!["results"][0]["formatted_address"].stringValue.components(separatedBy: ", ")
+                    
+                    var formattedAddress = "\(address_components[0])"
+                    var counter = 1
+                    for i in address_components{
+                        if(counter < 3){
+                            formattedAddress.append(", \(address_components[counter])")
+                            counter = counter + 1
+                        }else{
+                            break
+                        }
+                        
+                    }
+                    self.txtPinLocation.text = formattedAddress
+                    
+                    self.lattitude = lat
+                    self.longitude = lon
+                }
+                
+      
+                /*
+                self.location["address"] = formattedAddress
+                self.location["latitude"] = "\(lat)"
+                self.location["longitude"] = "\(lon)"*/
+            }
+        }
     }
 
     /*

@@ -9,13 +9,10 @@
 import UIKit
 import MapKit
 import CoreLocation
-import CZPicker
 
 
-class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerDelegate, CZPickerViewDelegate, CZPickerViewDataSource {
+class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerDelegate {
 
-    //MARK:-  Class Reference
-    var czPickerView: CZPickerView?
     
     //MARK:-  IBOutlets
     @IBOutlet weak var mapview: MKMapView!
@@ -23,7 +20,6 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     
     var locationManager: CLLocationManager!
 
-    var arrFromvalues: NSMutableArray!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +32,8 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
+
+        mapview.showsUserLocation = true
 
         self.zoomToRegion()
         
@@ -51,7 +49,6 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         
         Constants.shaodow(on: subviewWhatTo)
         
-        arrFromvalues = ["Meet the girlfriend","Hangout with friends","Traveling","Restaurant","Shopping"]
     }
     
     //MARK:- Menu
@@ -97,50 +94,11 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     // MARK: - CUSTOM PICKERs
     @IBAction func fromToTapped(_ sender: Any)
     {
-        self.OpenPickerViewForFromDetails()
-    }
-    
-    func OpenPickerViewForFromDetails()  {
-        czPickerView = CZPickerView(headerTitle: "From To", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
-        czPickerView?.delegate = self
-        czPickerView?.dataSource = self
-        czPickerView?.headerBackgroundColor = UIColor(colorLiteralRed: 89/255.0, green: 157/255.0, blue: 194/255.0, alpha: 1)
-        czPickerView?.needFooterView = false
-        czPickerView?.tag = 101
-        czPickerView?.show()
+        let move: AddLocationViewController = storyboard?.instantiateViewController(withIdentifier: "AddLocationViewController") as! AddLocationViewController
+        navigationController?.pushViewController(move, animated: true)
 
     }
     
-    //Delegate Methods
-    func numberOfRows(in pickerView: CZPickerView!) -> Int {
-        
-        if pickerView.tag == 101 {
-            return arrFromvalues.count
-        }else{
-            return 0;
-        }
-    }
-    
-    func czpickerView(_ pickerView: CZPickerView!, titleForRow row: Int) -> String! {
-        
-        if pickerView.tag == 101 {
-            return arrFromvalues[row] as! String
-        }else{
-            return "";
-        }
-    }
-    
-    func czpickerView(_ pickerView: CZPickerView!, didConfirmWithItemAtRow row: Int){
-        if pickerView.tag == 101 {
-            
-            //NEXT screen
-            let move: AddLocationViewController = storyboard?.instantiateViewController(withIdentifier: "AddLocationViewController") as! AddLocationViewController
-            navigationController?.pushViewController(move, animated: true)
-
-        }else{
-            
-        }
-    }
     /*
     // MARK: - Navigation
 

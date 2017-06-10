@@ -76,6 +76,8 @@ class Constants {
         )
     }
     
+    
+    
 
     static func shaodow(on subview: UIView) {
         subview.layer.shadowColor = UIColor.gray.cgColor

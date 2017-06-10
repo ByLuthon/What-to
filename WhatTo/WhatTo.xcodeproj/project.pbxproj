@@ -53,6 +53,13 @@
 		9A5F97671EE957D000146FCD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F97661EE957D000146FCD /* MainViewController.swift */; };
 		9A5F97691EE9669E00146FCD /* GlobalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F97681EE9669E00146FCD /* GlobalData.swift */; };
 		9A5F976B1EE9684A00146FCD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5F976A1EE9684A00146FCD /* Constants.swift */; };
+		9A616B111EEBCB60000DC318 /* SearchAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A616B101EEBCB60000DC318 /* SearchAddressViewController.swift */; };
+		9A616B151EEBF506000DC318 /* GoogleMapsRestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A616B141EEBF506000DC318 /* GoogleMapsRestClient.swift */; };
+		9A616B1D1EEBF564000DC318 /* Info-iOS.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A616B171EEBF564000DC318 /* Info-iOS.plist */; };
+		9A616B1E1EEBF564000DC318 /* Info-OSX.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A616B181EEBF564000DC318 /* Info-OSX.plist */; };
+		9A616B1F1EEBF564000DC318 /* Info-tvOS.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A616B191EEBF564000DC318 /* Info-tvOS.plist */; };
+		9A616B201EEBF564000DC318 /* Info-watchOS.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A616B1A1EEBF564000DC318 /* Info-watchOS.plist */; };
+		9A616B211EEBF564000DC318 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A616B1C1EEBF564000DC318 /* SwiftyJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -108,6 +115,14 @@
 		9A5F97661EE957D000146FCD /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		9A5F97681EE9669E00146FCD /* GlobalData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalData.swift; sourceTree = "<group>"; };
 		9A5F976A1EE9684A00146FCD /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		9A616B101EEBCB60000DC318 /* SearchAddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAddressViewController.swift; sourceTree = "<group>"; };
+		9A616B141EEBF506000DC318 /* GoogleMapsRestClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapsRestClient.swift; sourceTree = "<group>"; };
+		9A616B171EEBF564000DC318 /* Info-iOS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-iOS.plist"; sourceTree = "<group>"; };
+		9A616B181EEBF564000DC318 /* Info-OSX.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-OSX.plist"; sourceTree = "<group>"; };
+		9A616B191EEBF564000DC318 /* Info-tvOS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-tvOS.plist"; sourceTree = "<group>"; };
+		9A616B1A1EEBF564000DC318 /* Info-watchOS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-watchOS.plist"; sourceTree = "<group>"; };
+		9A616B1B1EEBF564000DC318 /* SwiftyJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftyJSON.h; sourceTree = "<group>"; };
+		9A616B1C1EEBF564000DC318 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		CFF9EA1FF9FD3EB8B8A84E8A /* Pods-WhatTo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatTo.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhatTo/Pods-WhatTo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -226,6 +241,7 @@
 		9A2BDCF41EEAD24900F86690 /* GoogleServices */ = {
 			isa = PBXGroup;
 			children = (
+				9A616B141EEBF506000DC318 /* GoogleMapsRestClient.swift */,
 				9A2BDCF51EEAD26A00F86690 /* GoogleMapsAPIKey.swift */,
 			);
 			path = GoogleServices;
@@ -297,6 +313,7 @@
 		9A5F975C1EE956BA00146FCD /* OtherClasses */ = {
 			isa = PBXGroup;
 			children = (
+				9A616B161EEBF564000DC318 /* SwiftyJSON */,
 				9A2BDCB41EEA73A500F86690 /* UIButton+block */,
 			);
 			path = OtherClasses;
@@ -339,8 +356,22 @@
 				9A2BDCC21EEA99A800F86690 /* AddLocationViewController.swift */,
 				9A2BDCE81EEAAE6900F86690 /* PickupTimeViewController.swift */,
 				9A2BDCEA1EEAB5AC00F86690 /* PinLocationViewController.swift */,
+				9A616B101EEBCB60000DC318 /* SearchAddressViewController.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		9A616B161EEBF564000DC318 /* SwiftyJSON */ = {
+			isa = PBXGroup;
+			children = (
+				9A616B171EEBF564000DC318 /* Info-iOS.plist */,
+				9A616B181EEBF564000DC318 /* Info-OSX.plist */,
+				9A616B191EEBF564000DC318 /* Info-tvOS.plist */,
+				9A616B1A1EEBF564000DC318 /* Info-watchOS.plist */,
+				9A616B1B1EEBF564000DC318 /* SwiftyJSON.h */,
+				9A616B1C1EEBF564000DC318 /* SwiftyJSON.swift */,
+			);
+			path = SwiftyJSON;
 			sourceTree = "<group>";
 		};
 		C982CBAABEFDB8229F095827 /* Frameworks */ = {
@@ -428,16 +459,20 @@
 			files = (
 				9A1BC2691EE9759400A9D802 /* splash.jpg in Resources */,
 				9A2BDCCD1EEA9B6000F86690 /* forword.png in Resources */,
+				9A616B1E1EEBF564000DC318 /* Info-OSX.plist in Resources */,
 				9A2BDCDF1EEAA26700F86690 /* home@3x.png in Resources */,
 				9A2BDCDD1EEAA26700F86690 /* home.png in Resources */,
+				9A616B201EEBF564000DC318 /* Info-watchOS.plist in Resources */,
 				9A1BC2741EE9822000A9D802 /* taxi.png in Resources */,
 				9A2BDCF11EEAB71F00F86690 /* mapCurrentLocation@3x.png in Resources */,
 				9A2BDCCF1EEA9B6000F86690 /* forword@3x.png in Resources */,
 				9A2BDCCE1EEA9B6000F86690 /* forword@2x.png in Resources */,
 				9A2BDCE11EEAA26700F86690 /* pinLocation@2x.png in Resources */,
+				9A616B1F1EEBF564000DC318 /* Info-tvOS.plist in Resources */,
 				9A2BDCC11EEA832B00F86690 /* emptyProfilePic.png in Resources */,
 				9A2BDCE21EEAA26700F86690 /* pinLocation@3x.png in Resources */,
 				9A2BDCF01EEAB71F00F86690 /* mapCurrentLocation@2x.png in Resources */,
+				9A616B1D1EEBF564000DC318 /* Info-iOS.plist in Resources */,
 				9A2BDCCB1EEA9B6000F86690 /* back@2x.png in Resources */,
 				9A1BC2751EE9822000A9D802 /* taxi@2x.png in Resources */,
 				9A2BDCDE1EEAA26700F86690 /* home@2x.png in Resources */,
@@ -515,12 +550,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A616B151EEBF506000DC318 /* GoogleMapsRestClient.swift in Sources */,
 				9A2BDCBB1EEA780E00F86690 /* UIButton+EventBlocks.m in Sources */,
 				9A2BDCEB1EEAB5AC00F86690 /* PinLocationViewController.swift in Sources */,
+				9A616B211EEBF564000DC318 /* SwiftyJSON.swift in Sources */,
 				9A5F976B1EE9684A00146FCD /* Constants.swift in Sources */,
 				9A5F97671EE957D000146FCD /* MainViewController.swift in Sources */,
 				9A2BDCC31EEA99A800F86690 /* AddLocationViewController.swift in Sources */,
 				9A2BDCE61EEAA32000F86690 /* Cell_setLocation.swift in Sources */,
+				9A616B111EEBCB60000DC318 /* SearchAddressViewController.swift in Sources */,
 				9A2BDCE91EEAAE6900F86690 /* PickupTimeViewController.swift in Sources */,
 				9A2BDCB71EEA73CA00F86690 /* UIButton+EventBlocks.m in Sources */,
 				9A5F97641EE9573C00146FCD /* ViewController.swift in Sources */,
@@ -654,8 +692,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = DTRF7QJH3W;
 				INFOPLIST_FILE = WhatTo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.rlogical.com.WhatTo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rlogical.WhatTo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WhatTo/Application/Appdelegate/WhatTo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -671,8 +710,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = DTRF7QJH3W;
 				INFOPLIST_FILE = WhatTo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.rlogical.com.WhatTo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rlogical.WhatTo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WhatTo/Application/Appdelegate/WhatTo-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

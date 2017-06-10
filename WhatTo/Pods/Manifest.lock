@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (4.4.0)
   - CZPicker (0.4.3)
   - GoogleMaps (2.2.0):
     - GoogleMaps/Maps (= 2.2.0)
@@ -15,6 +16,7 @@ PODS:
   - SDWebImage/Core (3.8.2)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.0)
   - CZPicker
   - GoogleMaps
   - GooglePlaces
@@ -24,6 +26,7 @@ DEPENDENCIES:
   - SDWebImage (~> 3.8)
 
 SPEC CHECKSUMS:
+  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
   CZPicker: 55aa1751ea26e209814552da1a9a08cba8bbf72a
   GoogleMaps: 104c418d61ab8a05dff06ed0784c25ea9d37da45
   GooglePlaces: bca867d5e9da15384c794b945e4226848bc6e9d9
@@ -32,6 +35,6 @@ SPEC CHECKSUMS:
   MFSideMenu: 268122e6894f2747fc3a2b48578100b232506c60
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
 
-PODFILE CHECKSUM: cf1109e9b5e1a9db3d13217dd6f3a7b94a49c5f0
+PODFILE CHECKSUM: 4d88211b3bf492e532230f525c62c05c10e56011
 
 COCOAPODS: 1.0.1
