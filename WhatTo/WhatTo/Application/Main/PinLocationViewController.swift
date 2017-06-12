@@ -32,11 +32,19 @@ class PinLocationViewController: UIViewController ,MKMapViewDelegate,CLLocationM
     var myLocationLatLng = CLLocationCoordinate2D()
     var destinationLatLng = CLLocationCoordinate2D()
 
-    var lattitude: Double?
-    var longitude: Double?
+    var distanceInMeters: Double! = 0
+    var textDistance: String! = ""
+
+    var DestinationLattitude: Double?
+    var DestinationLongitude: Double?
+    
+    var CurrentLattitude: Double?
+    var CurrentLongitude: Double?
+
 
     var myLocationMarker = GMSMarker()
     var destinationMarker = GMSMarker()
+    var mapPolyline = GMSPolyline()
 
     //MARK:- viewDidLoad
 
@@ -52,8 +60,8 @@ class PinLocationViewController: UIViewController ,MKMapViewDelegate,CLLocationM
         locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
         
-        lattitude = locationManager.location?.coordinate.latitude
-        longitude = locationManager.location?.coordinate.longitude
+        CurrentLattitude = locationManager.location?.coordinate.latitude
+        CurrentLongitude = locationManager.location?.coordinate.longitude
         
         self.zoomToRegion()
         self.getMapsDetails()
@@ -79,8 +87,8 @@ class PinLocationViewController: UIViewController ,MKMapViewDelegate,CLLocationM
     
     func getMapsDetails()
     {
-        let lat = lattitude
-        let lan = longitude
+        let lat = CurrentLattitude
+        let lan = CurrentLongitude
         
         self.mapview.animate(toLocation: CLLocationCoordinate2D(latitude: lat!, longitude: lan!))
         let camera = GMSCameraPosition.camera(withLatitude: lat!, longitude: lan!, zoom: mapview.camera.zoom)
@@ -105,22 +113,37 @@ class PinLocationViewController: UIViewController ,MKMapViewDelegate,CLLocationM
     //MARK:- locationManager
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedWhenInUse {
-            
+        
+        if status == .authorizedWhenInUse
+        {
             locationManager.startUpdatingLocation()
             
             mapview.isMyLocationEnabled = true
             mapview.settings.myLocationButton = true
+            
+            
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let camera = GMSCameraPosition.camera(withLatitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!, zoom: 17.0)
+        
+        mapview?.animate(to: camera)
+        
+        CurrentLattitude = manager.location?.coordinate.latitude
+        CurrentLongitude = manager.location?.coordinate.longitude
+
+        //Finally stop updating location otherwise it will come again and again in this delegate
+        self.locationManager.stopUpdatingLocation()
+
+        /*
         if let location = locations.first {
             
             mapview.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
             locationManager.stopUpdatingLocation()
             
-        }
+        }*/
     }
     
     @objc func mapView(_ aMapView: MKMapView, didUpdate aUserLocation: MKUserLocation) {
@@ -159,11 +182,11 @@ class PinLocationViewController: UIViewController ,MKMapViewDelegate,CLLocationM
 
         mapview.animate(toLocation: CLLocationCoordinate2D(latitude: lattitude!, longitude: longitude!))*/
         
-        lattitude = locationManager.location?.coordinate.latitude
-        longitude = locationManager.location?.coordinate.longitude
+        CurrentLattitude = locationManager.location?.coordinate.latitude
+        CurrentLongitude = locationManager.location?.coordinate.longitude
 
         
-        let camera = GMSCameraPosition.camera(withLatitude: lattitude!, longitude: lattitude!, zoom: mapview.camera.zoom)
+        let camera = GMSCameraPosition.camera(withLatitude: CurrentLattitude!, longitude: CurrentLongitude!, zoom: mapview.camera.zoom)
         mapview.camera = camera
 
     }
@@ -173,6 +196,9 @@ class PinLocationViewController: UIViewController ,MKMapViewDelegate,CLLocationM
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
         //activityIndicator.isHidden = false
         //locationLabel.isHidden = true
+        
+        self.mapPolyline.map = nil
+
     }
 
     func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
@@ -183,6 +209,10 @@ class PinLocationViewController: UIViewController ,MKMapViewDelegate,CLLocationM
         let lat = mapView.camera.target.latitude
         let lon = mapView.camera.target.longitude
         
+        if self.mapPolyline.map != nil {
+            self.mapPolyline.map = nil
+        }
+
         let params = [
             "latlng": "\(lat),\(lon)",
             "key": GoogleMapsRestClient.GEOCODING_API_KEY
@@ -211,17 +241,53 @@ class PinLocationViewController: UIViewController ,MKMapViewDelegate,CLLocationM
                     }
                     self.txtPinLocation.text = formattedAddress
                     
-                    self.lattitude = lat
-                    self.longitude = lon
+                    self.DestinationLattitude = lat
+                    self.DestinationLongitude = lon
+                    
+
+                    let Current_lat = String(format: "%f", (self.locationManager.location?.coordinate.latitude)!)
+                    let Current_lon = String(format: "%f", (self.locationManager.location?.coordinate.longitude)!)
+
+                    let params = [
+                        "origin": "\(Current_lat),\(Current_lon)",
+                        "destination": "\(lat),\(lon)",
+                        "units": "metric",
+                        "key": GoogleMapsRestClient.DIRECTION_API_KEY
+                    ]
+                    
+                    print(params);
+                    self.drawRoute(params: params)
+
                 }
                 
-      
+
                 /*
                 self.location["address"] = formattedAddress
                 self.location["latitude"] = "\(lat)"
                 self.location["longitude"] = "\(lon)"*/
             }
         }
+    }
+
+    // MARK: - Draw Route
+    func drawRoute(params: [String:String])
+    {
+        GoogleMapsRestClient.directions(params: params, complete: { (response) in
+            if response != nil {
+                print(response)
+                let encodedRoutePolyline = response!["routes"][0]["overview_polyline"]["points"].stringValue
+                
+                self.distanceInMeters = response!["routes"][0]["legs"][0]["distance"]["value"].doubleValue
+                self.textDistance = response!["routes"][0]["legs"][0]["distance"]["text"].stringValue
+                
+                let path = GMSMutablePath(fromEncodedPath: encodedRoutePolyline)
+                let polyline = GMSPolyline(path: path)
+                
+                polyline.strokeWidth = 3.0
+                polyline.map = self.mapview
+                self.mapPolyline = polyline
+            }
+        })
     }
 
     /*

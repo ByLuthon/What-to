@@ -57,7 +57,6 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         Constants.app_delegate.openSideMenu()
     }
     
-    
     //MARK:- Zoom to region
     func zoomToRegion() {
         
