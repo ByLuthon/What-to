@@ -85,7 +85,6 @@ class PinLocationViewController: UIViewController ,MKMapViewDelegate,CLLocationM
         Constants.setBorderTo(subviewPinLocation, withBorderWidth: 0, radiousView: 2, color: UIColor.clear)
         
         Constants.setBorderTo(lblLocationDots, withBorderWidth: 0, radiousView: Float(lblLocationDots.frame.size.height/2), color: UIColor.clear)
-
     }
     
     func getMapsDetails()

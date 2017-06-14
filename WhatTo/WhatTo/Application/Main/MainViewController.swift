@@ -172,6 +172,7 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         move.destinationLatLng = CLLocationCoordinate2DMake(Constants.app_delegate.HomeDict.value(forKey: "latitude") as! CLLocationDegrees, Constants.app_delegate.HomeDict.value(forKey: "longitude") as! CLLocationDegrees)
         navigationController?.pushViewController(move, animated: true)
     }
+   
     @IBAction func workTapped(_ sender: Any)
     {
         let move: RouteDrawViewController = storyboard?.instantiateViewController(withIdentifier: "RouteDrawViewController") as! RouteDrawViewController
@@ -179,6 +180,8 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         move.destinationLatLng = CLLocationCoordinate2DMake(Constants.app_delegate.WorkDict.value(forKey: "latitude") as! CLLocationDegrees, Constants.app_delegate.WorkDict.value(forKey: "longitude") as! CLLocationDegrees)
         navigationController?.pushViewController(move, animated: true)
     }
+ 
+    
     /*
     // MARK: - Navigation
 

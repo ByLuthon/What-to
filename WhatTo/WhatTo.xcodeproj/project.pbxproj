@@ -49,10 +49,12 @@
 		9A3741CC1EEFC1CF00738D7C /* map_pin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A3741C91EEFC1CF00738D7C /* map_pin@3x.png */; };
 		9A3741D11EEFE1D000738D7C /* Cell_HomeWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3741CF1EEFE1D000738D7C /* Cell_HomeWork.swift */; };
 		9A3741D21EEFE1D000738D7C /* Cell_HomeWork.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A3741D01EEFE1D000738D7C /* Cell_HomeWork.xib */; };
-		9A3741D41EF0060C00738D7C /* best-sedans-2015-editors-choice-for-best-luxury-mid-size-and-awd-sedans-car-and-driver-photo-634596-s-450x274.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9A3741D31EF0060C00738D7C /* best-sedans-2015-editors-choice-for-best-luxury-mid-size-and-awd-sedans-car-and-driver-photo-634596-s-450x274.jpg */; };
+		9A3741D41EF0060C00738D7C /* example.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9A3741D31EF0060C00738D7C /* example.jpg */; };
 		9A3741D81EF008AA00738D7C /* current-location.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A3741D51EF008AA00738D7C /* current-location.png */; };
 		9A3741D91EF008AA00738D7C /* current-location@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A3741D61EF008AA00738D7C /* current-location@2x.png */; };
 		9A3741DA1EF008AA00738D7C /* current-location@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A3741D71EF008AA00738D7C /* current-location@3x.png */; };
+		9A39573F1EF11272002C0A68 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A39573E1EF11272002C0A68 /* CoreImage.framework */; };
+		9A3957411EF156AA002C0A68 /* ConfirmPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3957401EF156AA002C0A68 /* ConfirmPickupViewController.swift */; };
 		9A40548E1EEE64B9003B93FD /* pin.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A40548B1EEE64B9003B93FD /* pin.png */; };
 		9A40548F1EEE64B9003B93FD /* pin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A40548C1EEE64B9003B93FD /* pin@2x.png */; };
 		9A4054901EEE64B9003B93FD /* pin@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A40548D1EEE64B9003B93FD /* pin@3x.png */; };
@@ -125,10 +127,12 @@
 		9A3741C91EEFC1CF00738D7C /* map_pin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_pin@3x.png"; sourceTree = "<group>"; };
 		9A3741CF1EEFE1D000738D7C /* Cell_HomeWork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cell_HomeWork.swift; sourceTree = "<group>"; };
 		9A3741D01EEFE1D000738D7C /* Cell_HomeWork.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cell_HomeWork.xib; sourceTree = "<group>"; };
-		9A3741D31EF0060C00738D7C /* best-sedans-2015-editors-choice-for-best-luxury-mid-size-and-awd-sedans-car-and-driver-photo-634596-s-450x274.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "best-sedans-2015-editors-choice-for-best-luxury-mid-size-and-awd-sedans-car-and-driver-photo-634596-s-450x274.jpg"; sourceTree = "<group>"; };
+		9A3741D31EF0060C00738D7C /* example.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = example.jpg; sourceTree = "<group>"; };
 		9A3741D51EF008AA00738D7C /* current-location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "current-location.png"; sourceTree = "<group>"; };
 		9A3741D61EF008AA00738D7C /* current-location@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "current-location@2x.png"; sourceTree = "<group>"; };
 		9A3741D71EF008AA00738D7C /* current-location@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "current-location@3x.png"; sourceTree = "<group>"; };
+		9A39573E1EF11272002C0A68 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		9A3957401EF156AA002C0A68 /* ConfirmPickupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmPickupViewController.swift; sourceTree = "<group>"; };
 		9A40548B1EEE64B9003B93FD /* pin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pin.png; sourceTree = "<group>"; };
 		9A40548C1EEE64B9003B93FD /* pin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin@2x.png"; sourceTree = "<group>"; };
 		9A40548D1EEE64B9003B93FD /* pin@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pin@3x.png"; sourceTree = "<group>"; };
@@ -166,6 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A39573F1EF11272002C0A68 /* CoreImage.framework in Frameworks */,
 				9A1BC2661EE9704C00A9D802 /* CoreLocation.framework in Frameworks */,
 				9A1BC2641EE96F9E00A9D802 /* MapKit.framework in Frameworks */,
 				607CB037B4209670F5B80184 /* Pods_WhatTo.framework in Frameworks */,
@@ -301,7 +306,7 @@
 		9A4054931EEED2F4003B93FD /* Payment */ = {
 			isa = PBXGroup;
 			children = (
-				9A3741D31EF0060C00738D7C /* best-sedans-2015-editors-choice-for-best-luxury-mid-size-and-awd-sedans-car-and-driver-photo-634596-s-450x274.jpg */,
+				9A3741D31EF0060C00738D7C /* example.jpg */,
 				9A4054941EEED2FE003B93FD /* visa_icon.png */,
 				9A4054951EEED2FE003B93FD /* visa_icon@2x.png */,
 				9A4054961EEED2FE003B93FD /* visa_icon@3x.png */,
@@ -441,6 +446,7 @@
 				9A616B101EEBCB60000DC318 /* SearchAddressViewController.swift */,
 				9A2BDCEA1EEAB5AC00F86690 /* PinLocationViewController.swift */,
 				9A4054911EEED049003B93FD /* RouteDrawViewController.swift */,
+				9A3957401EF156AA002C0A68 /* ConfirmPickupViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -461,6 +467,7 @@
 		C982CBAABEFDB8229F095827 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9A39573E1EF11272002C0A68 /* CoreImage.framework */,
 				9A1BC2651EE9704C00A9D802 /* CoreLocation.framework */,
 				9A1BC2631EE96F9E00A9D802 /* MapKit.framework */,
 				6E7F7FE23E2B18945E6704BA /* Pods_WhatTo.framework */,
@@ -586,7 +593,7 @@
 				9A1BC2791EE98CC600A9D802 /* sideMenuList.plist in Resources */,
 				9A1BC2701EE97E9C00A9D802 /* menuicon@3x.png in Resources */,
 				9A40548E1EEE64B9003B93FD /* pin.png in Resources */,
-				9A3741D41EF0060C00738D7C /* best-sedans-2015-editors-choice-for-best-luxury-mid-size-and-awd-sedans-car-and-driver-photo-634596-s-450x274.jpg in Resources */,
+				9A3741D41EF0060C00738D7C /* example.jpg in Resources */,
 				9A5F974D1EE941B200146FCD /* Main.storyboard in Resources */,
 				9A1BC26E1EE97E9C00A9D802 /* menuicon.png in Resources */,
 				9A4054901EEE64B9003B93FD /* pin@3x.png in Resources */,
@@ -667,6 +674,7 @@
 				9A2BDCF61EEAD26A00F86690 /* GoogleMapsAPIKey.swift in Sources */,
 				9A4054A31EEED7C4003B93FD /* Reachability.swift in Sources */,
 				9A5F97621EE9572900146FCD /* AppDelegate.swift in Sources */,
+				9A3957411EF156AA002C0A68 /* ConfirmPickupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

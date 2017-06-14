@@ -21,6 +21,9 @@ class RouteDrawViewController: UIViewController ,CLLocationManagerDelegate,GMSMa
     @IBOutlet weak var imgUBERGO: UIImageView!
     @IBOutlet weak var imgUBERX: UIImageView!
     
+    @IBOutlet weak var subvieeUBERMOTO: UIView!
+    @IBOutlet weak var subviewUBERGO: UIView!
+    @IBOutlet weak var subviewUBERX: UIView!
     
     @IBOutlet weak var mapview: GMSMapView!
     var locationManager = CLLocationManager()
@@ -33,7 +36,16 @@ class RouteDrawViewController: UIViewController ,CLLocationManagerDelegate,GMSMa
     var destinationMarker = GMSMarker()
     var mapPolyline = GMSPolyline()
     
-    //MARK:- DID LOAD
+    
+    var selectIndex: Int = -1
+    
+    @IBOutlet var viewDetails: UIView!
+    @IBOutlet weak var subviewDetailsPopup: UIView!
+    @IBOutlet weak var imgDetails: UIImageView!
+    @IBOutlet weak var btnRequest: UIButton!
+    
+    
+    //MARK:- DIDLOAD
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -73,14 +85,6 @@ class RouteDrawViewController: UIViewController ,CLLocationManagerDelegate,GMSMa
         let update = GMSCameraUpdate.fit(bounds, withPadding: 25)
         self.mapview.animate(with: update)
         
-        /*
-         let bounds = GMSCoordinateBounds(coordinate: pickupLatLng, coordinate: destinationLatLng)
-         let update = GMSCameraUpdate.fit(bounds)
-         self.mapview.moveCamera(update)
-         self.mapview.animate(with: GMSCameraUpdate.fit(bounds, withPadding: 40))*/
-        
-        
-        
         // Do any additional setup after loading the view.
     }
     
@@ -107,7 +111,32 @@ class RouteDrawViewController: UIViewController ,CLLocationManagerDelegate,GMSMa
         Constants.setBorderTo(imgUBERMOTO, withBorderWidth: 1, radiousView: Float(imgUBERMOTO.frame.size.height/2), color: UIColor.lightGray)
         Constants.setBorderTo(imgUBERGO, withBorderWidth: 1, radiousView: Float(imgUBERGO.frame.size.height/2), color: UIColor.lightGray)
         Constants.setBorderTo(imgUBERX, withBorderWidth: 1, radiousView: Float(imgUBERX.frame.size.height/2), color: UIColor.lightGray)
-
+        
+        
+        //DETAILS POPUP
+        Constants.setBorderTo(imgDetails, withBorderWidth: 1, radiousView: Float(imgDetails.frame.size.height/2), color: UIColor.lightGray)
+        self.view.addSubview(viewDetails)
+        viewDetails.frame = CGRect(x: 0, y: 0, width: Constants.WIDTH, height: Constants.HEIGHT)
+        viewDetails.isHidden = true
+        
+        
+        ////
+        self.removeAnimation()
+        for sub_view in subvieeUBERMOTO.subviews {
+            if sub_view is UIImageView
+            {
+                let imageview : UIImageView = sub_view as! UIImageView
+                imageview.image = UIImage(named: "example.jpg")
+                //imageview.image = self.convertToGrayScale(image: UIImage.init(named: "example.jpg")!, scale: 10.0)
+            }
+            if sub_view is UILabel
+            {
+                let lbl : UILabel = sub_view as! UILabel
+                lbl.textColor = UIColor.black
+            }
+        }
+        
+        btnRequest.setTitle("uberMOTO", for: .normal)
     }
     
     func getMapsDetails()
@@ -226,9 +255,201 @@ class RouteDrawViewController: UIViewController ,CLLocationManagerDelegate,GMSMa
         //mapview.setRegion(region, animated: true)
     }
     
+    //MARK:- convertToGrayScale
+    
+    public func convertToGrayScale(image: UIImage, scale: Float) -> UIImage
+    {
+        let imgRect = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
+        
+        let colorSpace = CGColorSpaceCreateDeviceGray()
+        
+        //bitsPerComponent: Int(scale)
+        let context = CGContext(data: nil, width: Int(image.size.width), height: Int(image.size.height), bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.none.rawValue).rawValue)
+        
+        context?.draw(image.cgImage!, in: imgRect)
+        
+        let imageRef = context!.makeImage()
+        let newImg = UIImage(cgImage: imageRef!)
+        
+        return newImg
+    }
+    
+    //MARK:- IBACTIONS
+    @IBAction func pickupTimeTaed(_ sender: Any) {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "PickupTimeViewController") as! PickupTimeViewController
+        vc.modalPresentationStyle = .overCurrentContext
+        present(vc, animated: true, completion: nil)
+        
+    }
+    
+    @IBAction func RequestTapped(_ sender: Any)
+    {
+        let move: ConfirmPickupViewController = storyboard?.instantiateViewController(withIdentifier: "ConfirmPickupViewController") as! ConfirmPickupViewController
+        navigationController?.pushViewController(move, animated: true)
+        
+    }
+    
+    @IBAction func DoneDetails(_ sender: Any)
+    {
+        
+        
+        UIView.beginAnimations("", context: nil)
+        UIView.setAnimationDuration(0.2)
+        subviewDetailsPopup.frame = CGRect(x: CGFloat(0), y: Constants.HEIGHT, width: Constants.WIDTH, height: subviewDetailsPopup.frame.size.height)
+        
+        Constants.animatewithShow(show: false, with: viewDetails)
+        UIView.commitAnimations()
+    }
+    
+    @IBAction func uberVehicalClicked(_ sender: Any)
+    {
+        let btn: UIButton = sender as! UIButton
+        let selectTag = btn.tag
+        
+        if selectTag == selectIndex
+        {
+            //OPEN NEW SCREEN
+            Constants.animatewithShow(show: true, with: viewDetails)
+            
+            subviewDetailsPopup.frame = CGRect(x:CGFloat(0), y: Constants.HEIGHT, width: CGFloat(Constants.WIDTH), height: subviewDetailsPopup.frame.size.height)
+            
+            UIView.beginAnimations("", context: nil)
+            UIView.setAnimationDuration(0.2)
+            subviewDetailsPopup.frame = CGRect(x:CGFloat(0), y: Constants.HEIGHT - subviewDetailsPopup.frame.size.height, width: CGFloat(Constants.WIDTH), height: subviewDetailsPopup.frame.size.height)
+            UIView.commitAnimations()
+            UIView.animate(withDuration: 1.0, animations: {() -> Void in
+            })
+            
+        }
+        else
+        {
+            self.removeAnimation()
+            selectIndex = selectTag
+            
+            UIView.beginAnimations("", context: nil)
+            UIView.setAnimationDuration(0.2)
+            UIView.commitAnimations()
+            UIView.animate(withDuration: 1, animations: {() -> Void in
+                
+                if selectTag == 0
+                {
+                    self.btnRequest.setTitle("uberMOTO", for: .normal)
+                    for sub_view in self.subvieeUBERMOTO.subviews {
+                        
+                        if sub_view is UIImageView
+                        {
+                            let imageview : UIImageView = sub_view as! UIImageView
+                            imageview.image = UIImage.init(named: "example.jpg")
+                        }
+                        if sub_view is UILabel
+                        {
+                            let lbl : UILabel = sub_view as! UILabel
+                            lbl.textColor = UIColor.black
+                        }
+                    }
+                }
+                else if selectTag == 1
+                {
+                    self.btnRequest.setTitle("uberGO", for: .normal)
+                    for sub_view in self.subviewUBERGO.subviews {
+                        
+                        if sub_view is UIImageView
+                        {
+                            let imageview : UIImageView = sub_view as! UIImageView
+                            imageview.image = UIImage.init(named: "example.jpg")
+                        }
+                        if sub_view is UILabel
+                        {
+                            let lbl : UILabel = sub_view as! UILabel
+                            lbl.textColor = UIColor.black
+                        }
+                    }
+                }
+                else
+                {
+                    self.btnRequest.setTitle("uberX", for: .normal)
+                    for sub_view in self.subviewUBERX.subviews {
+                        
+                        if sub_view is UIImageView
+                        {
+                            let imageview : UIImageView = sub_view as! UIImageView
+                            imageview.image = UIImage.init(named: "example.jpg")
+                        }
+                        if sub_view is UILabel
+                        {
+                            let lbl : UILabel = sub_view as! UILabel
+                            lbl.textColor = UIColor.black
+                        }
+                    }
+                }
+            })
+        }
+    }
+    
+    func animatedClickbutton(_selectbtn:UIButton)
+    {
+        
+    }
+    
+    func removeAnimation() {
+        
+        UIView.beginAnimations("", context: nil)
+        UIView.setAnimationDuration(0.2)
+        UIView.commitAnimations()
+        UIView.animate(withDuration: 0.5, animations: {() -> Void in
+            
+            for sub_view in self.subvieeUBERMOTO.subviews {
+                
+                if sub_view is UIImageView
+                {
+                    let imageview : UIImageView = sub_view as! UIImageView
+                    imageview.image = self.convertToGrayScale(image: imageview.image!, scale: 5.0)
+                }
+                if sub_view is UILabel
+                {
+                    let lbl : UILabel = sub_view as! UILabel
+                    lbl.textColor = UIColor.gray
+                }
+            }
+            
+            for sub_view in self.subviewUBERGO.subviews {
+                
+                if sub_view is UIImageView
+                {
+                    let imageview : UIImageView = sub_view as! UIImageView
+                    imageview.image = self.convertToGrayScale(image: imageview.image!, scale: 5.0)
+                }
+                if sub_view is UILabel
+                {
+                    let lbl : UILabel = sub_view as! UILabel
+                    lbl.textColor = UIColor.gray
+                }
+            }
+            
+            for sub_view in self.subviewUBERX.subviews {
+                
+                if sub_view is UIImageView
+                {
+                    let imageview : UIImageView = sub_view as! UIImageView
+                    imageview.image = self.convertToGrayScale(image: imageview.image!, scale: 5.0)
+                }
+                if sub_view is UILabel
+                {
+                    let lbl : UILabel = sub_view as! UILabel
+                    lbl.textColor = UIColor.gray
+                }
+            }
+            
+        })
+        
+    }
+    
+    
+    
+    
     @IBAction func Back(_ sender: Any)
     {
         self.navigationController?.pop(animated: true)
     }
-
+    
 }

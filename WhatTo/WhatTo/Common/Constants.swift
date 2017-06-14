@@ -94,5 +94,25 @@ class Constants {
         view.layer.cornerRadius = CGFloat(radiousView)
         view.layer.masksToBounds = true
     }
+    
+    static func animatewithShow(show: Bool, with animatedView: UIView) {
+        if show == true {
+            animatedView.alpha = 0
+            animatedView.isHidden = false
+            UIView.animate(withDuration: 0.3, animations: {() -> Void in
+                animatedView.alpha = 1
+            })
+        }
+        else {
+            UIView.animate(withDuration: 0.3, animations: {() -> Void in
+                animatedView.alpha = 0
+            }, completion: {(_ finished: Bool) -> Void in
+                animatedView.alpha = 0
+                animatedView.isHidden = finished
+                //if animation is finished ("finished" == *YES*), then hidden = "finished" ... (aka hidden = *YES*)
+            })
+        }
+    }
+
 
 }
