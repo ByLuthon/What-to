@@ -80,6 +80,27 @@
 		9A616B1F1EEBF564000DC318 /* Info-tvOS.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A616B191EEBF564000DC318 /* Info-tvOS.plist */; };
 		9A616B201EEBF564000DC318 /* Info-watchOS.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A616B1A1EEBF564000DC318 /* Info-watchOS.plist */; };
 		9A616B211EEBF564000DC318 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A616B1C1EEBF564000DC318 /* SwiftyJSON.swift */; };
+		9A74BE181EF26E4E007242C0 /* AddPamentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A74BE171EF26E4E007242C0 /* AddPamentViewController.swift */; };
+		9A74BE1C1EF27CD6007242C0 /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A74BE191EF27CD6007242C0 /* cross.png */; };
+		9A74BE1D1EF27CD6007242C0 /* cross@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A74BE1A1EF27CD6007242C0 /* cross@2x.png */; };
+		9A74BE1E1EF27CD6007242C0 /* cross@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A74BE1B1EF27CD6007242C0 /* cross@3x.png */; };
+		9A74BE281EF28343007242C0 /* credit-card.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A74BE1F1EF28343007242C0 /* credit-card.png */; };
+		9A74BE291EF28343007242C0 /* credit-card@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A74BE201EF28343007242C0 /* credit-card@2x.png */; };
+		9A74BE2A1EF28343007242C0 /* credit-card@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A74BE211EF28343007242C0 /* credit-card@3x.png */; };
+		9A74BE2B1EF28343007242C0 /* notes.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A74BE221EF28343007242C0 /* notes.png */; };
+		9A74BE2C1EF28343007242C0 /* notes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A74BE231EF28343007242C0 /* notes@2x.png */; };
+		9A74BE2D1EF28343007242C0 /* notes@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A74BE241EF28343007242C0 /* notes@3x.png */; };
+		9A74BE2E1EF28343007242C0 /* paytm.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A74BE251EF28343007242C0 /* paytm.png */; };
+		9A74BE2F1EF28343007242C0 /* paytm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A74BE261EF28343007242C0 /* paytm@2x.png */; };
+		9A74BE301EF28343007242C0 /* paytm@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A74BE271EF28343007242C0 /* paytm@3x.png */; };
+		9A74BE341EF283BE007242C0 /* Cell_AddPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A74BE321EF283BE007242C0 /* Cell_AddPayment.swift */; };
+		9A74BE351EF283BE007242C0 /* Cell_AddPayment.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A74BE331EF283BE007242C0 /* Cell_AddPayment.xib */; };
+		9A74BE381EF296AF007242C0 /* EditAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A74BE371EF296AF007242C0 /* EditAccountViewController.swift */; };
+		9A74BE3C1EF29924007242C0 /* edit_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A74BE391EF29924007242C0 /* edit_icon.png */; };
+		9A74BE3D1EF29924007242C0 /* edit_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A74BE3A1EF29924007242C0 /* edit_icon@2x.png */; };
+		9A74BE3E1EF29924007242C0 /* edit_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A74BE3B1EF29924007242C0 /* edit_icon@3x.png */; };
+		9A74BE421EF29B3C007242C0 /* Cell_Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A74BE401EF29B3C007242C0 /* Cell_Account.swift */; };
+		9A74BE431EF29B3C007242C0 /* Cell_Account.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A74BE411EF29B3C007242C0 /* Cell_Account.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -162,6 +183,27 @@
 		9A616B1A1EEBF564000DC318 /* Info-watchOS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-watchOS.plist"; sourceTree = "<group>"; };
 		9A616B1B1EEBF564000DC318 /* SwiftyJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwiftyJSON.h; sourceTree = "<group>"; };
 		9A616B1C1EEBF564000DC318 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		9A74BE171EF26E4E007242C0 /* AddPamentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPamentViewController.swift; sourceTree = "<group>"; };
+		9A74BE191EF27CD6007242C0 /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
+		9A74BE1A1EF27CD6007242C0 /* cross@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cross@2x.png"; sourceTree = "<group>"; };
+		9A74BE1B1EF27CD6007242C0 /* cross@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cross@3x.png"; sourceTree = "<group>"; };
+		9A74BE1F1EF28343007242C0 /* credit-card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "credit-card.png"; sourceTree = "<group>"; };
+		9A74BE201EF28343007242C0 /* credit-card@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "credit-card@2x.png"; sourceTree = "<group>"; };
+		9A74BE211EF28343007242C0 /* credit-card@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "credit-card@3x.png"; sourceTree = "<group>"; };
+		9A74BE221EF28343007242C0 /* notes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notes.png; sourceTree = "<group>"; };
+		9A74BE231EF28343007242C0 /* notes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notes@2x.png"; sourceTree = "<group>"; };
+		9A74BE241EF28343007242C0 /* notes@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notes@3x.png"; sourceTree = "<group>"; };
+		9A74BE251EF28343007242C0 /* paytm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = paytm.png; sourceTree = "<group>"; };
+		9A74BE261EF28343007242C0 /* paytm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "paytm@2x.png"; sourceTree = "<group>"; };
+		9A74BE271EF28343007242C0 /* paytm@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "paytm@3x.png"; sourceTree = "<group>"; };
+		9A74BE321EF283BE007242C0 /* Cell_AddPayment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cell_AddPayment.swift; sourceTree = "<group>"; };
+		9A74BE331EF283BE007242C0 /* Cell_AddPayment.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cell_AddPayment.xib; sourceTree = "<group>"; };
+		9A74BE371EF296AF007242C0 /* EditAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAccountViewController.swift; sourceTree = "<group>"; };
+		9A74BE391EF29924007242C0 /* edit_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit_icon.png; sourceTree = "<group>"; };
+		9A74BE3A1EF29924007242C0 /* edit_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edit_icon@2x.png"; sourceTree = "<group>"; };
+		9A74BE3B1EF29924007242C0 /* edit_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edit_icon@3x.png"; sourceTree = "<group>"; };
+		9A74BE401EF29B3C007242C0 /* Cell_Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cell_Account.swift; sourceTree = "<group>"; };
+		9A74BE411EF29B3C007242C0 /* Cell_Account.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cell_Account.xib; sourceTree = "<group>"; };
 		CFF9EA1FF9FD3EB8B8A84E8A /* Pods-WhatTo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatTo.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhatTo/Pods-WhatTo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -245,6 +287,9 @@
 		9A2BDCBC1EEA830600F86690 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				9A74BE391EF29924007242C0 /* edit_icon.png */,
+				9A74BE3A1EF29924007242C0 /* edit_icon@2x.png */,
+				9A74BE3B1EF29924007242C0 /* edit_icon@3x.png */,
 				9A2BDCC01EEA832B00F86690 /* emptyProfilePic.png */,
 			);
 			path = Profile;
@@ -306,6 +351,18 @@
 		9A4054931EEED2F4003B93FD /* Payment */ = {
 			isa = PBXGroup;
 			children = (
+				9A74BE1F1EF28343007242C0 /* credit-card.png */,
+				9A74BE201EF28343007242C0 /* credit-card@2x.png */,
+				9A74BE211EF28343007242C0 /* credit-card@3x.png */,
+				9A74BE221EF28343007242C0 /* notes.png */,
+				9A74BE231EF28343007242C0 /* notes@2x.png */,
+				9A74BE241EF28343007242C0 /* notes@3x.png */,
+				9A74BE251EF28343007242C0 /* paytm.png */,
+				9A74BE261EF28343007242C0 /* paytm@2x.png */,
+				9A74BE271EF28343007242C0 /* paytm@3x.png */,
+				9A74BE191EF27CD6007242C0 /* cross.png */,
+				9A74BE1A1EF27CD6007242C0 /* cross@2x.png */,
+				9A74BE1B1EF27CD6007242C0 /* cross@3x.png */,
 				9A3741D31EF0060C00738D7C /* example.jpg */,
 				9A4054941EEED2FE003B93FD /* visa_icon.png */,
 				9A4054951EEED2FE003B93FD /* visa_icon@2x.png */,
@@ -374,6 +431,8 @@
 				9A5F975E1EE956D400146FCD /* Appdelegate */,
 				9A5F975F1EE956E800146FCD /* Login-Signup */,
 				9A5F97651EE9575400146FCD /* Main */,
+				9A74BE161EF26E3A007242C0 /* Payment */,
+				9A74BE361EF29683007242C0 /* Profile */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -464,6 +523,42 @@
 			path = SwiftyJSON;
 			sourceTree = "<group>";
 		};
+		9A74BE161EF26E3A007242C0 /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				9A74BE311EF283A5007242C0 /* cell */,
+				9A74BE171EF26E4E007242C0 /* AddPamentViewController.swift */,
+			);
+			path = Payment;
+			sourceTree = "<group>";
+		};
+		9A74BE311EF283A5007242C0 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				9A74BE321EF283BE007242C0 /* Cell_AddPayment.swift */,
+				9A74BE331EF283BE007242C0 /* Cell_AddPayment.xib */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		9A74BE361EF29683007242C0 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				9A74BE3F1EF29B1C007242C0 /* cell */,
+				9A74BE371EF296AF007242C0 /* EditAccountViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		9A74BE3F1EF29B1C007242C0 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				9A74BE401EF29B3C007242C0 /* Cell_Account.swift */,
+				9A74BE411EF29B3C007242C0 /* Cell_Account.xib */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
 		C982CBAABEFDB8229F095827 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -548,6 +643,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A74BE1E1EF27CD6007242C0 /* cross@3x.png in Resources */,
+				9A74BE2C1EF28343007242C0 /* notes@2x.png in Resources */,
 				9A4054981EEED2FE003B93FD /* visa_icon@2x.png in Resources */,
 				9A1BC2691EE9759400A9D802 /* splash.jpg in Resources */,
 				9A4054971EEED2FE003B93FD /* visa_icon.png in Resources */,
@@ -557,23 +654,30 @@
 				9A2BDCDF1EEAA26700F86690 /* home@3x.png in Resources */,
 				9A2BDCDD1EEAA26700F86690 /* home.png in Resources */,
 				9A616B201EEBF564000DC318 /* Info-watchOS.plist in Resources */,
+				9A74BE2E1EF28343007242C0 /* paytm.png in Resources */,
 				9A1BC2741EE9822000A9D802 /* taxi.png in Resources */,
 				9A2BDCF11EEAB71F00F86690 /* mapCurrentLocation@3x.png in Resources */,
 				9A2BDCCF1EEA9B6000F86690 /* forword@3x.png in Resources */,
 				9A2BDCCE1EEA9B6000F86690 /* forword@2x.png in Resources */,
 				9A2BDCE11EEAA26700F86690 /* pinLocation@2x.png in Resources */,
 				9A3741D91EF008AA00738D7C /* current-location@2x.png in Resources */,
+				9A74BE301EF28343007242C0 /* paytm@3x.png in Resources */,
 				9A3741D21EEFE1D000738D7C /* Cell_HomeWork.xib in Resources */,
 				9A3741D81EF008AA00738D7C /* current-location.png in Resources */,
 				9A616B1F1EEBF564000DC318 /* Info-tvOS.plist in Resources */,
 				9A2BDCC11EEA832B00F86690 /* emptyProfilePic.png in Resources */,
 				9A2BDCE21EEAA26700F86690 /* pinLocation@3x.png in Resources */,
 				9A2BDCF01EEAB71F00F86690 /* mapCurrentLocation@2x.png in Resources */,
+				9A74BE2D1EF28343007242C0 /* notes@3x.png in Resources */,
 				9A616B1D1EEBF564000DC318 /* Info-iOS.plist in Resources */,
+				9A74BE431EF29B3C007242C0 /* Cell_Account.xib in Resources */,
+				9A74BE3D1EF29924007242C0 /* edit_icon@2x.png in Resources */,
 				9A2BDCCB1EEA9B6000F86690 /* back@2x.png in Resources */,
 				9A1BC2751EE9822000A9D802 /* taxi@2x.png in Resources */,
+				9A74BE2F1EF28343007242C0 /* paytm@2x.png in Resources */,
 				9A2BDCDE1EEAA26700F86690 /* home@2x.png in Resources */,
 				9A2BDCE71EEAA32000F86690 /* Cell_setLocation.xib in Resources */,
+				9A74BE351EF283BE007242C0 /* Cell_AddPayment.xib in Resources */,
 				9A2BDCCC1EEA9B6000F86690 /* back@3x.png in Resources */,
 				9A2BDCDC1EEAA26700F86690 /* briefcase@3x.png in Resources */,
 				9A2BDCEF1EEAB71F00F86690 /* mapCurrentLocation.png in Resources */,
@@ -586,8 +690,12 @@
 				9A1BC26F1EE97E9C00A9D802 /* menuicon@2x.png in Resources */,
 				9A3741CC1EEFC1CF00738D7C /* map_pin@3x.png in Resources */,
 				9A2BDCDB1EEAA26700F86690 /* briefcase@2x.png in Resources */,
+				9A74BE3E1EF29924007242C0 /* edit_icon@3x.png in Resources */,
 				9A2BDCE01EEAA26700F86690 /* pinLocation.png in Resources */,
+				9A74BE2A1EF28343007242C0 /* credit-card@3x.png in Resources */,
 				9A5F974F1EE941B200146FCD /* Assets.xcassets in Resources */,
+				9A74BE291EF28343007242C0 /* credit-card@2x.png in Resources */,
+				9A74BE1C1EF27CD6007242C0 /* cross.png in Resources */,
 				9A3741CB1EEFC1CF00738D7C /* map_pin@2x.png in Resources */,
 				9A2BDCDA1EEAA26700F86690 /* briefcase.png in Resources */,
 				9A1BC2791EE98CC600A9D802 /* sideMenuList.plist in Resources */,
@@ -595,8 +703,12 @@
 				9A40548E1EEE64B9003B93FD /* pin.png in Resources */,
 				9A3741D41EF0060C00738D7C /* example.jpg in Resources */,
 				9A5F974D1EE941B200146FCD /* Main.storyboard in Resources */,
+				9A74BE3C1EF29924007242C0 /* edit_icon.png in Resources */,
+				9A74BE281EF28343007242C0 /* credit-card.png in Resources */,
 				9A1BC26E1EE97E9C00A9D802 /* menuicon.png in Resources */,
+				9A74BE2B1EF28343007242C0 /* notes.png in Resources */,
 				9A4054901EEE64B9003B93FD /* pin@3x.png in Resources */,
+				9A74BE1D1EF27CD6007242C0 /* cross@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -664,11 +776,15 @@
 				9A5F976B1EE9684A00146FCD /* Constants.swift in Sources */,
 				9A5F97671EE957D000146FCD /* MainViewController.swift in Sources */,
 				9A2BDCC31EEA99A800F86690 /* AddLocationViewController.swift in Sources */,
+				9A74BE381EF296AF007242C0 /* EditAccountViewController.swift in Sources */,
 				9A2BDCE61EEAA32000F86690 /* Cell_setLocation.swift in Sources */,
+				9A74BE341EF283BE007242C0 /* Cell_AddPayment.swift in Sources */,
 				9A616B111EEBCB60000DC318 /* SearchAddressViewController.swift in Sources */,
 				9A2BDCE91EEAAE6900F86690 /* PickupTimeViewController.swift in Sources */,
+				9A74BE181EF26E4E007242C0 /* AddPamentViewController.swift in Sources */,
 				9A2BDCB71EEA73CA00F86690 /* UIButton+EventBlocks.m in Sources */,
 				9A5F97641EE9573C00146FCD /* ViewController.swift in Sources */,
+				9A74BE421EF29B3C007242C0 /* Cell_Account.swift in Sources */,
 				9A3741D11EEFE1D000738D7C /* Cell_HomeWork.swift in Sources */,
 				9A5F97691EE9669E00146FCD /* GlobalData.swift in Sources */,
 				9A2BDCF61EEAD26A00F86690 /* GoogleMapsAPIKey.swift in Sources */,

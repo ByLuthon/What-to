@@ -124,7 +124,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UITableViewDelegate,UITabl
         lblUsername.font = UIFont(name: "HelveticaNeue-Regular", size: CGFloat(16))
         viewTopProfile.addSubview(lblUsername)
         
-                
+        
+        let btnProfile = UIButton(type: .custom)
+        btnProfile.frame = viewTopProfile.frame
+        btnProfile.addTarget(self, action:#selector(self.editProfileTapped), for: .touchUpInside)
+        viewTopProfile.addSubview(btnProfile)
+
+        
         let tbl = UITableView(frame: CGRect(x: CGFloat(0), y: CGFloat(viewTopProfile.frame.size.height+10), width: CGFloat(viewTopProfile.frame.size.width), height: CGFloat(Constants.HEIGHT - viewTopProfile.frame.size.height)), style: .plain)
         tbl.delegate = self
         tbl.dataSource = self
@@ -137,13 +143,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UITableViewDelegate,UITabl
         sidebarview.isHidden = true
     }
     
-    func pressed(sender: UIButton!) {
+    func pressed(sender: UIButton!)
+    {
         self.closeSideMenu()
     }
 
+    func editProfileTapped(sender: UIButton!)
+    {
+        self.closeSideMenu()
+
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+
+        let vc = storyboard.instantiateViewController(withIdentifier: "EditAccountViewController") as! EditAccountViewController
+        //self.present(vc, animated: true, completion: nil)
+        self.window?.rootViewController?.present(vc, animated: true, completion: nil)
+    }
+
+    
     func openSideMenu()
     {
-
         window?.bringSubview(toFront: sidebarview)
         sidebarview.isHidden = false
         sidebarview.frame = CGRect(x: CGFloat(-Constants.WIDTH), y: CGFloat(0), width: CGFloat(Constants.WIDTH), height: CGFloat(Constants.HEIGHT))

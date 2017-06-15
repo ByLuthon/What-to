@@ -28,11 +28,23 @@ class ConfirmPickupViewController: UIViewController, MKMapViewDelegate,CLLocatio
     var DestinationLattitude: Double?
     var DestinationLongitude: Double?
     
+    //VERIFY NUMBER POPUP
     @IBOutlet var view_verifiedNumber: UIView!
     @IBOutlet weak var subview_verifyNumber: UIView!
     @IBOutlet weak var btnEditNumber: UIButton!
     @IBOutlet weak var btnContinue: UIButton!
 
+    //VIEWING FARE POPUP
+    @IBOutlet weak var subviewViewingFare: UIView!
+    @IBOutlet weak var btnViewingFareCancel: UIButton!
+    @IBOutlet weak var btnViewingFareContinue: UIButton!
+    
+    
+    //PAYMENT
+    @IBOutlet weak var subviewPayment: UIView!
+    @IBOutlet weak var btnAddPayment: UIButton!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,15 +68,26 @@ class ConfirmPickupViewController: UIViewController, MKMapViewDelegate,CLLocatio
     }
     func setInitParam()
     {
-        Constants.shaodow(on: viewBox)
-        Constants.setBorderTo(btnContinue, withBorderWidth: 0, radiousView: 2, color: UIColor.clear)
-        Constants.setBorderTo(btnEditNumber, withBorderWidth: 0.5, radiousView: 2, color: UIColor.darkGray)
-
-        
-        ///Verify Number
         self.view.addSubview(view_verifiedNumber)
         view_verifiedNumber.frame = CGRect(x: 0, y: 0, width: Constants.WIDTH, height: Constants.HEIGHT)
         view_verifiedNumber.isHidden = true
+
+        
+        ///Verify Number
+        Constants.shaodow(on: viewBox)
+        Constants.setBorderTo(btnContinue, withBorderWidth: 0, radiousView: 2, color: UIColor.clear)
+        Constants.setBorderTo(btnEditNumber, withBorderWidth: 0.5, radiousView: 2, color: UIColor.darkGray)
+        
+        
+        //ViewingFARE
+        Constants.shaodow(on: subviewViewingFare)
+        Constants.setBorderTo(btnViewingFareContinue, withBorderWidth: 0, radiousView: 2, color: UIColor.clear)
+        Constants.setBorderTo(btnViewingFareCancel, withBorderWidth: 0.5, radiousView: 2, color: UIColor.darkGray)
+
+        
+        //PAYMENT
+        Constants.shaodow(on: subviewPayment)
+        Constants.setBorderTo(btnAddPayment, withBorderWidth: 0, radiousView: 2, color: UIColor.clear)
     }
 
     func getMapsDetails()
@@ -205,40 +228,78 @@ class ConfirmPickupViewController: UIViewController, MKMapViewDelegate,CLLocatio
     
 
     // MARK: - IBActions
+    func popupWithAnimation(_subview: UIView, show:Bool)  {
+        if show
+        {
+            _subview.frame = CGRect(x:CGFloat(0), y: Constants.HEIGHT, width: CGFloat(Constants.WIDTH), height: _subview.frame.size.height)
+            
+            UIView.beginAnimations("", context: nil)
+            UIView.setAnimationDuration(0.4)
+            _subview.frame = CGRect(x:CGFloat(0), y: Constants.HEIGHT - _subview.frame.size.height, width: CGFloat(Constants.WIDTH), height: _subview.frame.size.height)
+            UIView.commitAnimations()
+            UIView.animate(withDuration: 1.0, animations: {() -> Void in
+            })
+        }
+        else
+        {
+            UIView.beginAnimations("", context: nil)
+            UIView.setAnimationDuration(0.4)
+            _subview.frame = CGRect(x:CGFloat(0), y: Constants.HEIGHT, width: CGFloat(Constants.WIDTH), height: _subview.frame.size.height)
+            UIView.commitAnimations()
+        }
+    }
+    
+    // MARK: - VERIFY NUMBER
     @IBAction func confirmPickup(_ sender: Any) {
         Constants.animatewithShow(show: true, with: view_verifiedNumber)
         
-        //OPEN VERIFYNUMBER POPUP
         subview_verifyNumber.frame = CGRect(x:CGFloat(0), y: Constants.HEIGHT, width: CGFloat(Constants.WIDTH), height: subview_verifyNumber.frame.size.height)
-        
-        UIView.beginAnimations("", context: nil)
-        UIView.setAnimationDuration(0.4)
-        subview_verifyNumber.frame = CGRect(x:CGFloat(0), y: Constants.HEIGHT - subview_verifyNumber.frame.size.height, width: CGFloat(Constants.WIDTH), height: subview_verifyNumber.frame.size.height)
-        UIView.commitAnimations()
-        UIView.animate(withDuration: 1.0, animations: {() -> Void in
-        })
+        subviewViewingFare.frame = CGRect(x:CGFloat(0), y: Constants.HEIGHT, width: CGFloat(Constants.WIDTH), height: subviewViewingFare.frame.size.height)
+        subviewPayment.frame = CGRect(x:CGFloat(0), y: Constants.HEIGHT, width: CGFloat(Constants.WIDTH), height: subviewPayment.frame.size.height)
 
+        
+        self.popupWithAnimation(_subview: subview_verifyNumber, show: true)
     }
 
     @IBAction func EditNumber(_ sender: Any) {
-        
+        self.removeNumberVerificationPoup()
+        self.popupWithAnimation(_subview: subview_verifyNumber, show: false)
     }
     
     @IBAction func Continue(_ sender: Any) {
-        self.removeNumberVerificationPoup()
+        self.popupWithAnimation(_subview: subview_verifyNumber, show: false)
+        self.popupWithAnimation(_subview: subviewViewingFare, show: true)
     }
+   
     @IBAction func closeVerifyNumberView(_ sender: Any) {
         self.removeNumberVerificationPoup()
     }
     
+    // MARK: - VIEWING FARE
+    @IBAction func fareCancel(_ sender: Any)
+    {
+        self.removeNumberVerificationPoup()
+        self.popupWithAnimation(_subview: subviewViewingFare, show: false)
+    }
+    @IBAction func fareContinue(_ sender: Any)
+    {
+        self.popupWithAnimation(_subview: subviewViewingFare, show: false)
+        self.popupWithAnimation(_subview: subviewPayment, show: true)
+    }
+
+    
+    // MARK: - PAYMENT
+    @IBAction func AddPayment(_ sender: Any) {
+        self.popupWithAnimation(_subview: subviewPayment, show: false)
+        self.removeNumberVerificationPoup()
+        
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddPamentViewController") as! AddPamentViewController
+        self.present(vc, animated: true, completion: nil)
+    }
+
     func removeNumberVerificationPoup()  {
-        
         Constants.animatewithShow(show: false, with: view_verifiedNumber)
-        
-        UIView.beginAnimations("", context: nil)
-        UIView.setAnimationDuration(0.4)
-        subview_verifyNumber.frame = CGRect(x:CGFloat(0), y: Constants.HEIGHT, width: CGFloat(Constants.WIDTH), height: subview_verifyNumber.frame.size.height)
-        UIView.commitAnimations()
+        //self.popupWithAnimation(_subview: subview_verifyNumber, show: false)
     }
 
     /*

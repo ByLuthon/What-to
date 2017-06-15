@@ -294,7 +294,7 @@ class RouteDrawViewController: UIViewController ,CLLocationManagerDelegate,GMSMa
         
         
         UIView.beginAnimations("", context: nil)
-        UIView.setAnimationDuration(0.2)
+        UIView.setAnimationDuration(0.4)
         subviewDetailsPopup.frame = CGRect(x: CGFloat(0), y: Constants.HEIGHT, width: Constants.WIDTH, height: subviewDetailsPopup.frame.size.height)
         
         Constants.animatewithShow(show: false, with: viewDetails)
@@ -314,7 +314,7 @@ class RouteDrawViewController: UIViewController ,CLLocationManagerDelegate,GMSMa
             subviewDetailsPopup.frame = CGRect(x:CGFloat(0), y: Constants.HEIGHT, width: CGFloat(Constants.WIDTH), height: subviewDetailsPopup.frame.size.height)
             
             UIView.beginAnimations("", context: nil)
-            UIView.setAnimationDuration(0.2)
+            UIView.setAnimationDuration(0.4)
             subviewDetailsPopup.frame = CGRect(x:CGFloat(0), y: Constants.HEIGHT - subviewDetailsPopup.frame.size.height, width: CGFloat(Constants.WIDTH), height: subviewDetailsPopup.frame.size.height)
             UIView.commitAnimations()
             UIView.animate(withDuration: 1.0, animations: {() -> Void in
@@ -327,7 +327,7 @@ class RouteDrawViewController: UIViewController ,CLLocationManagerDelegate,GMSMa
             selectIndex = selectTag
             
             UIView.beginAnimations("", context: nil)
-            UIView.setAnimationDuration(0.2)
+            UIView.setAnimationDuration(0.4)
             UIView.commitAnimations()
             UIView.animate(withDuration: 1, animations: {() -> Void in
                 
@@ -394,7 +394,7 @@ class RouteDrawViewController: UIViewController ,CLLocationManagerDelegate,GMSMa
     func removeAnimation() {
         
         UIView.beginAnimations("", context: nil)
-        UIView.setAnimationDuration(0.2)
+        UIView.setAnimationDuration(0.3)
         UIView.commitAnimations()
         UIView.animate(withDuration: 0.5, animations: {() -> Void in
             

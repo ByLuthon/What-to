@@ -23,6 +23,8 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     @IBOutlet weak var mapview: MKMapView!
     @IBOutlet weak var subviewWhatTo: UIView!
     
+    @IBOutlet weak var viewMessage: UIView!
+    
     var locationManager: CLLocationManager!
 
     
@@ -47,6 +49,25 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     override func viewWillAppear(_ animated: Bool) {
         self.setInitParam()
         super.viewWillAppear(animated) // No need for semicolon
+        
+        
+        //self.popupWithAnimation(_subview: subviewWhatTo, show: true, animationTime: 0.8)
+        
+        UIView.beginAnimations("", context: nil)
+        UIView.setAnimationDuration(0.8)
+        subviewWhatTo.frame = CGRect(x:subviewWhatTo.frame.origin.x, y: 75, width: subviewWhatTo.frame.size.width, height: subviewWhatTo.frame.size.height)
+        UIView.commitAnimations()
+        UIView.animate(withDuration: 1.0, animations: {() -> Void in
+        })
+        
+        
+        UIView.beginAnimations("", context: nil)
+        UIView.setAnimationDuration(1.0)
+        viewMessage.frame = CGRect(x:viewMessage.frame.origin.x, y: Constants.HEIGHT - viewMessage.frame.size.height, width: viewMessage.frame.size.width, height: viewMessage.frame.size.height)
+        UIView.commitAnimations()
+        UIView.animate(withDuration: 1.0, animations: {() -> Void in
+        })
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,6 +77,10 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     
     func setInitParam() {
         
+        subviewWhatTo.frame = CGRect(x:subviewWhatTo.frame.origin.x, y: -subviewWhatTo.frame.size.height, width: subviewWhatTo.frame.size.width, height: subviewWhatTo.frame.size.height)
+       
+        viewMessage.frame = CGRect(x:subviewWhatTo.frame.origin.x, y: Constants.HEIGHT, width: viewMessage.frame.size.width, height: viewMessage.frame.size.height)
+
         Constants.shaodow(on: subviewWhatTo)
         
         Constants.setBorderTo(subview_workimage, withBorderWidth: 0, radiousView: Float(subview_workimage.frame.size.height/2), color: UIColor.darkGray)
@@ -75,7 +100,7 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
             }
             else
             {
-                self.setSingleViewToCenter(subview_workimage)
+                self.setSingleViewToCenter(subview_work)
                 subview_home.isHidden = true
                 subview_work.isHidden = false
             }
@@ -104,9 +129,9 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         
         let space = (x - y) / 3
         
-        subview_work.frame = CGRect(x: space, y: Constants.HEIGHT - 100, width: subview_work.frame.size.width, height: subview_work.frame.size.height)
+        subview_work.frame = CGRect(x: space, y: Constants.HEIGHT - 150, width: subview_work.frame.size.width, height: subview_work.frame.size.height)
         
-        subview_home.frame = CGRect(x: (space + subview_work.frame.size.width + space), y: Constants.HEIGHT - 100, width: subview_work.frame.size.width, height: subview_work.frame.size.height)
+        subview_home.frame = CGRect(x: (space + subview_work.frame.size.width + space), y: Constants.HEIGHT - 150, width: subview_work.frame.size.width, height: subview_work.frame.size.height)
 
     }
     
@@ -114,7 +139,7 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     {
         let space = (Constants.WIDTH - view.frame.size.width) / 2
 
-        view.frame = CGRect(x: space, y: Constants.HEIGHT - 100, width: view.frame.size.width, height: view.frame.size.height)
+        view.frame = CGRect(x: space, y: Constants.HEIGHT - 150, width: view.frame.size.width, height: view.frame.size.height)
     }
     
     //MARK:- Menu
@@ -156,6 +181,30 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
 
     }
     
+    
+    
+    func popupWithAnimation(_subview: UIView, show:Bool, animationTime:Float)  {
+        
+        if show
+        {
+            _subview.frame = CGRect(x:CGFloat(0), y: Constants.HEIGHT, width: CGFloat(Constants.WIDTH), height: _subview.frame.size.height)
+            
+            UIView.beginAnimations("", context: nil)
+            UIView.setAnimationDuration(TimeInterval(animationTime))
+            _subview.frame = CGRect(x:CGFloat(0), y: Constants.HEIGHT - _subview.frame.size.height, width: CGFloat(Constants.WIDTH), height: _subview.frame.size.height)
+            UIView.commitAnimations()
+            UIView.animate(withDuration: 1.0, animations: {() -> Void in
+            })
+        }
+        else
+        {
+            UIView.beginAnimations("", context: nil)
+            UIView.setAnimationDuration(TimeInterval(animationTime))
+            _subview.frame = CGRect(x:CGFloat(0), y: Constants.HEIGHT, width: CGFloat(Constants.WIDTH), height: _subview.frame.size.height)
+            UIView.commitAnimations()
+        }
+    }
+
     // MARK: - IBAction
     @IBAction func fromToTapped(_ sender: Any)
     {
@@ -181,6 +230,9 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         navigationController?.pushViewController(move, animated: true)
     }
  
+    
+    // MARK: - EditProfile
+
     
     /*
     // MARK: - Navigation
