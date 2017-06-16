@@ -18,6 +18,9 @@
 		9A1BC2751EE9822000A9D802 /* taxi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A1BC2721EE9822000A9D802 /* taxi@2x.png */; };
 		9A1BC2761EE9822000A9D802 /* taxi@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A1BC2731EE9822000A9D802 /* taxi@3x.png */; };
 		9A1BC2791EE98CC600A9D802 /* sideMenuList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A1BC2781EE98CC600A9D802 /* sideMenuList.plist */; };
+		9A27E9641EF3F1FD006B0235 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A27E9631EF3F1FD006B0235 /* LaunchViewController.swift */; };
+		9A27E98C1EF4038D006B0235 /* iOSDevCenters+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A27E98B1EF4038D006B0235 /* iOSDevCenters+GIF.swift */; };
+		9A27E98E1EF4043C006B0235 /* PreMask-Animation.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9A27E98D1EF4043C006B0235 /* PreMask-Animation.gif */; };
 		9A2BDCB71EEA73CA00F86690 /* UIButton+EventBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A2BDCB61EEA73CA00F86690 /* UIButton+EventBlocks.m */; };
 		9A2BDCC11EEA832B00F86690 /* emptyProfilePic.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A2BDCC01EEA832B00F86690 /* emptyProfilePic.png */; };
 		9A2BDCC31EEA99A800F86690 /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2BDCC21EEA99A800F86690 /* AddLocationViewController.swift */; };
@@ -116,6 +119,9 @@
 		9A1BC2721EE9822000A9D802 /* taxi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "taxi@2x.png"; sourceTree = "<group>"; };
 		9A1BC2731EE9822000A9D802 /* taxi@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "taxi@3x.png"; sourceTree = "<group>"; };
 		9A1BC2781EE98CC600A9D802 /* sideMenuList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = sideMenuList.plist; sourceTree = "<group>"; };
+		9A27E9631EF3F1FD006B0235 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		9A27E98B1EF4038D006B0235 /* iOSDevCenters+GIF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "iOSDevCenters+GIF.swift"; sourceTree = "<group>"; };
+		9A27E98D1EF4043C006B0235 /* PreMask-Animation.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "PreMask-Animation.gif"; sourceTree = "<group>"; };
 		9A2BDCB51EEA73CA00F86690 /* UIButton+EventBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+EventBlocks.h"; sourceTree = "<group>"; };
 		9A2BDCB61EEA73CA00F86690 /* UIButton+EventBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+EventBlocks.m"; sourceTree = "<group>"; };
 		9A2BDCC01EEA832B00F86690 /* emptyProfilePic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emptyProfilePic.png; sourceTree = "<group>"; };
@@ -226,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				9A5F97501EE941B200146FCD /* LaunchScreen.storyboard */,
+				9A27E9631EF3F1FD006B0235 /* LaunchViewController.swift */,
 			);
 			path = Launch;
 			sourceTree = "<group>";
@@ -233,6 +240,7 @@
 		9A1BC2671EE9758200A9D802 /* Launch */ = {
 			isa = PBXGroup;
 			children = (
+				9A27E98D1EF4043C006B0235 /* PreMask-Animation.gif */,
 				9A1BC2681EE9759400A9D802 /* splash.jpg */,
 			);
 			path = Launch;
@@ -266,6 +274,14 @@
 				9A1BC2781EE98CC600A9D802 /* sideMenuList.plist */,
 			);
 			path = plist;
+			sourceTree = "<group>";
+		};
+		9A27E9791EF40381006B0235 /* GifImages_SWIFT */ = {
+			isa = PBXGroup;
+			children = (
+				9A27E98B1EF4038D006B0235 /* iOSDevCenters+GIF.swift */,
+			);
+			path = GifImages_SWIFT;
 			sourceTree = "<group>";
 		};
 		9A2BDCB41EEA73A500F86690 /* UIButton+block */ = {
@@ -456,6 +472,7 @@
 		9A5F975C1EE956BA00146FCD /* OtherClasses */ = {
 			isa = PBXGroup;
 			children = (
+				9A27E9791EF40381006B0235 /* GifImages_SWIFT */,
 				9A4054A11EEED7BC003B93FD /* Reachability */,
 				9A40549A1EEED75A003B93FD /* CustomUI */,
 				9A616B161EEBF564000DC318 /* SwiftyJSON */,
@@ -688,6 +705,7 @@
 				9A40548F1EEE64B9003B93FD /* pin@2x.png in Resources */,
 				9A2BDCCA1EEA9B6000F86690 /* back.png in Resources */,
 				9A1BC26F1EE97E9C00A9D802 /* menuicon@2x.png in Resources */,
+				9A27E98E1EF4043C006B0235 /* PreMask-Animation.gif in Resources */,
 				9A3741CC1EEFC1CF00738D7C /* map_pin@3x.png in Resources */,
 				9A2BDCDB1EEAA26700F86690 /* briefcase@2x.png in Resources */,
 				9A74BE3E1EF29924007242C0 /* edit_icon@3x.png in Resources */,
@@ -777,12 +795,14 @@
 				9A5F97671EE957D000146FCD /* MainViewController.swift in Sources */,
 				9A2BDCC31EEA99A800F86690 /* AddLocationViewController.swift in Sources */,
 				9A74BE381EF296AF007242C0 /* EditAccountViewController.swift in Sources */,
+				9A27E98C1EF4038D006B0235 /* iOSDevCenters+GIF.swift in Sources */,
 				9A2BDCE61EEAA32000F86690 /* Cell_setLocation.swift in Sources */,
 				9A74BE341EF283BE007242C0 /* Cell_AddPayment.swift in Sources */,
 				9A616B111EEBCB60000DC318 /* SearchAddressViewController.swift in Sources */,
 				9A2BDCE91EEAAE6900F86690 /* PickupTimeViewController.swift in Sources */,
 				9A74BE181EF26E4E007242C0 /* AddPamentViewController.swift in Sources */,
 				9A2BDCB71EEA73CA00F86690 /* UIButton+EventBlocks.m in Sources */,
+				9A27E9641EF3F1FD006B0235 /* LaunchViewController.swift in Sources */,
 				9A5F97641EE9573C00146FCD /* ViewController.swift in Sources */,
 				9A74BE421EF29B3C007242C0 /* Cell_Account.swift in Sources */,
 				9A3741D11EEFE1D000738D7C /* Cell_HomeWork.swift in Sources */,

@@ -281,7 +281,6 @@ class PinLocationViewController: UIViewController ,MKMapViewDelegate,CLLocationM
                         }else{
                             break
                         }
-                        
                     }
                     
                     

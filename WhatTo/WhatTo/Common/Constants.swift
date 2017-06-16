@@ -53,6 +53,9 @@ class Constants {
     #define setFontBold(s) [UIFont fontWithName:@"HelveticaNeue-Bold" size:s]
      */
     
+    
+    
+    
     static func hexStringToUIColor (hex:String) -> UIColor {
         
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()

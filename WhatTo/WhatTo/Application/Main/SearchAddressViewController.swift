@@ -34,6 +34,7 @@ class SearchAddressViewController: UIViewController,UITableViewDelegate,UITableV
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
+        
         tbl.reloadData()
         super.viewWillAppear(animated) // No need for semicolon
     }
@@ -42,6 +43,7 @@ class SearchAddressViewController: UIViewController,UITableViewDelegate,UITableV
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     
     func setInitParam() {
         

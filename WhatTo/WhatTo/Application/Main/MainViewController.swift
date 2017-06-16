@@ -41,7 +41,6 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
 
         mapview.showsUserLocation = true
 
-        self.zoomToRegion()
         
         // Do any additional setup after loading the view.
     }
@@ -50,7 +49,8 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         self.setInitParam()
         super.viewWillAppear(animated) // No need for semicolon
         
-        
+        self.zoomToRegion()
+
         //self.popupWithAnimation(_subview: subviewWhatTo, show: true, animationTime: 0.8)
         
         UIView.beginAnimations("", context: nil)
@@ -77,6 +77,7 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     
     func setInitParam() {
         
+
         subviewWhatTo.frame = CGRect(x:subviewWhatTo.frame.origin.x, y: -subviewWhatTo.frame.size.height, width: subviewWhatTo.frame.size.width, height: subviewWhatTo.frame.size.height)
        
         viewMessage.frame = CGRect(x:subviewWhatTo.frame.origin.x, y: Constants.HEIGHT, width: viewMessage.frame.size.width, height: viewMessage.frame.size.height)
@@ -155,8 +156,22 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         
         let location:CLLocationCoordinate2D = locationManager.location!.coordinate
 
-        let region = MKCoordinateRegionMakeWithDistance(location, 5000.0, 7000.0)
+        /*
+        var region = MKCoordinateRegionMakeWithDistance(location, 5000.0, 7000.0)
         mapview.setRegion(region, animated: true)
+         */
+
+        var region = MKCoordinateRegionMakeWithDistance(location, 15000.0, 15000.0)
+        mapview.setRegion(region, animated: true)
+        
+        UIView.beginAnimations("", context: nil)
+        UIView.setAnimationDuration(1.5)
+        region = MKCoordinateRegionMakeWithDistance(location, 5000.0, 7000.0)
+        mapview.setRegion(region, animated: true)
+        UIView.commitAnimations()
+        UIView.animate(withDuration: 1.0, animations: {() -> Void in
+        })
+
     }
 
 
@@ -208,11 +223,29 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     // MARK: - IBAction
     @IBAction func fromToTapped(_ sender: Any)
     {
-        let move: AddLocationViewController = storyboard?.instantiateViewController(withIdentifier: "AddLocationViewController") as! AddLocationViewController
-        navigationController?.pushViewController(move, animated: true)
+        //self.mapView.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
+
+        let location:CLLocationCoordinate2D = locationManager.location!.coordinate
+        let region = MKCoordinateRegionMakeWithDistance(location, 500.0, 500.0)
+        mapview.setRegion(region, animated: true)
+
+        self.perform(#selector(self.redirectONAddLocation), with: nil, afterDelay: 0.8)
 
     }
 
+    
+    func redirectONAddLocation()
+    {
+        let move: AddLocationViewController = self.storyboard?.instantiateViewController(withIdentifier: "AddLocationViewController") as! AddLocationViewController
+        self.navigationController?.pushViewController(move, animated: false)
+
+        /*
+        UIView.beginAnimations("", context: nil)
+        UIView.setAnimationDuration(0.5)
+        let move: AddLocationViewController = self.storyboard?.instantiateViewController(withIdentifier: "AddLocationViewController") as! AddLocationViewController
+        self.navigationController?.pushViewController(move, animated: false)
+        UIView.commitAnimations()*/
+    }
     
     @IBAction func homeTapped(_ sender: Any)
     {
@@ -245,3 +278,8 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     */
 
 }
+
+
+
+
+
