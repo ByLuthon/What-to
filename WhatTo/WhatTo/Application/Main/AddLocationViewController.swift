@@ -52,6 +52,21 @@ class AddLocationViewController: UIViewController,UITableViewDelegate,UITableVie
     override func viewWillAppear(_ animated: Bool) {
         self.animationSubscreen()
         tbl.reloadData()
+        
+        
+        
+        
+        if Constants.app_delegate.WorkDict == nil
+        {
+            txtWhereTo.text = "Where To"
+        }
+        else
+        {
+            txtWhereTo.text = Constants.app_delegate.WorkDict.value(forKey: "place_address") as? String
+
+        }
+
+        
         super.viewWillAppear(animated) // No need for semicolon
     }
     
@@ -118,7 +133,7 @@ class AddLocationViewController: UIViewController,UITableViewDelegate,UITableVie
         
         arrFromvalues = ["Meet the girlfriend","Hangout with friends","Traveling","Restaurant","Shopping"]
         
-        txtWhereTo.becomeFirstResponder()
+        //txtWhereTo.becomeFirstResponder()
     }
     
     //MARK:-  IBActions
@@ -128,19 +143,27 @@ class AddLocationViewController: UIViewController,UITableViewDelegate,UITableVie
     
     @IBAction func CurrentLocationTapped(_ sender: Any)
     {
-        //viewSearchController.frame = subview_currentLocation.frame
-        
+
+        /*
         isfromCurrentLocation = true
         viewSearchController.isHidden = false
         searchController?.searchBar.becomeFirstResponder()
+        
+        let move: SearchAddressViewController = storyboard?.instantiateViewController(withIdentifier: "SearchAddressViewController") as! SearchAddressViewController
+        move.isFromHome = true
+        navigationController?.pushViewController(move, animated: true)*/
+
     }
     @IBAction func whereToTapped(_ sender: Any)
     {
-        //viewSearchController.frame = subview_WhereTo.frame
-
+        /*
         isfromCurrentLocation = false
         viewSearchController.isHidden = false
-        searchController?.searchBar.becomeFirstResponder()
+        searchController?.searchBar.becomeFirstResponder()*/
+        let move: SearchAddressViewController = storyboard?.instantiateViewController(withIdentifier: "SearchAddressViewController") as! SearchAddressViewController
+        move.isFromHome = false
+        navigationController?.pushViewController(move, animated: true)
+
     }
     
     
@@ -384,6 +407,10 @@ extension AddLocationViewController: GMSAutocompleteResultsViewControllerDelegat
     // Turn the network activity indicator on and off again.
     func didRequestAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    func wasCancelled(_ viewController: GMSAutocompleteViewController)
+    {
+        viewSearchController.isHidden = true
     }
     
     func didUpdateAutocompletePredictions(forResultsController resultsController: GMSAutocompleteResultsViewController) {

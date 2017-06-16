@@ -56,15 +56,28 @@ class PinLocationViewController: UIViewController ,MKMapViewDelegate,CLLocationM
 
         self.setInitParam()
 
-        //MARK:- Get Current location
         locationManager = CLLocationManager()
         locationManager.delegate = self;
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
+
+        UIView.animate(withDuration: 1.0, animations: {() -> Void in
+            //MARK:- Get Current location
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            self.locationManager.requestAlwaysAuthorization()
+            self.locationManager.startUpdatingLocation()
+            
+            if ((self.locationManager.location) != nil){
+                
+                self.CurrentLattitude = self.locationManager.location?.coordinate.latitude
+                self.CurrentLongitude = self.locationManager.location?.coordinate.longitude
+            }
+            else
+            {
+                
+            }
+            
+        })
+
         
-        CurrentLattitude = locationManager.location?.coordinate.latitude
-        CurrentLongitude = locationManager.location?.coordinate.longitude
         
         self.zoomToRegion()
         self.getMapsDetails()
@@ -156,7 +169,8 @@ class PinLocationViewController: UIViewController ,MKMapViewDelegate,CLLocationM
 
     //MARK:- Zoom to region
     func zoomToRegion() {
-        let location:CLLocationCoordinate2D = locationManager.location!.coordinate
+        
+        let location:CLLocationCoordinate2D = self.locationManager.location!.coordinate
         let region = MKCoordinateRegionMakeWithDistance(location, 5000.0, 7000.0)
         print(region)
 

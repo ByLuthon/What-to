@@ -26,20 +26,15 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     @IBOutlet weak var viewMessage: UIView!
     
     var locationManager: CLLocationManager!
-
+    
+    var location : CLLocationCoordinate2D!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-        //MARK:- Get Current location
-        locationManager = CLLocationManager()
-        locationManager.delegate = self;
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
-
         mapview.showsUserLocation = true
+        locationManager = CLLocationManager()
 
         
         // Do any additional setup after loading the view.
@@ -76,8 +71,28 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     }
     
     func setInitParam() {
-        
+        self.locationManager.delegate = self;
 
+        UIView.animate(withDuration: 1.0, animations: {() -> Void in
+            //MARK:- Get Current location
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            self.locationManager.requestAlwaysAuthorization()
+            self.locationManager.startUpdatingLocation()
+            
+            print(self.locationManager.location)
+            if ((self.locationManager.location) != nil){
+                
+                self.location = self.locationManager.location!.coordinate
+            }
+            else
+            {
+                
+            }
+
+        })
+
+
+        
         subviewWhatTo.frame = CGRect(x:subviewWhatTo.frame.origin.x, y: -subviewWhatTo.frame.size.height, width: subviewWhatTo.frame.size.width, height: subviewWhatTo.frame.size.height)
        
         viewMessage.frame = CGRect(x:subviewWhatTo.frame.origin.x, y: Constants.HEIGHT, width: viewMessage.frame.size.width, height: viewMessage.frame.size.height)
@@ -154,7 +169,6 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         
         //let location = CLLocationCoordinate2D(latitude: 13.03297, longitude: 80.26518)
         
-        let location:CLLocationCoordinate2D = locationManager.location!.coordinate
 
         /*
         var region = MKCoordinateRegionMakeWithDistance(location, 5000.0, 7000.0)
