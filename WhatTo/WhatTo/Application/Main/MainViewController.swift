@@ -19,6 +19,7 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     @IBOutlet weak var subview_home: UIView!
     @IBOutlet weak var subview_homeimage: UIView!
     
+    
     //MARK:-  IBOutlets
     @IBOutlet weak var mapview: MKMapView!
     @IBOutlet weak var subviewWhatTo: UIView!
@@ -26,16 +27,80 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     @IBOutlet weak var viewMessage: UIView!
     
     var locationManager: CLLocationManager!
-    
     var location : CLLocationCoordinate2D!
     
+    var isMessageHidden = Bool()
     
+    //MessageViewAnimation
+    // Container view to display video player modal view controller when minimized
+    @IBOutlet weak var thumbnailVideoContainerView: UIView!
+    // Create an interactive transitioning delegate
+    let customTransitioningDelegate: InteractiveTransitioningDelegate = InteractiveTransitioningDelegate()
+    
+    //VideoPlayerModalViewController
+    lazy var videoPlayerViewController: messageViewController = {
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "messageViewController") as! messageViewController
+        vc.modalPresentationStyle = .custom
+        vc.transitioningDelegate = self.customTransitioningDelegate
+        // Pan gesture recognizer feedback from VideoPlayerModalViewController
+        vc.handlePan = {(panGestureRecozgnizer) in
+            
+            let translatedPoint = panGestureRecozgnizer.translation(in: self.view)
+            
+            if (panGestureRecozgnizer.state == .began) {
+                
+
+                self.customTransitioningDelegate.beginDismissing(viewController: vc)
+                self.lastVideoPlayerOriginY = vc.view.frame.origin.y
+                
+            } else if (panGestureRecozgnizer.state == .changed) {
+                let ratio = max(min(((self.lastVideoPlayerOriginY + translatedPoint.y) / self.thumbnailVideoContainerView.frame.minY), 1), 0)
+                
+                self.hideBottmView(isShow: false)
+                //print(ratio)
+                self.rotateButton(radiousbtn: ratio*2)
+
+                // Store lastPanRatio for next callback
+                self.lastPanRatio = ratio
+
+                // Update percentage of interactive transition
+                self.customTransitioningDelegate.update(self.lastPanRatio)
+            } else if (panGestureRecozgnizer.state == .ended) {
+                // If pan ratio exceeds the threshold then transition is completed, otherwise cancel dismissal and present the view controller again
+                let completed = (self.lastPanRatio > self.panRatioThreshold) || (self.lastPanRatio < -self.panRatioThreshold)
+                
+                print(completed)
+                if completed
+                {
+                    self.hideBottmView(isShow: true)
+                }
+                else
+                {
+                    self.hideBottmView(isShow: false)
+                }
+
+                self.customTransitioningDelegate.finalizeInteractiveTransition(isTransitionCompleted: completed)
+            }
+        }
+        return vc
+    }()
+    
+    let panRatioThreshold: CGFloat = 0.3
+    var lastPanRatio: CGFloat = 0.0
+    var lastVideoPlayerOriginY: CGFloat = 0.0
+    var videoPlayerViewControllerInitialFrame: CGRect?
+
+    
+    //MARK:- viewDidLoad - INIT
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        isMessageHidden = false
+        
         mapview.showsUserLocation = true
         locationManager = CLLocationManager()
 
+        self.setMessageViewAnimation()
         
         // Do any additional setup after loading the view.
     }
@@ -55,14 +120,24 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         UIView.animate(withDuration: 1.0, animations: {() -> Void in
         })
         
-        
-        UIView.beginAnimations("", context: nil)
-        UIView.setAnimationDuration(1.0)
-        viewMessage.frame = CGRect(x:viewMessage.frame.origin.x, y: Constants.HEIGHT - viewMessage.frame.size.height, width: viewMessage.frame.size.width, height: viewMessage.frame.size.height)
-        UIView.commitAnimations()
-        UIView.animate(withDuration: 1.0, animations: {() -> Void in
-        })
+        if isMessageHidden
+        {
+            isMessageHidden = false
+            viewMessage.frame = CGRect(x:viewMessage.frame.origin.x, y: Constants.HEIGHT - 42, width: viewMessage.frame.size.width, height: 42)
+            //self.view.bringSubview(toFront: viewMessage)
+            videoPlayerViewController.subview_popup.isHidden = true
+            videoPlayerViewController.lblMessage.isHidden = true
 
+        }
+        else
+        {
+            UIView.beginAnimations("", context: nil)
+            UIView.setAnimationDuration(1.0)
+            viewMessage.frame = CGRect(x:viewMessage.frame.origin.x, y: Constants.HEIGHT - viewMessage.frame.size.height, width: viewMessage.frame.size.width, height: viewMessage.frame.size.height)
+            UIView.commitAnimations()
+            UIView.animate(withDuration: 1.0, animations: {() -> Void in
+            })
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,27 +145,179 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         // Dispose of any resources that can be recreated.
     }
     
-    func setInitParam() {
-        self.locationManager.delegate = self;
+    
+    func setMessageViewAnimation()
+    {
 
-        UIView.animate(withDuration: 1.0, animations: {() -> Void in
-            //MARK:- Get Current location
-            self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            self.locationManager.requestAlwaysAuthorization()
-            self.locationManager.startUpdatingLocation()
+        customTransitioningDelegate.transitionPresent = { [weak self] (fromViewController: UIViewController, toViewController: UIViewController, containerView: UIView, transitionType: TransitionType, completion: @escaping () -> Void) in
             
+            guard let weakSelf = self else {
+                return
+            }
+            
+            let videoPlayerViewController = toViewController as! messageViewController
+            
+            if case .simple = transitionType {
+                if (weakSelf.videoPlayerViewControllerInitialFrame != nil) {
+                    videoPlayerViewController.view.frame = weakSelf.videoPlayerViewControllerInitialFrame!
+                    weakSelf.videoPlayerViewControllerInitialFrame = nil
+                } else {
+                    videoPlayerViewController.view.frame = containerView.bounds.offsetBy(dx: 0, dy: videoPlayerViewController.view.frame.height)
+                    videoPlayerViewController.backgroundView.alpha = 0.0
+                    videoPlayerViewController.dismissButton.alpha = 0.0
+                }
+            }
+            
+            UIView.animate(withDuration: defaultTransitionAnimationDuration, animations: {
+                videoPlayerViewController.view.transform = CGAffineTransform.identity
+                videoPlayerViewController.view.frame = containerView.bounds
+                videoPlayerViewController.backgroundView.alpha = 1.0
+                videoPlayerViewController.dismissButton.alpha = 1.0
+                
+            }, completion: { (finished) in
+                completion()
+                // In order to disable user interaction with pan gesture recognizer
+                // It is important to do this after completion block, since user interaction is enabled after view controller transition completes
+                videoPlayerViewController.view.isUserInteractionEnabled = true
+            })
+        }
+        
+        customTransitioningDelegate.transitionDismiss = { [weak self] (fromViewController: UIViewController, toViewController: UIViewController, containerView: UIView, transitionType: TransitionType, completion: @escaping () -> Void) in
+            
+            guard let weakSelf = self else {
+                return
+            }
+            
+            let videoPlayerViewController = fromViewController as! messageViewController
+            
+            let finalTransform = CGAffineTransform(scaleX: weakSelf.thumbnailVideoContainerView.bounds.width / videoPlayerViewController.view.bounds.width, y: weakSelf.thumbnailVideoContainerView.bounds.height * 3 / videoPlayerViewController.view.bounds.height)
+            
+            UIView.animate(withDuration: defaultTransitionAnimationDuration, animations: {
+                videoPlayerViewController.view.transform = finalTransform
+                var finalRect = videoPlayerViewController.view.frame
+                finalRect.origin.x = weakSelf.thumbnailVideoContainerView.frame.minX
+                finalRect.origin.y = weakSelf.thumbnailVideoContainerView.frame.minY
+                videoPlayerViewController.view.frame = finalRect
+                
+                videoPlayerViewController.backgroundView.alpha = 0.0
+                videoPlayerViewController.dismissButton.alpha = 0.0
+                
+            }, completion: { (finished) in
+                completion()
+                
+                videoPlayerViewController.view.isUserInteractionEnabled = false
+                weakSelf.addChildViewController(videoPlayerViewController)
+                
+                var thumbnailRect = videoPlayerViewController.view.frame
+                thumbnailRect.origin = CGPoint.zero
+                videoPlayerViewController.view.frame = thumbnailRect
+                
+                weakSelf.thumbnailVideoContainerView.addSubview(fromViewController.view)
+                fromViewController.didMove(toParentViewController: weakSelf)
+            })
+        }
+        
+        customTransitioningDelegate.transitionPercentPresent = {[weak self] (fromViewController: UIViewController, toViewController: UIViewController, percentage: CGFloat, containerView: UIView) in
+            
+            guard let weakSelf = self else {
+                return
+            }
+            
+            let videoPlayerViewController = toViewController as! messageViewController
+            
+            if (weakSelf.videoPlayerViewControllerInitialFrame != nil) {
+                weakSelf.videoPlayerViewController.view.frame = weakSelf.videoPlayerViewControllerInitialFrame!
+                weakSelf.videoPlayerViewControllerInitialFrame = nil
+            }
+            
+            let startXScale = weakSelf.thumbnailVideoContainerView.bounds.width / containerView.bounds.width
+            let startYScale = weakSelf.thumbnailVideoContainerView.bounds.height * 3 / containerView.bounds.height
+            
+            let xScale = startXScale + ((1 - startXScale) * percentage)
+            let yScale = startYScale + ((1 - startYScale) * percentage)
+            toViewController.view.transform = CGAffineTransform(scaleX: xScale, y: yScale)
+            
+            let startXPos = weakSelf.thumbnailVideoContainerView.frame.minX
+            let startYPos = weakSelf.thumbnailVideoContainerView.frame.minY
+            let horizontalMove = startXPos - (startXPos * percentage)
+            let verticalMove = startYPos - (startYPos * percentage)
+            
+            var finalRect = toViewController.view.frame
+            finalRect.origin.x = horizontalMove
+            finalRect.origin.y = verticalMove
+            toViewController.view.frame = finalRect
+            
+            videoPlayerViewController.backgroundView.alpha = percentage
+            videoPlayerViewController.dismissButton.alpha = percentage
+            
+            videoPlayerViewController.videoViewHeightConstraint.constant = 211.0
+        }
+        
+        customTransitioningDelegate.transitionPercentDismiss = {[weak self] (fromViewController: UIViewController, toViewController: UIViewController, percentage: CGFloat, containerView: UIView) in
+            
+            guard let weakSelf = self else {
+                return
+            }
+            
+            let videoPlayerViewController = fromViewController as! messageViewController
+            
+            let finalXScale = weakSelf.thumbnailVideoContainerView.bounds.width / videoPlayerViewController.view.bounds.width
+            let finalYScale = weakSelf.thumbnailVideoContainerView.bounds.height * 3 / videoPlayerViewController.view.bounds.height
+            let xScale = 1 - (percentage * (1 - finalXScale))
+            let yScale = 1 - (percentage * (1 - finalYScale))
+            videoPlayerViewController.view.transform = CGAffineTransform(scaleX: xScale, y: yScale)
+            
+            let finalXPos = weakSelf.thumbnailVideoContainerView.frame.minX
+            let finalYPos = weakSelf.thumbnailVideoContainerView.frame.minY
+            let horizontalMove = min(weakSelf.thumbnailVideoContainerView.frame.minX * percentage, finalXPos)
+            let verticalMove = min(weakSelf.thumbnailVideoContainerView.frame.minY * percentage, finalYPos)
+            
+            var finalRect = videoPlayerViewController.view.frame
+            finalRect.origin.x = horizontalMove
+            finalRect.origin.y = verticalMove
+            videoPlayerViewController.view.frame = finalRect
+            
+            videoPlayerViewController.backgroundView.alpha = 1 - percentage
+            videoPlayerViewController.dismissButton.alpha = 1 - percentage
+            
+            videoPlayerViewController.videoViewHeightConstraint.constant = 211.0
+
+        }
+        
+        //self.perform(#selector(self.presentMessageView), with: nil, afterDelay: 2.0)
+    }
+    
+    func presentMessageView()
+    {
+        if (self.videoPlayerViewController.parent != nil) {
+            self.videoPlayerViewControllerInitialFrame = self.thumbnailVideoContainerView.convert(self.videoPlayerViewController.view.frame, to: self.view)
+            self.videoPlayerViewController.removeFromParentViewController()
+        }
+        
+        self.present(self.videoPlayerViewController, animated: true, completion: nil)
+        //self.customTransitioningDelegate.finalizeInteractiveTransition(isTransitionCompleted: false)
+    }
+    
+    
+    func setInitParam() {
+        //MARK:- Get Current location
+        self.locationManager.delegate = self;
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.startUpdatingLocation()
+        
+        UIView.animate(withDuration: 1.0, animations: {() -> Void in
+            
+            print("LOCATION HERE......")
             print(self.locationManager.location)
             if ((self.locationManager.location) != nil){
-                
                 self.location = self.locationManager.location!.coordinate
             }
             else
             {
                 
             }
-
         })
-
 
         
         subviewWhatTo.frame = CGRect(x:subviewWhatTo.frame.origin.x, y: -subviewWhatTo.frame.size.height, width: subviewWhatTo.frame.size.width, height: subviewWhatTo.frame.size.height)
@@ -188,12 +415,25 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
 
     }
 
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        
+        print("location error is = \(error.localizedDescription)")
+        
+    }
+    
 
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
-    {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locations = [CLLocation]()
+        
+        let locationArray = locations as NSArray
+        let locationObj = locationArray.lastObject as? CLLocation
+        let coord = locationObj?.coordinate
+        
+        //print("Latitude: \(String(describing: coord?.latitude))")
+        //print("Longitude: \(String(describing: coord?.longitude))")
+        
         locationManager = manager
-        //let locValue:CLLocationCoordinate2D = locationManager.location!.coordinate
-        //print("locations = \(locValue.latitude) \(locValue.longitude)")
+        //fvc.locationLabel.text = ("Location \r\n Latitude: \(coord?.latitude) \r\n Longitude: \(coord?.longitude)")
     }
 
     // MARK: - pickup
@@ -291,6 +531,114 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     }
     */
 
+    func hideBottmView(isShow : Bool)
+    {
+        if isShow
+        {
+            viewMessage.isHidden = false
+        }
+        else
+        {
+            viewMessage.isHidden = true
+        }
+    }
+    
+    
+    // MARK: - MessageView Delegate
+    func rotateButton(radiousbtn: CGFloat)
+    {
+        /*
+        print(radiousbtn)
+        
+        self.videoPlayerViewController.dismissButton.transform = CGAffineTransform(rotationAngle: -(CGFloat.pi / radiousbtn))
+        
+        self.videoPlayerViewController.dismissButton.transform = self.videoPlayerViewController.dismissButton.transform.rotated(by: CGFloat(M_PI_2))
+    */
+    }
+
+    
+    @IBAction func presentTapped(_ sender: Any)
+    {
+        if (self.videoPlayerViewController.parent != nil) {
+            self.videoPlayerViewControllerInitialFrame = self.thumbnailVideoContainerView.convert(self.videoPlayerViewController.view.frame, to: self.view)
+            self.videoPlayerViewController.removeFromParentViewController()
+        }
+        
+        self.present(self.videoPlayerViewController, animated: true, completion: nil)
+        //viewMessage.isHidden = true
+        isMessageHidden = true
+        videoPlayerViewController.subview_popup.isHidden = false
+        videoPlayerViewController.lblMessage.isHidden = false
+
+    }
+    
+    @IBAction func presentFromThumbnailAction(_ sender: AnyObject) {
+        guard self.videoPlayerViewController.parent != nil else {
+            return
+        }
+        
+        self.videoPlayerViewControllerInitialFrame = self.thumbnailVideoContainerView.convert(self.videoPlayerViewController.view.frame, to: self.view)
+        self.videoPlayerViewController.removeFromParentViewController()
+        self.present(self.videoPlayerViewController, animated: true, completion: nil)
+    }
+    
+    @IBAction func handlePresentPan(_ panGestureRecozgnizer: UIPanGestureRecognizer) {
+        
+        guard self.videoPlayerViewController.parent != nil || self.customTransitioningDelegate.isPresenting else {
+            return
+        }
+        
+        let translatedPoint = panGestureRecozgnizer.translation(in: self.view)
+        
+        if (panGestureRecozgnizer.state == .began)
+        {
+            self.rotateButton(radiousbtn: 0)
+            
+            print("BEGIN")
+            isMessageHidden = true
+            viewMessage.isHidden = true
+            videoPlayerViewController.subview_popup.isHidden = false
+            videoPlayerViewController.lblMessage.isHidden = false
+
+
+            self.videoPlayerViewControllerInitialFrame = self.thumbnailVideoContainerView.convert(self.videoPlayerViewController.view.frame, to: self.view)
+            self.videoPlayerViewController.removeFromParentViewController()
+            
+            self.customTransitioningDelegate.beginPresenting(viewController: self.videoPlayerViewController, fromViewController: self)
+            
+            self.videoPlayerViewControllerInitialFrame = self.thumbnailVideoContainerView.convert(self.videoPlayerViewController.view.frame, to: self.view)
+            
+            self.lastVideoPlayerOriginY = self.videoPlayerViewControllerInitialFrame!.origin.y
+            
+        }
+        else if (panGestureRecozgnizer.state == .changed)
+        {
+            print("Changed")
+
+            let ratio = max(min(((self.lastVideoPlayerOriginY + translatedPoint.y) / self.thumbnailVideoContainerView.frame.minY), 1), 0)
+            
+            //print(ratio)
+            self.rotateButton(radiousbtn: ratio*2)
+
+            // Store lastPanRatio for next callback
+            self.lastPanRatio = 1 - ratio
+           
+
+            
+            // Update percentage of interactive transition
+            self.customTransitioningDelegate.update(self.lastPanRatio)
+        }
+        else if (panGestureRecozgnizer.state == .ended)
+        {
+            print("Ended")
+
+            // If pan ratio exceeds the threshold then transition is completed, otherwise cancel dismissal and present the view controller again
+            let completed = (self.lastPanRatio > self.panRatioThreshold) || (self.lastPanRatio < -self.panRatioThreshold)
+            
+            print(completed)
+            self.customTransitioningDelegate.finalizeInteractiveTransition(isTransitionCompleted: completed)
+        }
+    }
 }
 
 

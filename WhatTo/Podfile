@@ -15,6 +15,7 @@ pod 'SDWebImage', '~>3.8'
 pod 'GoogleMaps'
 pod 'GooglePlaces'
 pod 'Alamofire', '~> 4.0'
+pod 'AICustomViewControllerTransition', :path => '..'
 
 
 end

@@ -53,13 +53,13 @@ class ConfirmPickupViewController: UIViewController, MKMapViewDelegate,CLLocatio
         
         locationManager = CLLocationManager()
         locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
 
         UIView.animate(withDuration: 1.0, animations: {() -> Void in
             //MARK:- Get Current location
             //MARK:- Get Current location
-            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            self.locationManager.requestAlwaysAuthorization()
-            self.locationManager.startUpdatingLocation()
             
             self.CurrentLattitude = self.locationManager.location?.coordinate.latitude
             self.CurrentLongitude = self.locationManager.location?.coordinate.longitude

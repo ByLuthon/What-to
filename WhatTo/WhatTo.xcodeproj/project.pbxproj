@@ -104,6 +104,14 @@
 		9A74BE3E1EF29924007242C0 /* edit_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A74BE3B1EF29924007242C0 /* edit_icon@3x.png */; };
 		9A74BE421EF29B3C007242C0 /* Cell_Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A74BE401EF29B3C007242C0 /* Cell_Account.swift */; };
 		9A74BE431EF29B3C007242C0 /* Cell_Account.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A74BE411EF29B3C007242C0 /* Cell_Account.xib */; };
+		9A791F691EF79ADD00DB8D71 /* messageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A791F681EF79ADD00DB8D71 /* messageViewController.swift */; };
+		9A791F6D1EF79C8C00DB8D71 /* WhiteTopArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A791F6A1EF79C8C00DB8D71 /* WhiteTopArrow.png */; };
+		9A791F6E1EF79C8C00DB8D71 /* WhiteTopArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A791F6B1EF79C8C00DB8D71 /* WhiteTopArrow@2x.png */; };
+		9A791F6F1EF79C8C00DB8D71 /* WhiteTopArrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A791F6C1EF79C8C00DB8D71 /* WhiteTopArrow@3x.png */; };
+		9A791F781EF7A7C300DB8D71 /* AICustomViewControllerTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A791F771EF7A7C300DB8D71 /* AICustomViewControllerTransition.swift */; };
+		9A791F7C1EF7ECF900DB8D71 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A791F791EF7ECF900DB8D71 /* share.png */; };
+		9A791F7D1EF7ECF900DB8D71 /* share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A791F7A1EF7ECF900DB8D71 /* share@2x.png */; };
+		9A791F7E1EF7ECF900DB8D71 /* share@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A791F7B1EF7ECF900DB8D71 /* share@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -210,6 +218,15 @@
 		9A74BE3B1EF29924007242C0 /* edit_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edit_icon@3x.png"; sourceTree = "<group>"; };
 		9A74BE401EF29B3C007242C0 /* Cell_Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cell_Account.swift; sourceTree = "<group>"; };
 		9A74BE411EF29B3C007242C0 /* Cell_Account.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cell_Account.xib; sourceTree = "<group>"; };
+		9A791F681EF79ADD00DB8D71 /* messageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = messageViewController.swift; sourceTree = "<group>"; };
+		9A791F6A1EF79C8C00DB8D71 /* WhiteTopArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteTopArrow.png; sourceTree = "<group>"; };
+		9A791F6B1EF79C8C00DB8D71 /* WhiteTopArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteTopArrow@2x.png"; sourceTree = "<group>"; };
+		9A791F6C1EF79C8C00DB8D71 /* WhiteTopArrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteTopArrow@3x.png"; sourceTree = "<group>"; };
+		9A791F771EF7A7C300DB8D71 /* AICustomViewControllerTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AICustomViewControllerTransition.swift; sourceTree = "<group>"; };
+		9A791F791EF7ECF900DB8D71 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
+		9A791F7A1EF7ECF900DB8D71 /* share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share@2x.png"; sourceTree = "<group>"; };
+		9A791F7B1EF7ECF900DB8D71 /* share@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share@3x.png"; sourceTree = "<group>"; };
+		9A791F811EF7FA3800DB8D71 /* WhatTo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WhatTo.entitlements; sourceTree = "<group>"; };
 		CFF9EA1FF9FD3EB8B8A84E8A /* Pods-WhatTo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatTo.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhatTo/Pods-WhatTo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -249,6 +266,9 @@
 		9A1BC26A1EE97E5500A9D802 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				9A791F6A1EF79C8C00DB8D71 /* WhiteTopArrow.png */,
+				9A791F6B1EF79C8C00DB8D71 /* WhiteTopArrow@2x.png */,
+				9A791F6C1EF79C8C00DB8D71 /* WhiteTopArrow@3x.png */,
 				9A2BDCC41EEA9B6000F86690 /* back.png */,
 				9A2BDCC51EEA9B6000F86690 /* back@2x.png */,
 				9A2BDCC61EEA9B6000F86690 /* back@3x.png */,
@@ -303,6 +323,9 @@
 		9A2BDCBC1EEA830600F86690 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				9A791F791EF7ECF900DB8D71 /* share.png */,
+				9A791F7A1EF7ECF900DB8D71 /* share@2x.png */,
+				9A791F7B1EF7ECF900DB8D71 /* share@3x.png */,
 				9A74BE391EF29924007242C0 /* edit_icon.png */,
 				9A74BE3A1EF29924007242C0 /* edit_icon@2x.png */,
 				9A74BE3B1EF29924007242C0 /* edit_icon@3x.png */,
@@ -425,6 +448,7 @@
 		9A5F97461EE941B200146FCD /* WhatTo */ = {
 			isa = PBXGroup;
 			children = (
+				9A791F811EF7FA3800DB8D71 /* WhatTo.entitlements */,
 				9A5F97601EE9572900146FCD /* WhatTo-Bridging-Header.h */,
 				9A5F975D1EE956C500146FCD /* Design */,
 				9A5F975C1EE956BA00146FCD /* OtherClasses */,
@@ -448,6 +472,7 @@
 				9A5F975F1EE956E800146FCD /* Login-Signup */,
 				9A5F97651EE9575400146FCD /* Main */,
 				9A74BE161EF26E3A007242C0 /* Payment */,
+				9A791F671EF79AC600DB8D71 /* Message */,
 				9A74BE361EF29683007242C0 /* Profile */,
 			);
 			path = Application;
@@ -472,6 +497,7 @@
 		9A5F975C1EE956BA00146FCD /* OtherClasses */ = {
 			isa = PBXGroup;
 			children = (
+				9A791F761EF7A7C300DB8D71 /* AICustomViewControllerTransition */,
 				9A27E9791EF40381006B0235 /* GifImages_SWIFT */,
 				9A4054A11EEED7BC003B93FD /* Reachability */,
 				9A40549A1EEED75A003B93FD /* CustomUI */,
@@ -576,6 +602,22 @@
 			path = cell;
 			sourceTree = "<group>";
 		};
+		9A791F671EF79AC600DB8D71 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				9A791F681EF79ADD00DB8D71 /* messageViewController.swift */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		9A791F761EF7A7C300DB8D71 /* AICustomViewControllerTransition */ = {
+			isa = PBXGroup;
+			children = (
+				9A791F771EF7A7C300DB8D71 /* AICustomViewControllerTransition.swift */,
+			);
+			path = AICustomViewControllerTransition;
+			sourceTree = "<group>";
+		};
 		C982CBAABEFDB8229F095827 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -634,6 +676,14 @@
 						DevelopmentTeam = DTRF7QJH3W;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+							com.apple.NetworkExtensions = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -675,16 +725,19 @@
 				9A1BC2741EE9822000A9D802 /* taxi.png in Resources */,
 				9A2BDCF11EEAB71F00F86690 /* mapCurrentLocation@3x.png in Resources */,
 				9A2BDCCF1EEA9B6000F86690 /* forword@3x.png in Resources */,
+				9A791F6F1EF79C8C00DB8D71 /* WhiteTopArrow@3x.png in Resources */,
 				9A2BDCCE1EEA9B6000F86690 /* forword@2x.png in Resources */,
 				9A2BDCE11EEAA26700F86690 /* pinLocation@2x.png in Resources */,
 				9A3741D91EF008AA00738D7C /* current-location@2x.png in Resources */,
 				9A74BE301EF28343007242C0 /* paytm@3x.png in Resources */,
+				9A791F7D1EF7ECF900DB8D71 /* share@2x.png in Resources */,
 				9A3741D21EEFE1D000738D7C /* Cell_HomeWork.xib in Resources */,
 				9A3741D81EF008AA00738D7C /* current-location.png in Resources */,
 				9A616B1F1EEBF564000DC318 /* Info-tvOS.plist in Resources */,
 				9A2BDCC11EEA832B00F86690 /* emptyProfilePic.png in Resources */,
 				9A2BDCE21EEAA26700F86690 /* pinLocation@3x.png in Resources */,
 				9A2BDCF01EEAB71F00F86690 /* mapCurrentLocation@2x.png in Resources */,
+				9A791F7C1EF7ECF900DB8D71 /* share.png in Resources */,
 				9A74BE2D1EF28343007242C0 /* notes@3x.png in Resources */,
 				9A616B1D1EEBF564000DC318 /* Info-iOS.plist in Resources */,
 				9A74BE431EF29B3C007242C0 /* Cell_Account.xib in Resources */,
@@ -699,11 +752,14 @@
 				9A2BDCDC1EEAA26700F86690 /* briefcase@3x.png in Resources */,
 				9A2BDCEF1EEAB71F00F86690 /* mapCurrentLocation.png in Resources */,
 				9A4054991EEED2FE003B93FD /* visa_icon@3x.png in Resources */,
+				9A791F6D1EF79C8C00DB8D71 /* WhiteTopArrow.png in Resources */,
 				9A1BC2761EE9822000A9D802 /* taxi@3x.png in Resources */,
 				9A3741CA1EEFC1CF00738D7C /* map_pin.png in Resources */,
 				9A5F97521EE941B200146FCD /* LaunchScreen.storyboard in Resources */,
 				9A40548F1EEE64B9003B93FD /* pin@2x.png in Resources */,
+				9A791F7E1EF7ECF900DB8D71 /* share@3x.png in Resources */,
 				9A2BDCCA1EEA9B6000F86690 /* back.png in Resources */,
+				9A791F6E1EF79C8C00DB8D71 /* WhiteTopArrow@2x.png in Resources */,
 				9A1BC26F1EE97E9C00A9D802 /* menuicon@2x.png in Resources */,
 				9A27E98E1EF4043C006B0235 /* PreMask-Animation.gif in Resources */,
 				9A3741CC1EEFC1CF00738D7C /* map_pin@3x.png in Resources */,
@@ -793,11 +849,13 @@
 				9A4054921EEED049003B93FD /* RouteDrawViewController.swift in Sources */,
 				9A5F976B1EE9684A00146FCD /* Constants.swift in Sources */,
 				9A5F97671EE957D000146FCD /* MainViewController.swift in Sources */,
+				9A791F781EF7A7C300DB8D71 /* AICustomViewControllerTransition.swift in Sources */,
 				9A2BDCC31EEA99A800F86690 /* AddLocationViewController.swift in Sources */,
 				9A74BE381EF296AF007242C0 /* EditAccountViewController.swift in Sources */,
 				9A27E98C1EF4038D006B0235 /* iOSDevCenters+GIF.swift in Sources */,
 				9A2BDCE61EEAA32000F86690 /* Cell_setLocation.swift in Sources */,
 				9A74BE341EF283BE007242C0 /* Cell_AddPayment.swift in Sources */,
+				9A791F691EF79ADD00DB8D71 /* messageViewController.swift in Sources */,
 				9A616B111EEBCB60000DC318 /* SearchAddressViewController.swift in Sources */,
 				9A2BDCE91EEAAE6900F86690 /* PickupTimeViewController.swift in Sources */,
 				9A74BE181EF26E4E007242C0 /* AddPamentViewController.swift in Sources */,

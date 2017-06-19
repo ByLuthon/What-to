@@ -53,9 +53,6 @@ class AddLocationViewController: UIViewController,UITableViewDelegate,UITableVie
         self.animationSubscreen()
         tbl.reloadData()
         
-        
-        
-        
         if Constants.app_delegate.WorkDict == nil
         {
             txtWhereTo.text = "Where To"
@@ -63,9 +60,7 @@ class AddLocationViewController: UIViewController,UITableViewDelegate,UITableVie
         else
         {
             txtWhereTo.text = Constants.app_delegate.WorkDict.value(forKey: "place_address") as? String
-
         }
-
         
         super.viewWillAppear(animated) // No need for semicolon
     }
@@ -326,11 +321,9 @@ class AddLocationViewController: UIViewController,UITableViewDelegate,UITableVie
         {
             let move: PinLocationViewController = storyboard?.instantiateViewController(withIdentifier: "PinLocationViewController") as! PinLocationViewController
             move.FromVC_NAME = "AddLocation"
-            navigationController?.pushViewController(move, animated: true)
+            navigationController?.pushViewController(move, animated: false)
         }
     }
-    
-    
 }
 
 
@@ -345,6 +338,7 @@ extension AddLocationViewController: GMSAutocompleteResultsViewControllerDelegat
             // Do something with the selected place.
             let lat = place.coordinate.latitude
             let lon = place.coordinate.longitude
+            print(lat, lon)
             //mapView.animate(toLocation: CLLocationCoordinate2D(latitude: lat, longitude: lon))
             
             //let camera = GMSCameraPosition.camera(withLatitude: lat, longitude: lon, zoom: mapView.camera.zoom)

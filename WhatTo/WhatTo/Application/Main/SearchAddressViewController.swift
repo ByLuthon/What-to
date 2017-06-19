@@ -151,10 +151,8 @@ class SearchAddressViewController: UIViewController,UITableViewDelegate,UITableV
         let move: PinLocationViewController = storyboard?.instantiateViewController(withIdentifier: "PinLocationViewController") as! PinLocationViewController
         move.FromVC_NAME = "SEARCH_ADDRESS"
         move.isFromHome = isFromHome
-        navigationController?.pushViewController(move, animated: true)
+        navigationController?.pushViewController(move, animated: false)
     }
-
-
 }
 
 

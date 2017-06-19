@@ -13,7 +13,7 @@ import GoogleMaps
 import GooglePlaces
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate,UITableViewDelegate,UITableViewDataSource {
+class AppDelegate: UIResponder, UIApplicationDelegate,UITableViewDelegate,UITableViewDataSource,CLLocationManagerDelegate {
 
     var window: UIWindow?
    
@@ -31,6 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UITableViewDelegate,UITabl
     var PickupLocation = CLLocationCoordinate2D()
     var DestinationLocation = CLLocationCoordinate2D()
 
+    var locationManager: CLLocationManager!
+    var location : CLLocationCoordinate2D!
+
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
@@ -40,6 +43,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UITableViewDelegate,UITabl
         
         //set IQKeyboard Manager
         IQKeyboardManager.sharedManager().enable = true
+        
+        
+        //setLocation
+        locationManager = CLLocationManager()
+        self.locationManager.delegate = self;
+        self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        self.locationManager.requestAlwaysAuthorization()
         
         //SIDE Menu
         self.createSideMenu()

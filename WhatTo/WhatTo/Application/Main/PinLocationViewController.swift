@@ -56,32 +56,26 @@ class PinLocationViewController: UIViewController ,MKMapViewDelegate,CLLocationM
 
         self.setInitParam()
 
+        //MARK:- Get Current location
         locationManager = CLLocationManager()
         locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
 
         UIView.animate(withDuration: 1.0, animations: {() -> Void in
-            //MARK:- Get Current location
-            self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            self.locationManager.requestAlwaysAuthorization()
-            self.locationManager.startUpdatingLocation()
-            
+
             if ((self.locationManager.location) != nil){
-                
                 self.CurrentLattitude = self.locationManager.location?.coordinate.latitude
                 self.CurrentLongitude = self.locationManager.location?.coordinate.longitude
             }
             else
             {
-                
             }
-            
         })
 
-        
-        
         self.zoomToRegion()
         self.getMapsDetails()
-
 
         // Do any additional setup after loading the view.
     }
@@ -140,26 +134,40 @@ class PinLocationViewController: UIViewController ,MKMapViewDelegate,CLLocationM
         }
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+    {
+        /*
+        let camera = GMSCameraPosition.camera(withLatitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!, zoom: 17.0)
+        mapview?.animate(to: camera)
+
+        let locations = [CLLocation]()
         
+        let locationArray = locations as NSArray
+        let locationObj = locationArray.lastObject as? CLLocation
+        let coord = locationObj?.coordinate
+        
+        print("Latitude: \(String(describing: coord?.latitude))")
+        print("Longitude: \(String(describing: coord?.longitude))")
+        
+        locationManager = manager
+        
+        CurrentLattitude = manager.location?.coordinate.latitude
+        CurrentLongitude = manager.location?.coordinate.longitude
+
+        //fvc.locationLabel.text = ("Location \r\n Latitude: \(coord?.latitude) \r\n Longitude: \(coord?.longitude)")
+         */
         let camera = GMSCameraPosition.camera(withLatitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!, zoom: 17.0)
         
         mapview?.animate(to: camera)
         
         CurrentLattitude = manager.location?.coordinate.latitude
         CurrentLongitude = manager.location?.coordinate.longitude
-
+        
         //Finally stop updating location otherwise it will come again and again in this delegate
         self.locationManager.stopUpdatingLocation()
 
-        /*
-        if let location = locations.first {
-            
-            mapview.camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
-            locationManager.stopUpdatingLocation()
-            
-        }*/
     }
+
     
     @objc func mapView(_ aMapView: MKMapView, didUpdate aUserLocation: MKUserLocation) {
 
@@ -279,7 +287,7 @@ class PinLocationViewController: UIViewController ,MKMapViewDelegate,CLLocationM
         GoogleMapsRestClient.geocodeAddress(params: params) { (response) in
             if response != nil {
                 
-                var responceArr = response!["results"]
+                let responceArr = response!["results"]
                 print(responceArr)
 
                 if responceArr.count > 0
