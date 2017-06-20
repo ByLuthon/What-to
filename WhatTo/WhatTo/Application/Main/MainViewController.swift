@@ -9,9 +9,12 @@
 import UIKit
 import MapKit
 import CoreLocation
+import CoreLocation
+import GoogleMaps
+import GooglePlaces
 
 
-class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerDelegate {
+class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerDelegate,GMSMapViewDelegate {
 
     @IBOutlet weak var subview_work: UIView!
     @IBOutlet weak var subview_workimage: UIView!
@@ -19,9 +22,11 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     @IBOutlet weak var subview_home: UIView!
     @IBOutlet weak var subview_homeimage: UIView!
     
+
     
     //MARK:-  IBOutlets
-    @IBOutlet weak var mapview: MKMapView!
+    @IBOutlet weak var btnCurrentLocation: UIButton!
+    @IBOutlet weak var mapview: GMSMapView!
     @IBOutlet weak var subviewWhatTo: UIView!
     
     @IBOutlet weak var viewMessage: UIView!
@@ -30,6 +35,11 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     var location : CLLocationCoordinate2D!
     
     var isMessageHidden = Bool()
+    var isLocationTapped = Bool()
+    
+    //Timer
+    var animationTimer: Timer!
+
     
     //MessageViewAnimation
     // Container view to display video player modal view controller when minimized
@@ -69,7 +79,7 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
                 // If pan ratio exceeds the threshold then transition is completed, otherwise cancel dismissal and present the view controller again
                 let completed = (self.lastPanRatio > self.panRatioThreshold) || (self.lastPanRatio < -self.panRatioThreshold)
                 
-                print(completed)
+                //print(completed)
                 if completed
                 {
                     self.hideBottmView(isShow: true)
@@ -77,6 +87,7 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
                 else
                 {
                     self.hideBottmView(isShow: false)
+                    self.rotateButton(radiousbtn: 0.0)
                 }
 
                 self.customTransitioningDelegate.finalizeInteractiveTransition(isTransitionCompleted: completed)
@@ -97,11 +108,13 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
 
         isMessageHidden = false
         
-        mapview.showsUserLocation = true
         locationManager = CLLocationManager()
+        //animationTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
 
-        self.setMessageViewAnimation()
+        isLocationTapped = false
         
+        self.setMessageViewAnimation()
+        self.zoomToRegion()
         // Do any additional setup after loading the view.
     }
 
@@ -109,21 +122,23 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         self.setInitParam()
         super.viewWillAppear(animated) // No need for semicolon
         
-        self.zoomToRegion()
 
         //self.popupWithAnimation(_subview: subviewWhatTo, show: true, animationTime: 0.8)
         
         UIView.beginAnimations("", context: nil)
         UIView.setAnimationDuration(0.8)
-        subviewWhatTo.frame = CGRect(x:subviewWhatTo.frame.origin.x, y: 75, width: subviewWhatTo.frame.size.width, height: subviewWhatTo.frame.size.height)
+        subviewWhatTo.frame = CGRect(x:subviewWhatTo.frame.origin.x, y: 100, width: subviewWhatTo.frame.size.width, height: subviewWhatTo.frame.size.height)
         UIView.commitAnimations()
         UIView.animate(withDuration: 1.0, animations: {() -> Void in
+            
+            let camera = GMSCameraPosition.camera(withLatitude: (self.locationManager.location?.coordinate.latitude)!, longitude: (self.locationManager.location?.coordinate.longitude)!, zoom: 15.0)
+            self.mapview?.animate(to: camera)
         })
         
         if isMessageHidden
         {
             isMessageHidden = false
-            viewMessage.frame = CGRect(x:viewMessage.frame.origin.x, y: Constants.HEIGHT - 42, width: viewMessage.frame.size.width, height: 42)
+            viewMessage.frame = CGRect(x:viewMessage.frame.origin.x, y: Constants.HEIGHT - 55, width: viewMessage.frame.size.width, height: 55)
             //self.view.bringSubview(toFront: viewMessage)
             videoPlayerViewController.subview_popup.isHidden = true
             videoPlayerViewController.lblMessage.isHidden = true
@@ -145,7 +160,16 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         // Dispose of any resources that can be recreated.
     }
     
-    
+    func runTimedCode() {
+        let circleCenter = CLLocationCoordinate2D(latitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!)
+        let circ = GMSCircle(position: circleCenter, radius: 200)
+        circ.fillColor = UIColor.clear
+        circ.strokeColor = UIColor(red: 89.0/255.0, green: 157.0/255.0, blue: 194.0/255.0, alpha: 0.4)
+        circ.strokeWidth = 1.0
+        circ.map = mapview
+
+    }
+
     func setMessageViewAnimation()
     {
 
@@ -250,7 +274,8 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
             videoPlayerViewController.backgroundView.alpha = percentage
             videoPlayerViewController.dismissButton.alpha = percentage
             
-            videoPlayerViewController.videoViewHeightConstraint.constant = 211.0
+            //videoPlayerViewController.videoViewHeightConstraint.constant = 211.0
+            
         }
         
         customTransitioningDelegate.transitionPercentDismiss = {[weak self] (fromViewController: UIViewController, toViewController: UIViewController, percentage: CGFloat, containerView: UIView) in
@@ -277,14 +302,18 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
             finalRect.origin.y = verticalMove
             videoPlayerViewController.view.frame = finalRect
             
+            
+            //videoPlayerViewController.subview_popup.frame.size.height = 211.0
+            
+            //print(finalRect)
+            //print(videoPlayerViewController.subview_popup.frame.size.height)
+
             videoPlayerViewController.backgroundView.alpha = 1 - percentage
             videoPlayerViewController.dismissButton.alpha = 1 - percentage
             
-            videoPlayerViewController.videoViewHeightConstraint.constant = 211.0
-
+            //videoPlayerViewController.videoViewHeightConstraint.constant = 211.0
+            //videoPlayerViewController.subview_popup.updateConstraints()
         }
-        
-        //self.perform(#selector(self.presentMessageView), with: nil, afterDelay: 2.0)
     }
     
     func presentMessageView()
@@ -308,8 +337,8 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         
         UIView.animate(withDuration: 1.0, animations: {() -> Void in
             
-            print("LOCATION HERE......")
-            print(self.locationManager.location)
+            //print("LOCATION HERE......")
+            //print(self.locationManager.location)
             if ((self.locationManager.location) != nil){
                 self.location = self.locationManager.location!.coordinate
             }
@@ -328,6 +357,8 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         
         Constants.setBorderTo(subview_workimage, withBorderWidth: 0, radiousView: Float(subview_workimage.frame.size.height/2), color: UIColor.darkGray)
         Constants.setBorderTo(subview_homeimage, withBorderWidth: 0, radiousView: Float(subview_homeimage.frame.size.height/2), color: UIColor.darkGray)
+        //Constants.setBorderTo(btnCurrentLocation, withBorderWidth: 00, radiousView: Float(btnCurrentLocation.frame.size.height/2), color: UIColor.clear)
+        Constants.setBorderTo(viewMessage, withBorderWidth: 0, radiousView: 5, color: UIColor.clear)
 
         subview_home.isHidden = false
         subview_work.isHidden = false
@@ -363,6 +394,10 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
                 subview_work.isHidden = false
             }
         }
+        
+        btnCurrentLocation.isHidden = true
+        self.view.bringSubview(toFront: btnCurrentLocation)
+
     }
     
     func setBothviewCenter(){
@@ -394,14 +429,7 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     //MARK:- Zoom to region
     func zoomToRegion() {
         
-        //let location = CLLocationCoordinate2D(latitude: 13.03297, longitude: 80.26518)
-        
-
         /*
-        var region = MKCoordinateRegionMakeWithDistance(location, 5000.0, 7000.0)
-        mapview.setRegion(region, animated: true)
-         */
-
         var region = MKCoordinateRegionMakeWithDistance(location, 15000.0, 15000.0)
         mapview.setRegion(region, animated: true)
         
@@ -411,9 +439,47 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         mapview.setRegion(region, animated: true)
         UIView.commitAnimations()
         UIView.animate(withDuration: 1.0, animations: {() -> Void in
-        })
+        })*/
 
+        let lat = self.locationManager.location?.coordinate.latitude
+        let lan = self.locationManager.location?.coordinate.longitude
+
+        self.mapview.animate(toLocation: CLLocationCoordinate2D(latitude: lat!, longitude: lan!))
+        let camera = GMSCameraPosition.camera(withLatitude: lat!, longitude: lan!, zoom: 15.0)
+        mapview.camera = camera
+        mapview?.animate(to: camera)
+
+        mapview.isMyLocationEnabled = true
+        mapview.delegate = self
+        mapview.settings.myLocationButton = false
+
+        
+        let circleCenter = CLLocationCoordinate2D(latitude: lat!, longitude: lan!)
+        let circ = GMSCircle(position: circleCenter, radius: 10000000)
+        circ.fillColor = UIColor(red: 89.0/255.0, green: 157.0/255.0, blue: 194.0/255.0, alpha: 0.1)
+        circ.strokeColor = UIColor(red: 89.0/255.0, green: 157.0/255.0, blue: 194.0/255.0, alpha: 0.1)
+        circ.strokeWidth = 0
+        circ.map = mapview
+        
+        //self.moveLocationButton()
+
+        
     }
+    
+    func moveLocationButton() -> Void{
+        for object in mapview.subviews{
+            for obj in object.subviews{
+                if let button = obj as? UIButton{
+                    let name = button.accessibilityIdentifier
+                    if(name == "my_location"){
+                        //config a position
+                        button.center = self.view.center
+                    }
+                }
+            }
+        }
+    }
+
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         
@@ -429,12 +495,72 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         let locationObj = locationArray.lastObject as? CLLocation
         let coord = locationObj?.coordinate
         
-        //print("Latitude: \(String(describing: coord?.latitude))")
-        //print("Longitude: \(String(describing: coord?.longitude))")
+        /*
+        let circleCenter = CLLocationCoordinate2D(latitude: (manager.location?.coordinate.latitude)!, longitude: (manager.location?.coordinate.longitude)!)
+        let circ = GMSCircle(position: circleCenter, radius: 50)
+        circ.fillColor = UIColor(red: 89.0/255.0, green: 157.0/255.0, blue: 194.0/255.0, alpha: 1)
+        circ.strokeWidth = 0
+        circ.map = mapview
+         */
+
+        /*
+        let circleCenter = CLLocationCoordinate2D(latitude: (manager.location?.coordinate.latitude)!, longitude: (manager.location?.coordinate.longitude)!)
+        let circ = GMSCircle(position: circleCenter, radius: 200)
+        circ.fillColor = UIColor.clear
+        circ.strokeColor = UIColor(red: 89.0/255.0, green: 157.0/255.0, blue: 194.0/255.0, alpha: 0.4)
+        circ.strokeWidth = 1.0
+        circ.map = mapview
+         */
         
         locationManager = manager
         //fvc.locationLabel.text = ("Location \r\n Latitude: \(coord?.latitude) \r\n Longitude: \(coord?.longitude)")
     }
+    // MARK: - mapView Delegate
+   
+    @IBAction func currentLocation(_ sender: Any)
+    {
+        isLocationTapped = true
+        
+        self.mapview.animate(toLocation: CLLocationCoordinate2D(latitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!))
+        let camera = GMSCameraPosition.camera(withLatitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!, zoom: 15.0)
+
+        mapview?.animate(to: camera)
+        UIView.animate(withDuration: 0.5, animations: {() -> Void in
+            self.btnCurrentLocation.isHidden = true
+        })
+
+    }
+
+    func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
+
+        if !isLocationTapped {
+            btnCurrentLocation.isHidden = false
+        }
+        //self.view.bringSubview(toFront: btnCurrentLocation)
+    }
+   
+    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition)
+    {
+        if !isLocationTapped
+        {
+            let lat = mapView.camera.target.latitude
+            let lon = mapView.camera.target.longitude
+            
+            if lat == locationManager.location?.coordinate.latitude && lon == locationManager.location?.coordinate.longitude
+            {
+                btnCurrentLocation.isHidden = true
+            }
+            else
+            {
+                btnCurrentLocation.isHidden = false
+            }
+        }
+        else
+        {
+            isLocationTapped = false
+        }
+    }
+    
 
     // MARK: - pickup
     @IBAction func pickupTapped(_ sender: Any) {
@@ -446,8 +572,6 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "PickupTimeViewController") as! PickupTimeViewController
         vc.modalPresentationStyle = .overCurrentContext
         present(vc, animated: true, completion: nil)
-
-
     }
     
     
@@ -477,12 +601,14 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     // MARK: - IBAction
     @IBAction func fromToTapped(_ sender: Any)
     {
-        //self.mapView.setRegion(MKCoordinateRegionForMapRect(rect), animated: true)
 
-        let location:CLLocationCoordinate2D = locationManager.location!.coordinate
-        let region = MKCoordinateRegionMakeWithDistance(location, 500.0, 500.0)
-        mapview.setRegion(region, animated: true)
+        //let location:CLLocationCoordinate2D = locationManager.location!.coordinate
+        //let region = MKCoordinateRegionMakeWithDistance(location, 500.0, 500.0)
+        //mapview.setRegion(region, animated: true)
 
+        let camera = GMSCameraPosition.camera(withLatitude: locationManager.location!.coordinate.latitude, longitude: locationManager.location!.coordinate.longitude, zoom: 25.0)
+        mapview?.animate(to: camera)
+        
         self.perform(#selector(self.redirectONAddLocation), with: nil, afterDelay: 0.8)
 
     }
@@ -547,13 +673,19 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     // MARK: - MessageView Delegate
     func rotateButton(radiousbtn: CGFloat)
     {
-        /*
-        print(radiousbtn)
-        
-        self.videoPlayerViewController.dismissButton.transform = CGAffineTransform(rotationAngle: -(CGFloat.pi / radiousbtn))
-        
-        self.videoPlayerViewController.dismissButton.transform = self.videoPlayerViewController.dismissButton.transform.rotated(by: CGFloat(M_PI_2))
-    */
+        var finalRatio = 4 - radiousbtn
+        //print(finalRatio)
+
+        if finalRatio == 4.0
+        {
+            self.videoPlayerViewController.dismissButton.transform = CGAffineTransform(rotationAngle: 0)
+        }
+        else
+        {
+            finalRatio = finalRatio - 1
+            self.videoPlayerViewController.dismissButton.transform = CGAffineTransform(rotationAngle: .pi / -finalRatio)
+            //print(.pi / -finalRatio)
+        }
     }
 
     
@@ -564,11 +696,15 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
             self.videoPlayerViewController.removeFromParentViewController()
         }
         
+
         self.present(self.videoPlayerViewController, animated: true, completion: nil)
         //viewMessage.isHidden = true
         isMessageHidden = true
         videoPlayerViewController.subview_popup.isHidden = false
         videoPlayerViewController.lblMessage.isHidden = false
+        
+        videoPlayerViewController.dismissButton.transform = CGAffineTransform(rotationAngle: 0)
+
 
     }
     
@@ -594,7 +730,7 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         {
             self.rotateButton(radiousbtn: 0)
             
-            print("BEGIN")
+            //print("BEGIN")
             isMessageHidden = true
             viewMessage.isHidden = true
             videoPlayerViewController.subview_popup.isHidden = false
@@ -613,11 +749,10 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         }
         else if (panGestureRecozgnizer.state == .changed)
         {
-            print("Changed")
+            //print("Changed")
 
             let ratio = max(min(((self.lastVideoPlayerOriginY + translatedPoint.y) / self.thumbnailVideoContainerView.frame.minY), 1), 0)
             
-            //print(ratio)
             self.rotateButton(radiousbtn: ratio*2)
 
             // Store lastPanRatio for next callback
@@ -630,12 +765,21 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         }
         else if (panGestureRecozgnizer.state == .ended)
         {
-            print("Ended")
+            //print("Ended")
 
             // If pan ratio exceeds the threshold then transition is completed, otherwise cancel dismissal and present the view controller again
             let completed = (self.lastPanRatio > self.panRatioThreshold) || (self.lastPanRatio < -self.panRatioThreshold)
             
             print(completed)
+            if completed
+            {
+                self.hideBottmView(isShow: false)
+                self.rotateButton(radiousbtn: 0.0)
+            }
+            else
+            {
+                self.hideBottmView(isShow: true)
+            }
             self.customTransitioningDelegate.finalizeInteractiveTransition(isTransitionCompleted: completed)
         }
     }
@@ -645,3 +789,17 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
 
 
 
+extension GMSCircle {
+    func bounds () -> GMSCoordinateBounds {
+        func locationMinMax(positive : Bool) -> CLLocationCoordinate2D {
+            let sign:Double = positive ? 1 : -1
+            let dx = sign * self.radius  / 6378000 * (180/M_PI)
+            let lat = position.latitude + dx
+            let lon = position.longitude + dx / cos(position.latitude * M_PI/180)
+            return CLLocationCoordinate2D(latitude: lat, longitude: lon)
+        }
+        
+        return GMSCoordinateBounds(coordinate: locationMinMax(positive: true),
+                                   coordinate: locationMinMax(positive: false))
+    }
+}

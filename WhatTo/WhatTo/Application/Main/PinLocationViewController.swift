@@ -106,6 +106,14 @@ class PinLocationViewController: UIViewController ,MKMapViewDelegate,CLLocationM
         mapview.isMyLocationEnabled = true
         mapview.delegate = self
         mapview.settings.myLocationButton = true
+        mapview.padding = UIEdgeInsetsMake(0, 0, 55, 0);
+
+        let circleCenter = CLLocationCoordinate2D(latitude: lat!, longitude: lan!)
+        let circ = GMSCircle(position: circleCenter, radius: 25)
+        circ.fillColor = UIColor(red: 89.0/255.0, green: 157.0/255.0, blue: 194.0/255.0, alpha: 0.2)
+        circ.strokeColor = UIColor(red: 89.0/255.0, green: 157.0/255.0, blue: 194.0/255.0, alpha: 0.2)
+        circ.strokeWidth = 1
+        circ.map = mapview
 
         
         let params = [

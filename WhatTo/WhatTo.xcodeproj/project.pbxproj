@@ -112,6 +112,9 @@
 		9A791F7C1EF7ECF900DB8D71 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A791F791EF7ECF900DB8D71 /* share.png */; };
 		9A791F7D1EF7ECF900DB8D71 /* share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A791F7A1EF7ECF900DB8D71 /* share@2x.png */; };
 		9A791F7E1EF7ECF900DB8D71 /* share@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A791F7B1EF7ECF900DB8D71 /* share@3x.png */; };
+		9ABFFAF01EF91E9C00E037B7 /* location_ic.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABFFAED1EF91E9C00E037B7 /* location_ic.png */; };
+		9ABFFAF11EF91E9C00E037B7 /* location_ic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABFFAEE1EF91E9C00E037B7 /* location_ic@2x.png */; };
+		9ABFFAF21EF91E9C00E037B7 /* location_ic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABFFAEF1EF91E9C00E037B7 /* location_ic@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -227,6 +230,9 @@
 		9A791F7A1EF7ECF900DB8D71 /* share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share@2x.png"; sourceTree = "<group>"; };
 		9A791F7B1EF7ECF900DB8D71 /* share@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share@3x.png"; sourceTree = "<group>"; };
 		9A791F811EF7FA3800DB8D71 /* WhatTo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WhatTo.entitlements; sourceTree = "<group>"; };
+		9ABFFAED1EF91E9C00E037B7 /* location_ic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location_ic.png; sourceTree = "<group>"; };
+		9ABFFAEE1EF91E9C00E037B7 /* location_ic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location_ic@2x.png"; sourceTree = "<group>"; };
+		9ABFFAEF1EF91E9C00E037B7 /* location_ic@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location_ic@3x.png"; sourceTree = "<group>"; };
 		CFF9EA1FF9FD3EB8B8A84E8A /* Pods-WhatTo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatTo.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhatTo/Pods-WhatTo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -337,6 +343,9 @@
 		9A2BDCD01EEAA25700F86690 /* Location */ = {
 			isa = PBXGroup;
 			children = (
+				9ABFFAED1EF91E9C00E037B7 /* location_ic.png */,
+				9ABFFAEE1EF91E9C00E037B7 /* location_ic@2x.png */,
+				9ABFFAEF1EF91E9C00E037B7 /* location_ic@3x.png */,
 				9A40548B1EEE64B9003B93FD /* pin.png */,
 				9A40548C1EEE64B9003B93FD /* pin@2x.png */,
 				9A40548D1EEE64B9003B93FD /* pin@3x.png */,
@@ -720,6 +729,7 @@
 				9A616B1E1EEBF564000DC318 /* Info-OSX.plist in Resources */,
 				9A2BDCDF1EEAA26700F86690 /* home@3x.png in Resources */,
 				9A2BDCDD1EEAA26700F86690 /* home.png in Resources */,
+				9ABFFAF11EF91E9C00E037B7 /* location_ic@2x.png in Resources */,
 				9A616B201EEBF564000DC318 /* Info-watchOS.plist in Resources */,
 				9A74BE2E1EF28343007242C0 /* paytm.png in Resources */,
 				9A1BC2741EE9822000A9D802 /* taxi.png in Resources */,
@@ -745,6 +755,7 @@
 				9A2BDCCB1EEA9B6000F86690 /* back@2x.png in Resources */,
 				9A1BC2751EE9822000A9D802 /* taxi@2x.png in Resources */,
 				9A74BE2F1EF28343007242C0 /* paytm@2x.png in Resources */,
+				9ABFFAF21EF91E9C00E037B7 /* location_ic@3x.png in Resources */,
 				9A2BDCDE1EEAA26700F86690 /* home@2x.png in Resources */,
 				9A2BDCE71EEAA32000F86690 /* Cell_setLocation.xib in Resources */,
 				9A74BE351EF283BE007242C0 /* Cell_AddPayment.xib in Resources */,
@@ -776,6 +787,7 @@
 				9A1BC2701EE97E9C00A9D802 /* menuicon@3x.png in Resources */,
 				9A40548E1EEE64B9003B93FD /* pin.png in Resources */,
 				9A3741D41EF0060C00738D7C /* example.jpg in Resources */,
+				9ABFFAF01EF91E9C00E037B7 /* location_ic.png in Resources */,
 				9A5F974D1EE941B200146FCD /* Main.storyboard in Resources */,
 				9A74BE3C1EF29924007242C0 /* edit_icon.png in Resources */,
 				9A74BE281EF28343007242C0 /* credit-card.png in Resources */,
