@@ -24,7 +24,6 @@ class AddLocationViewController: UIViewController,UITableViewDelegate,UITableVie
     
     //MARK:-  IBOutlets
     @IBOutlet weak var tbl: UITableView!
-    
     @IBOutlet weak var subviewHeader: UIView!
     @IBOutlet weak var subviewBottom: UIView!
     @IBOutlet weak var subview_currentLocation: UIView!
@@ -191,7 +190,7 @@ class AddLocationViewController: UIViewController,UITableViewDelegate,UITableVie
         
     }
     
-    //Delegate Methods
+    //Picker Methods
     func numberOfRows(in pickerView: CZPickerView!) -> Int {
         
         if pickerView.tag == 101 {

@@ -14,7 +14,7 @@ class messageViewController: UIViewController {
 
     @IBOutlet weak var videoViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var videoViewAtBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var backgroundView: UILabel!
+    @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var dismissButton: UIButton!
     @IBOutlet weak var lblMessage: UILabel!
 
@@ -23,7 +23,7 @@ class messageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        Constants.setBorderTo(subview_popup, withBorderWidth: 5, radiousView: 0, color: UIColor.clear)
         // Do any additional setup after loading the view.
     }
 

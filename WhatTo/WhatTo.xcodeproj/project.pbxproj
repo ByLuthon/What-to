@@ -115,6 +115,8 @@
 		9ABFFAF01EF91E9C00E037B7 /* location_ic.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABFFAED1EF91E9C00E037B7 /* location_ic.png */; };
 		9ABFFAF11EF91E9C00E037B7 /* location_ic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABFFAEE1EF91E9C00E037B7 /* location_ic@2x.png */; };
 		9ABFFAF21EF91E9C00E037B7 /* location_ic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABFFAEF1EF91E9C00E037B7 /* location_ic@3x.png */; };
+		9AC46A501EFA84880049AF08 /* cloud-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AC46A4F1EFA84880049AF08 /* cloud-icon.png */; };
+		9AC46A521EFA861A0049AF08 /* yellowPlane.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AC46A511EFA861A0049AF08 /* yellowPlane.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -233,6 +235,8 @@
 		9ABFFAED1EF91E9C00E037B7 /* location_ic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location_ic.png; sourceTree = "<group>"; };
 		9ABFFAEE1EF91E9C00E037B7 /* location_ic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location_ic@2x.png"; sourceTree = "<group>"; };
 		9ABFFAEF1EF91E9C00E037B7 /* location_ic@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location_ic@3x.png"; sourceTree = "<group>"; };
+		9AC46A4F1EFA84880049AF08 /* cloud-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cloud-icon.png"; sourceTree = "<group>"; };
+		9AC46A511EFA861A0049AF08 /* yellowPlane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowPlane.png; sourceTree = "<group>"; };
 		CFF9EA1FF9FD3EB8B8A84E8A /* Pods-WhatTo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatTo.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhatTo/Pods-WhatTo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -272,6 +276,8 @@
 		9A1BC26A1EE97E5500A9D802 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
+				9AC46A511EFA861A0049AF08 /* yellowPlane.png */,
+				9AC46A4F1EFA84880049AF08 /* cloud-icon.png */,
 				9A791F6A1EF79C8C00DB8D71 /* WhiteTopArrow.png */,
 				9A791F6B1EF79C8C00DB8D71 /* WhiteTopArrow@2x.png */,
 				9A791F6C1EF79C8C00DB8D71 /* WhiteTopArrow@3x.png */,
@@ -747,6 +753,7 @@
 				9A2BDCC11EEA832B00F86690 /* emptyProfilePic.png in Resources */,
 				9A2BDCE21EEAA26700F86690 /* pinLocation@3x.png in Resources */,
 				9A2BDCF01EEAB71F00F86690 /* mapCurrentLocation@2x.png in Resources */,
+				9AC46A521EFA861A0049AF08 /* yellowPlane.png in Resources */,
 				9A791F7C1EF7ECF900DB8D71 /* share.png in Resources */,
 				9A74BE2D1EF28343007242C0 /* notes@3x.png in Resources */,
 				9A616B1D1EEBF564000DC318 /* Info-iOS.plist in Resources */,
@@ -762,6 +769,7 @@
 				9A2BDCCC1EEA9B6000F86690 /* back@3x.png in Resources */,
 				9A2BDCDC1EEAA26700F86690 /* briefcase@3x.png in Resources */,
 				9A2BDCEF1EEAB71F00F86690 /* mapCurrentLocation.png in Resources */,
+				9AC46A501EFA84880049AF08 /* cloud-icon.png in Resources */,
 				9A4054991EEED2FE003B93FD /* visa_icon@3x.png in Resources */,
 				9A791F6D1EF79C8C00DB8D71 /* WhiteTopArrow.png in Resources */,
 				9A1BC2761EE9822000A9D802 /* taxi@3x.png in Resources */,

@@ -28,9 +28,9 @@ class AddPamentViewController: UIViewController, UITableViewDelegate,UITableView
     }
     
     func setInitParam() {
-        
+
         let dictDebit:[String:String] = ["title":"Credit or Debit Card", "icon":"credit-card.png"]
-        let dictCase:[String:String] = ["title":"Case", "icon":"notes.png"]
+        let dictCase:[String:String] = ["title":"Cash", "icon":"notes.png"]
         let dictPayment:[String:String] = ["title":"Payment", "icon":"paytm.png"]
         
         arrPaymentList = [dictDebit,dictCase, dictPayment]

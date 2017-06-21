@@ -20,6 +20,7 @@ class ConfirmPickupViewController: UIViewController, MKMapViewDelegate,CLLocatio
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var viewBox: UIView!
 
+    
     var locationManager = CLLocationManager()
 
     var CurrentLattitude: Double?
@@ -107,7 +108,8 @@ class ConfirmPickupViewController: UIViewController, MKMapViewDelegate,CLLocatio
         mapview.isMyLocationEnabled = true
         mapview.delegate = self
         mapview.settings.myLocationButton = true
-        
+        mapview.padding = UIEdgeInsetsMake(0, 0, 55, 0);
+
         
         let params = [
             "latlng": "\(lat!),\(lan!)",
@@ -178,21 +180,31 @@ class ConfirmPickupViewController: UIViewController, MKMapViewDelegate,CLLocatio
     
 
     @IBAction func Back(_ sender: Any) {
-        self.navigationController?.pop(animated: true)
+        //self.navigationController?.pop(animated: true)
+        
+        for controller in self.navigationController!.viewControllers as Array {
+            
+            if controller.isKind(of: MainViewController.self)
+            {
+                self.navigationController!.popToViewController(controller, animated: true)
+                break
+                
+            }
+        }
+
     }
     
     // MARK: - mapView Delegate
 
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
-        //activityIndicator.isHidden = false
-        //locationLabel.isHidden = true
-        
+        btnConfirmPickup.isHidden = true
         lblAddress.text = "Loading..."
         
     }
+   
     func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
         
-        
+        btnConfirmPickup.isHidden = false
         
         let lat = mapView.camera.target.latitude
         let lon = mapView.camera.target.longitude

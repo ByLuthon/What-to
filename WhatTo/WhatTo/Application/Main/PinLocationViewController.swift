@@ -22,6 +22,7 @@ class PinLocationViewController: UIViewController ,MKMapViewDelegate,CLLocationM
     @IBOutlet weak var subviewPinLocation: UIView!
     @IBOutlet weak var txtPinLocation: UITextField!
     @IBOutlet weak var lblLocationDots: UILabel!
+    @IBOutlet weak var btnDone: UIButton!
    
     var FromVC_NAME: String!
     var isFromHome = Bool()
@@ -197,7 +198,18 @@ class PinLocationViewController: UIViewController ,MKMapViewDelegate,CLLocationM
     @IBAction func Backtapped(_ sender: Any)
     {
         self.saveData()
-        navigationController?.pop(animated: true)
+        //navigationController?.pop(animated: true)
+        
+        for controller in self.navigationController!.viewControllers as Array {
+            
+            if controller.isKind(of: MainViewController.self)
+            {
+                self.navigationController!.popToViewController(controller, animated: true)
+                break
+                
+            }
+        }
+
     }
     
     
@@ -272,13 +284,13 @@ class PinLocationViewController: UIViewController ,MKMapViewDelegate,CLLocationM
         //locationLabel.isHidden = true
         
         self.mapPolyline.map = nil
+        btnDone.isHidden = true
 
     }
 
     func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
         
-        //activityIndicator.isHidden = true
-        //locationLabel.isHidden = false
+        btnDone.isHidden = false
         
         let lat = mapView.camera.target.latitude
         let lon = mapView.camera.target.longitude

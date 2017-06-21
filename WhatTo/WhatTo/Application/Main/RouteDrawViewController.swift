@@ -441,7 +441,6 @@ class RouteDrawViewController: UIViewController ,CLLocationManagerDelegate,GMSMa
             }
             
         })
-        
     }
     
     
@@ -449,7 +448,17 @@ class RouteDrawViewController: UIViewController ,CLLocationManagerDelegate,GMSMa
     
     @IBAction func Back(_ sender: Any)
     {
-        self.navigationController?.pop(animated: true)
+        //self.navigationController?.pop(animated: true)
+        
+        for controller in self.navigationController!.viewControllers as Array {
+            
+            if controller.isKind(of: MainViewController.self)
+            {
+                self.navigationController!.popToViewController(controller, animated: true)
+                break
+                
+            }
+        }
     }
     
 }

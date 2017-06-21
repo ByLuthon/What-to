@@ -218,6 +218,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UITableViewDelegate,UITabl
         let dictCell = arrSideMenu.object(at: indexPath.row) as! NSDictionary
         cell?.textLabel?.text = dictCell.value(forKey: "title") as? String
         cell?.textLabel?.textColor = UIColor.black
+        cell?.selectionStyle = UITableViewCellSelectionStyle.none
+
         return cell!
     }
 
