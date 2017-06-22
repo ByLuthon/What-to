@@ -6,6 +6,7 @@ class GoogleMapsRestClient {
     static let GMS_API_KEY = "AIzaSyDLQ3zm0BPJDDNsYxNDMr4PEjpg7t4eLLw"
     static let GEOCODING_API_KEY = "AIzaSyCyPjx8P653F_j8G-eazG-uHB9qCoq9N28"
     static let DIRECTION_API_KEY = "AIzaSyAdHWDDlZHsjcQ57azkCIFir7I3GhoN0wg"
+    static let GMSPLACES_API_KEY = "AIzaSyDdUvFXxhLMpili_tspnE2QK7wkAHAoL3c"
 
     
     /*
@@ -57,4 +58,12 @@ class GoogleMapsRestClient {
             complete(response)
         }
     }
+    
+    static func autoComplateText(params: [String:String], complete: @escaping (_ response: JSON?) -> Void) {
+        let url = "https://maps.googleapis.com/maps/api/place/autocomplete/json"
+        getResponse(url: url, params: params) { (response) in
+            complete(response)
+        }
+    }
+
 }

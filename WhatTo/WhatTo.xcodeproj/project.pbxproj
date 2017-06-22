@@ -104,6 +104,9 @@
 		9A74BE3E1EF29924007242C0 /* edit_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A74BE3B1EF29924007242C0 /* edit_icon@3x.png */; };
 		9A74BE421EF29B3C007242C0 /* Cell_Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A74BE401EF29B3C007242C0 /* Cell_Account.swift */; };
 		9A74BE431EF29B3C007242C0 /* Cell_Account.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A74BE411EF29B3C007242C0 /* Cell_Account.xib */; };
+		9A76DE201EFB9E3E0055CFE1 /* AutoCompleteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A76DE1C1EFB9E3E0055CFE1 /* AutoCompleteTextField.swift */; };
+		9A76DE211EFB9E3E0055CFE1 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A76DE1E1EFB9E3E0055CFE1 /* Location.swift */; };
+		9A76DE221EFB9E3E0055CFE1 /* MKMapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A76DE1F1EFB9E3E0055CFE1 /* MKMapViewExtension.swift */; };
 		9A791F691EF79ADD00DB8D71 /* messageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A791F681EF79ADD00DB8D71 /* messageViewController.swift */; };
 		9A791F6D1EF79C8C00DB8D71 /* WhiteTopArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A791F6A1EF79C8C00DB8D71 /* WhiteTopArrow.png */; };
 		9A791F6E1EF79C8C00DB8D71 /* WhiteTopArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A791F6B1EF79C8C00DB8D71 /* WhiteTopArrow@2x.png */; };
@@ -223,6 +226,9 @@
 		9A74BE3B1EF29924007242C0 /* edit_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edit_icon@3x.png"; sourceTree = "<group>"; };
 		9A74BE401EF29B3C007242C0 /* Cell_Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cell_Account.swift; sourceTree = "<group>"; };
 		9A74BE411EF29B3C007242C0 /* Cell_Account.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cell_Account.xib; sourceTree = "<group>"; };
+		9A76DE1C1EFB9E3E0055CFE1 /* AutoCompleteTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoCompleteTextField.swift; sourceTree = "<group>"; };
+		9A76DE1E1EFB9E3E0055CFE1 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		9A76DE1F1EFB9E3E0055CFE1 /* MKMapViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKMapViewExtension.swift; sourceTree = "<group>"; };
 		9A791F681EF79ADD00DB8D71 /* messageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = messageViewController.swift; sourceTree = "<group>"; };
 		9A791F6A1EF79C8C00DB8D71 /* WhiteTopArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteTopArrow.png; sourceTree = "<group>"; };
 		9A791F6B1EF79C8C00DB8D71 /* WhiteTopArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WhiteTopArrow@2x.png"; sourceTree = "<group>"; };
@@ -512,6 +518,7 @@
 		9A5F975C1EE956BA00146FCD /* OtherClasses */ = {
 			isa = PBXGroup;
 			children = (
+				9A76DE1A1EFB9E3E0055CFE1 /* AutoFieldTextField */,
 				9A791F761EF7A7C300DB8D71 /* AICustomViewControllerTransition */,
 				9A27E9791EF40381006B0235 /* GifImages_SWIFT */,
 				9A4054A11EEED7BC003B93FD /* Reachability */,
@@ -615,6 +622,33 @@
 				9A74BE411EF29B3C007242C0 /* Cell_Account.xib */,
 			);
 			path = cell;
+			sourceTree = "<group>";
+		};
+		9A76DE1A1EFB9E3E0055CFE1 /* AutoFieldTextField */ = {
+			isa = PBXGroup;
+			children = (
+				9A76DE1B1EFB9E3E0055CFE1 /* AutoCompleteTextField */,
+				9A76DE1D1EFB9E3E0055CFE1 /* Helpers */,
+			);
+			name = AutoFieldTextField;
+			path = AutoFieldTestField;
+			sourceTree = "<group>";
+		};
+		9A76DE1B1EFB9E3E0055CFE1 /* AutoCompleteTextField */ = {
+			isa = PBXGroup;
+			children = (
+				9A76DE1C1EFB9E3E0055CFE1 /* AutoCompleteTextField.swift */,
+			);
+			path = AutoCompleteTextField;
+			sourceTree = "<group>";
+		};
+		9A76DE1D1EFB9E3E0055CFE1 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				9A76DE1E1EFB9E3E0055CFE1 /* Location.swift */,
+				9A76DE1F1EFB9E3E0055CFE1 /* MKMapViewExtension.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		9A791F671EF79AC600DB8D71 /* Message */ = {
@@ -868,10 +902,12 @@
 				9A4054A01EEED765003B93FD /* SSRadioButtonsController.swift in Sources */,
 				9A4054921EEED049003B93FD /* RouteDrawViewController.swift in Sources */,
 				9A5F976B1EE9684A00146FCD /* Constants.swift in Sources */,
+				9A76DE201EFB9E3E0055CFE1 /* AutoCompleteTextField.swift in Sources */,
 				9A5F97671EE957D000146FCD /* MainViewController.swift in Sources */,
 				9A791F781EF7A7C300DB8D71 /* AICustomViewControllerTransition.swift in Sources */,
 				9A2BDCC31EEA99A800F86690 /* AddLocationViewController.swift in Sources */,
 				9A74BE381EF296AF007242C0 /* EditAccountViewController.swift in Sources */,
+				9A76DE221EFB9E3E0055CFE1 /* MKMapViewExtension.swift in Sources */,
 				9A27E98C1EF4038D006B0235 /* iOSDevCenters+GIF.swift in Sources */,
 				9A2BDCE61EEAA32000F86690 /* Cell_setLocation.swift in Sources */,
 				9A74BE341EF283BE007242C0 /* Cell_AddPayment.swift in Sources */,
@@ -882,6 +918,7 @@
 				9A2BDCB71EEA73CA00F86690 /* UIButton+EventBlocks.m in Sources */,
 				9A27E9641EF3F1FD006B0235 /* LaunchViewController.swift in Sources */,
 				9A5F97641EE9573C00146FCD /* ViewController.swift in Sources */,
+				9A76DE211EFB9E3E0055CFE1 /* Location.swift in Sources */,
 				9A74BE421EF29B3C007242C0 /* Cell_Account.swift in Sources */,
 				9A3741D11EEFE1D000738D7C /* Cell_HomeWork.swift in Sources */,
 				9A5F97691EE9669E00146FCD /* GlobalData.swift in Sources */,

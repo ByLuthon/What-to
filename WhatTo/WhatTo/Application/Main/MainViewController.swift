@@ -34,6 +34,7 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     
     @IBOutlet weak var viewMessage: UIView!
     @IBOutlet weak var lblMessageBG: UILabel!
+
     
     var locationManager: CLLocationManager!
     var location : CLLocationCoordinate2D!
@@ -42,10 +43,13 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     var isMessagescreenOpen = Bool()
     var isLocationTapped = Bool()
     var isopenLocationScreen = Bool()
+    var isfindLocation = Bool()
+    var isCurrentLocationTextfirldEditing = Bool()
 
     
     var arrLocation: NSMutableArray!
     var arrFromvalues: NSMutableArray!
+    var arrLocationList = NSMutableArray()
     
     
     @IBOutlet var viewLocation: UIView!
@@ -54,8 +58,17 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     @IBOutlet weak var tbl: UITableView!
     @IBOutlet weak var txtWhatTo: UITextField!
     
+    @IBOutlet weak var txtCurrentLocation: AutoCompleteTextField!
+    @IBOutlet weak var txtWhereTo: AutoCompleteTextField!
     
+    var responseData:NSMutableData?
+    var selectedPointAnnotation:MKPointAnnotation?
+    var dataTask:URLSessionDataTask?
     
+    /*
+    fileprivate let googleMapsKey = "AIzaSyDg2tlPcoqxx2Q2rfjhsAKS-9j0n3JA_a4"
+    fileprivate let baseURLString = "https://maps.googleapis.com/maps/api/place/autocomplete/json"
+ */
     
     
     //MessageViewAnimation
@@ -135,6 +148,10 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         
         self.setMessageViewAnimation()
         self.zoomToRegion()
+        
+        configureTextField()
+        handleTextFieldInterfaces()
+
         // Do any additional setup after loading the view.
     }
     
@@ -148,11 +165,29 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         }
         
         tbl.reloadData()
+        
+        self.view.bringSubview(toFront: subview_home)
+        self.view.bringSubview(toFront: subview_work)
 
         super.viewWillAppear(animated) // No need for semicolon
     }
     
-    func setInitParam() {
+    func setInitParam()
+    {
+        //Border and shadow
+        Constants.shaodow(on: subviewWhatTo)
+        Constants.setBorderTo(lblMessageBG, withBorderWidth: 0, radiousView: 5.0, color: UIColor.clear)
+        Constants.setBorderTo(subview_workimage, withBorderWidth: 0, radiousView: Float(subview_workimage.frame.size.height/2), color: UIColor.darkGray)
+        Constants.setBorderTo(subview_homeimage, withBorderWidth: 0, radiousView: Float(subview_homeimage.frame.size.height/2), color: UIColor.darkGray)
+        Constants.setBorderTo(viewMessage, withBorderWidth: 0, radiousView: 5, color: UIColor.clear)
+
+        
+        //Set Frame
+        viewMessage.frame = CGRect(x:subviewWhatTo.frame.origin.x, y: Constants.HEIGHT, width: viewMessage.frame.size.width, height: viewMessage.frame.size.height)
+
+        
+        
+        //Location
         self.locationManager.delegate = self;
         self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         self.locationManager.requestAlwaysAuthorization()
@@ -170,18 +205,15 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
             }
         })
         
-        viewMessage.frame = CGRect(x:subviewWhatTo.frame.origin.x, y: Constants.HEIGHT, width: viewMessage.frame.size.width, height: viewMessage.frame.size.height)
+        btnCurrentLocation.isHidden = true
+        self.view.bringSubview(toFront: btnCurrentLocation)
+
         
-        Constants.shaodow(on: subviewWhatTo)
-        Constants.setBorderTo(lblMessageBG, withBorderWidth: 0, radiousView: 5.0, color: UIColor.clear)
-        Constants.setBorderTo(subview_workimage, withBorderWidth: 0, radiousView: Float(subview_workimage.frame.size.height/2), color: UIColor.darkGray)
-        Constants.setBorderTo(subview_homeimage, withBorderWidth: 0, radiousView: Float(subview_homeimage.frame.size.height/2), color: UIColor.darkGray)
-        //Constants.setBorderTo(btnCurrentLocation, withBorderWidth: 00, radiousView: Float(btnCurrentLocation.frame.size.height/2), color: UIColor.clear)
-        Constants.setBorderTo(viewMessage, withBorderWidth: 0, radiousView: 5, color: UIColor.clear)
         
+        
+        // HOME AND WORK BOTTOM VIEW
         subview_home.isHidden = false
         subview_work.isHidden = false
-        
         self.setBothviewCenter()
         
         if Constants.app_delegate.HomeDict == nil
@@ -214,11 +246,9 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
             }
         }
         
-        btnCurrentLocation.isHidden = true
-        self.view.bringSubview(toFront: btnCurrentLocation)
         
         
-        //LOCATION
+        //LOCATION POPUP
         let dictHome:[String:String] = ["title":"Add Home", "icon":"home.png"]
         let dictWork:[String:String] = ["title":"Add Work", "icon":"briefcase.png"]
         let dictPinLocation:[String:String] = ["title":"Set pin location", "icon":"pinLocation.png"]
@@ -229,6 +259,9 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         tbl.tableFooterView = UIView()
         
         arrFromvalues = ["Meet the girlfriend","Hangout with friends","Traveling","Restaurant","Shopping"]
+        
+        txtCurrentLocation.attributedPlaceholder = NSAttributedString(string: "Current Location", attributes: [NSForegroundColorAttributeName: Constants.hexStringToUIColor(hex: "#3696C1")])
+        txtWhereTo.attributedPlaceholder = NSAttributedString(string: "Where to ?", attributes: [NSForegroundColorAttributeName: Constants.hexStringToUIColor(hex: "#686868")])
     }
     
     func setBothviewCenter(){
@@ -390,11 +423,12 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
             let xScale = startXScale + ((1 - startXScale) * percentage)
             let yScale = startYScale + ((1 - startYScale) * percentage)
             
-            print(xScale)
-            //print(1 - yScale)
+            //print("YScale:\(1 - yScale + 0.90)")
+            //print("YScale:\(yScale)")
 
             toViewController.view.transform = CGAffineTransform(scaleX: xScale, y: 1)
-            //self?.subviewWhatTo.transform  = CGAffineTransform(scaleX:1 - xScale, y: 1 - yScale)
+            
+            self?.subviewWhatTo.transform  = CGAffineTransform(scaleX:(1 - xScale + 0.90), y: (1 - xScale + 0.90))
 
             
             let startXPos = weakSelf.thumbnailVideoContainerView.frame.minX
@@ -427,7 +461,7 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
             let xScale = 1 - (percentage * (1 - finalXScale))
             let yScale = 1 - (percentage * (1 - finalYScale))
             
-            //self?.subviewWhatTo.transform  = CGAffineTransform(scaleX:1 - xScale, y: 1 - yScale)
+            self?.subviewWhatTo.transform  = CGAffineTransform(scaleX:(1 - xScale + 0.90), y: (1 - xScale + 0.90))
             
             videoPlayerViewController.view.transform = CGAffineTransform(scaleX: xScale, y: 1)
             
@@ -441,11 +475,9 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
             finalRect.origin.y = verticalMove
             videoPlayerViewController.view.frame = finalRect
             
-            
             videoPlayerViewController.backgroundView.alpha = 1 - (percentage * 2)
             videoPlayerViewController.dismissButton.alpha = 1 - (percentage * 2)
             videoPlayerViewController.backgroundView.isHidden = false
-
         }
     }
     
@@ -460,11 +492,186 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         //self.customTransitioningDelegate.finalizeInteractiveTransition(isTransitionCompleted: false)
     }
     
+    //MARK:- AutoComplate TextField
+    func configureTextField()
+    {
+        /*
+        txtCurrentLocation.autoCompleteTextColor = UIColor(red: 128.0/255.0, green: 128.0/255.0, blue: 128.0/255.0, alpha: 1.0)
+        txtCurrentLocation.autoCompleteTextFont = UIFont(name: "HelveticaNeue-Light", size: 12.0)!
+        txtCurrentLocation.autoCompleteCellHeight = 35.0
+        txtCurrentLocation.maximumAutoCompleteCount = 20
+        txtCurrentLocation.hidesWhenSelected = true
+        txtCurrentLocation.hidesWhenEmpty = true
+        txtCurrentLocation.enableAttributedText = true
+        
+        var attributes = [String:AnyObject]()
+        attributes[NSForegroundColorAttributeName] = UIColor.black
+        attributes[NSFontAttributeName] = UIFont(name: "HelveticaNeue-Bold", size: 12.0)
+        txtCurrentLocation.autoCompleteAttributes = attributes
+        */
+    }
+    
+    func handleTextFieldInterfaces()
+    {
+        txtCurrentLocation.onTextChange = {[weak self] text in
+            self?.isCurrentLocationTextfirldEditing = true
+            if !text.isEmpty
+            {
+                self?.isfindLocation = true
+                //self?.setTblFooter((self?.isfindLocation)!)
+                
+                if let dataTask = self?.dataTask
+                {
+                    dataTask.cancel()
+                }
+                self?.fetchAutocompletePlaces(text, autoTextField: (self?.txtCurrentLocation)!)
+            }
+            else
+            {
+                self?.isfindLocation = false
+                //self?.setTblFooter((self?.isfindLocation)!)
+
+                self?.tbl.reloadData()
+            }
+        }
+        
+        txtWhereTo.onTextChange = {[weak self] text in
+            self?.isCurrentLocationTextfirldEditing = false
+            if !text.isEmpty
+            {
+                self?.isfindLocation = true
+                //self?.setTblFooter((self?.isfindLocation)!)
+
+                if let dataTask = self?.dataTask
+                {
+                    dataTask.cancel()
+                }
+                self?.fetchAutocompletePlaces(text, autoTextField: (self?.txtWhereTo)!)
+            }
+            else
+            {
+                self?.isfindLocation = false
+                //self?.setTblFooter((self?.isfindLocation)!)
+
+                self?.tbl.reloadData()
+            }
+        }
+
+        /*
+        txtCurrentLocation.onSelect = {[weak self] text, indexpath in
+            Location.geocodeAddressString(text, completion: { (placemark, error) -> Void in
+                if let coordinate = placemark?.location?.coordinate
+                {
+                    self?.addAnnotation(coordinate, address: text)
+                    self?.mapView.setCenterCoordinate(coordinate, zoomLevel: 12, animated: true)
+                }
+            })
+        }
+         
+         */
+    }
+    
+    
+    func fetchAutocompletePlaces(_ inputText : String, autoTextField : AutoCompleteTextField)
+    {
+        let urlString = "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=\(GoogleMapsRestClient.GMS_API_KEY)&input=\(inputText)"
+        let s = (CharacterSet.urlQueryAllowed as NSCharacterSet).mutableCopy() as! NSMutableCharacterSet
+        s.addCharacters(in: "+&")
+        if let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: s as CharacterSet) {
+            if let url = URL(string: encodedString) {
+                let request = URLRequest(url: url)
+                dataTask = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
+                    if let data = data{
+                        
+                        do{
+
+                            let result  = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! NSDictionary
+                            print(result)
+                            
+                            if let status = result["status"] as? String
+                            {
+                                if status == "OK"
+                                {
+                                    if let predictions = result["predictions"] as? NSArray
+                                    {
+                                        self.arrLocationList.removeAllObjects()
+                                        //var locations = [String]()
+                                        for dict in predictions as! [NSDictionary]
+                                        {
+                                            print(dict)
+
+                                            let tempdict : [String : Any] = [
+                                                "place_name":dict.object(forKey: "description"),
+                                                "place_address":dict.object(forKey: "description"),
+                                                "latitude":"",
+                                                "longitude":"",
+                                                "isHome":"",
+                                                "place_id":dict.object(forKey: "place_id")
+                                            ]
+                                            self.arrLocationList.add(tempdict)
+                                            self.tbl.reloadData()
+
+                                            //locations.append(dict["description"] as! String)i
+                                        }
+                                        DispatchQueue.main.async(execute: { () -> Void in
+                                            //autoTextField.autoCompleteStrings = locations
+                                            self.tbl.reloadData()
+
+                                        })
+                                        return
+                                    }
+                                }
+                                else
+                                {
+                                    self.arrLocationList.removeAllObjects()
+                                    self.tbl.reloadData()
+                                }
+                            }
+                            
+                            DispatchQueue.main.async(execute: { () -> Void in
+                                autoTextField.autoCompleteStrings = nil
+                            })
+                        }
+                        catch let error as NSError{
+                            print("Error: \(error.localizedDescription)")
+                        }
+                    }
+                })
+                dataTask?.resume()
+            }
+        }
+
+    }
+
+    /*
+    func setTblFooter(_ isshow: Bool)
+    {
+        if isshow
+        {
+            tbl.tableFooterView = viewFooter
+        }
+        else
+        {
+            tbl.tableFooterView = nil;
+        }
+    }
+     */
     
     //MARK:- Menu
     @IBAction func menuTapped(_ sender: Any)
     {
         Constants.app_delegate.openSideMenu()
+    }
+    @IBAction func pinLocationTapped(_ sender: Any)
+    {
+        self.redirectPinLocation()
+    }
+    
+    func redirectPinLocation()
+    {
+        let move: PinLocationViewController = storyboard?.instantiateViewController(withIdentifier: "PinLocationViewController") as! PinLocationViewController
+        move.FromVC_NAME = "AddLocation"
+        navigationController?.pushViewController(move, animated: false)
     }
     
     //MARK:- Zoom to region
@@ -697,13 +904,19 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     
     func locationPopup(_ isopen : Bool)
     {
-        
         Constants.animatewithShow(show: isopen, with: viewLocation)
         btnCurrentLocation.isHidden = isopen
         isopenLocationScreen = isopen
 
         if isopen
         {
+            self.isfindLocation = false
+            tbl.reloadData()
+
+            txtWhereTo.becomeFirstResponder()
+            self.view.bringSubview(toFront: viewLocation)
+            
+            
             //Top subview
             viewLocationHeader.frame = CGRect(x:CGFloat(0), y: -viewLocationHeader.frame.size.height, width: CGFloat(Constants.WIDTH), height: viewLocationHeader.frame.size.height)
             
@@ -711,7 +924,9 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
             UIView.setAnimationDuration(0.4)
             viewLocationHeader.frame = CGRect(x:CGFloat(0), y: CGFloat(0), width: CGFloat(Constants.WIDTH), height: viewLocationHeader.frame.size.height)
             UIView.commitAnimations()
+            
             UIView.animate(withDuration: 1.0, animations: {() -> Void in
+                self.viewLocation.backgroundColor = UIColor.lightGray
             })
             
             
@@ -728,12 +943,18 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         }
         else
         {
+            txtWhereTo.resignFirstResponder()
+            txtCurrentLocation.resignFirstResponder()
+            
             CATransaction.begin()
             CATransaction.setValue(0.8, forKey: kCATransactionAnimationDuration)
             let camera = GMSCameraPosition.camera(withLatitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!, zoom: 15.0)
             mapview?.animate(to: camera)
             CATransaction.commit()
 
+            UIView.animate(withDuration: 1.0, animations: {() -> Void in
+                self.viewLocation.backgroundColor = UIColor.clear
+            })
 
             //Top subview
             viewLocationHeader.frame = CGRect(x:CGFloat(0), y: CGFloat(0), width: CGFloat(Constants.WIDTH), height: viewLocationHeader.frame.size.height)
@@ -742,6 +963,7 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
             UIView.setAnimationDuration(0.8)
             viewLocationHeader.frame = CGRect(x:CGFloat(0), y: -viewLocationHeader.frame.size.height, width: CGFloat(Constants.WIDTH), height: viewLocationHeader.frame.size.height)
             UIView.commitAnimations()
+            
             UIView.animate(withDuration: 0.6, animations: {() -> Void in
             })
             
@@ -759,6 +981,7 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
             
         }
     }
+    
     @IBAction func backFromLocation(_ sender: Any)
     {
         self.locationPopup(false)
@@ -777,9 +1000,7 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         czPickerView?.tag = 101
         czPickerView?.show()
     }
-    
-    
-    
+
     /*
      // MARK: - Navigation
      
@@ -810,111 +1031,213 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         return 1
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrLocation.count
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        if isfindLocation
+        {
+            return arrLocationList.count
+        }
+        else
+        {
+            return arrLocation.count
+        }
+        //return arrLocation.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let CellIdentifier: String = "cell \(Int(indexPath.row))"
-        var cell: Cell_setLocation? = (tableView.dequeueReusableCell(withIdentifier: CellIdentifier) as? Cell_setLocation)
-        
-        if cell == nil {
-            let topLevelObjects: [Any] = Bundle.main.loadNibNamed("Cell_setLocation", owner: nil, options: nil)!
-            cell = (topLevelObjects[0] as? Cell_setLocation)
-            cell?.backgroundColor = UIColor.clear
-            cell?.selectionStyle = .none
-        }
-        
-        let dictCell = arrLocation.object(at: indexPath.row) as! NSDictionary
-        
-        if indexPath.row == 0
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        if isfindLocation
         {
-            if Constants.app_delegate.HomeDict == nil
-            {
-                cell?.lblTitle.text = dictCell.value(forKey: "title") as? String
-                
-                cell?.subview_Double.isHidden = true
-                cell?.subview_single.isHidden = false
+            let CellIdentifier: String = "cell \(Int(indexPath.row))"
+            var cell: Cell_HomeWork? = (tableView.dequeueReusableCell(withIdentifier: CellIdentifier) as? Cell_HomeWork)
+            
+            if cell == nil {
+                let topLevelObjects: [Any] = Bundle.main.loadNibNamed("Cell_HomeWork", owner: nil, options: nil)!
+                cell = (topLevelObjects[0] as? Cell_HomeWork)
+                cell?.backgroundColor = UIColor.clear
+                cell?.selectionStyle = .none
             }
-            else
-            {
-                cell?.subview_Double.isHidden = false
-                cell?.subview_single.isHidden = true
-                
-                cell?.lblPlaceTitle.text = "Home"
-                //cell?.lblPlaceTitle.text = Constants.app_delegate.HomeDict.value(forKey: "place_name") as? String
-                cell?.lblPlaceAddress.text = Constants.app_delegate.HomeDict.value(forKey: "place_address") as? String
-            }
-            cell?.imgIcon.image = UIImage(named: dictCell.value(forKey: "icon") as! String)
-        }
-        else if indexPath.row == 1
-        {
-            if Constants.app_delegate.WorkDict == nil
-            {
-                cell?.lblTitle.text = dictCell.value(forKey: "title") as? String
-                
-                cell?.subview_Double.isHidden = true
-                cell?.subview_single.isHidden = false
-            }
-            else
-            {
-                cell?.subview_Double.isHidden = false
-                cell?.subview_single.isHidden = true
-                
-                cell?.lblPlaceTitle.text = "Work"
-                //cell?.lblPlaceTitle.text = Constants.app_delegate.WorkDict.value(forKey: "place_name") as? String
-                cell?.lblPlaceAddress.text = Constants.app_delegate.WorkDict.value(forKey: "place_address") as? String
-            }
-            cell?.imgIcon.image = UIImage(named: dictCell.value(forKey: "icon") as! String)
+            
+            let dictCell = arrLocationList.object(at: indexPath.row) as! NSDictionary
+            
+            let strName = dictCell.object(forKey: "place_name") as! String
+            let tempArr = strName.components(separatedBy: ",")
+            cell?.lbl_placeName.text = tempArr[0]
+            
+            cell?.lbl_placeAddress.text = dictCell.object(forKey: "place_address") as? String
+            
+            return cell!
+
         }
         else
         {
-            cell?.imgIcon.image = UIImage(named: dictCell.value(forKey: "icon") as! String)
-            cell?.lblTitle.text = dictCell.value(forKey: "title") as? String
+            let CellIdentifier: String = "cell \(Int(indexPath.row))"
+            var cell: Cell_setLocation? = (tableView.dequeueReusableCell(withIdentifier: CellIdentifier) as? Cell_setLocation)
+            
+            if cell == nil {
+                let topLevelObjects: [Any] = Bundle.main.loadNibNamed("Cell_setLocation", owner: nil, options: nil)!
+                cell = (topLevelObjects[0] as? Cell_setLocation)
+                cell?.backgroundColor = UIColor.clear
+                cell?.selectionStyle = .none
+            }
+            
+            let dictCell = arrLocation.object(at: indexPath.row) as! NSDictionary
+            
+            if indexPath.row == 0
+            {
+                if Constants.app_delegate.HomeDict == nil
+                {
+                    cell?.lblTitle.text = dictCell.value(forKey: "title") as? String
+                    
+                    cell?.subview_Double.isHidden = true
+                    cell?.subview_single.isHidden = false
+                }
+                else
+                {
+                    cell?.subview_Double.isHidden = false
+                    cell?.subview_single.isHidden = true
+                    
+                    cell?.lblPlaceTitle.text = "Home"
+                    //cell?.lblPlaceTitle.text = Constants.app_delegate.HomeDict.value(forKey: "place_name") as? String
+                    cell?.lblPlaceAddress.text = Constants.app_delegate.HomeDict.value(forKey: "place_address") as? String
+                }
+                cell?.imgIcon.image = UIImage(named: dictCell.value(forKey: "icon") as! String)
+            }
+            else if indexPath.row == 1
+            {
+                if Constants.app_delegate.WorkDict == nil
+                {
+                    cell?.lblTitle.text = dictCell.value(forKey: "title") as? String
+                    
+                    cell?.subview_Double.isHidden = true
+                    cell?.subview_single.isHidden = false
+                }
+                else
+                {
+                    cell?.subview_Double.isHidden = false
+                    cell?.subview_single.isHidden = true
+                    
+                    cell?.lblPlaceTitle.text = "Work"
+                    //cell?.lblPlaceTitle.text = Constants.app_delegate.WorkDict.value(forKey: "place_name") as? String
+                    cell?.lblPlaceAddress.text = Constants.app_delegate.WorkDict.value(forKey: "place_address") as? String
+                }
+                cell?.imgIcon.image = UIImage(named: dictCell.value(forKey: "icon") as! String)
+            }
+            else
+            {
+                cell?.imgIcon.image = UIImage(named: dictCell.value(forKey: "icon") as! String)
+                cell?.lblTitle.text = dictCell.value(forKey: "title") as? String
+            }
+            
+            /*
+             cell?.imgIcon.image = UIImage(named: dictCell.value(forKey: "icon") as! String)
+             cell?.lblTitle.text = dictCell.value(forKey: "title") as? String
+             */
+            
+            return cell!
         }
-        
-        /*
-         cell?.imgIcon.image = UIImage(named: dictCell.value(forKey: "icon") as! String)
-         cell?.lblTitle.text = dictCell.value(forKey: "title") as? String
-         */
-        
-        return cell!
     }
+   
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        //let dictCell = arrLocation.object(at: indexPath.row) as! NSDictionary
-        
-        if indexPath.row == 0
+        if isfindLocation
         {
-            let move: SearchAddressViewController = storyboard?.instantiateViewController(withIdentifier: "SearchAddressViewController") as! SearchAddressViewController
-            move.isFromHome = true
-            navigationController?.pushViewController(move, animated: true)
+            let dictCell = arrLocationList.object(at: indexPath.row) as! NSDictionary
+            
+            let strName = dictCell.object(forKey: "place_name") as! String
+            let tempArr = strName.components(separatedBy: ",")
+
+            let placesClient = GMSPlacesClient()
+            let placeID = dictCell.object(forKey: "place_id") as! String
+
+            placesClient.lookUpPlaceID(placeID, callback: { (place, error) -> Void in
+                if let error = error {
+                    print("lookup place id query error: \(error.localizedDescription)")
+                    return
+                }
+                
+                guard let place = place else {
+                    print("No place details for \(placeID)")
+                    return
+                }
+                
+                /*
+                print("Place name \(place.name)")
+                print("Place address \(place.formattedAddress)")
+                print("Place placeID \(place.placeID)")
+                print("Place attributions \(place.attributions)")
+                 */
+                
+                
+                let dict : [String : Any] = [
+                    "place_name":place.name,
+                    "place_address":place.formattedAddress,
+                    "latitude":place.coordinate.latitude,
+                    "longitude":place.coordinate.longitude,
+                    "isHome":""
+                ]
+                Constants.app_delegate.arrselectLocation.add(dict)
+                
+                if self.isCurrentLocationTextfirldEditing
+                {
+                    self.txtCurrentLocation.text = tempArr[0]
+                    
+                    let move: RouteDrawViewController = self.storyboard?.instantiateViewController(withIdentifier: "RouteDrawViewController") as! RouteDrawViewController
+                    move.pickupLatLng = CLLocationCoordinate2DMake((self.locationManager.location?.coordinate.latitude)!, (self.locationManager.location?.coordinate.longitude)!)
+                    move.destinationLatLng = CLLocationCoordinate2DMake(place.coordinate.latitude, place.coordinate.longitude)
+                    self.navigationController?.pushViewController(move, animated: true)
+                }
+                else
+                {
+                    self.txtWhereTo.text = tempArr[0]
+                    
+                    let move: RouteDrawViewController = self.storyboard?.instantiateViewController(withIdentifier: "RouteDrawViewController") as! RouteDrawViewController
+                    move.pickupLatLng = CLLocationCoordinate2DMake((self.locationManager.location?.coordinate.latitude)!, (self.locationManager.location?.coordinate.longitude)!)
+                    move.destinationLatLng = CLLocationCoordinate2DMake(place.coordinate.latitude, place.coordinate.longitude)
+                    self.navigationController?.pushViewController(move, animated: true)
+                }
+            })
         }
-        else if indexPath.row == 1
-        {
-            let move: SearchAddressViewController = storyboard?.instantiateViewController(withIdentifier: "SearchAddressViewController") as! SearchAddressViewController
-            move.isFromHome = false
-            navigationController?.pushViewController(move, animated: true)
-        }
-        else if indexPath.row == 2
+        else
         {
             self.locationPopup(false)
-            let move: PinLocationViewController = storyboard?.instantiateViewController(withIdentifier: "PinLocationViewController") as! PinLocationViewController
-            move.FromVC_NAME = "AddLocation"
-            navigationController?.pushViewController(move, animated: false)
+            
+            if indexPath.row == 0
+            {
+                let move: SearchAddressViewController = storyboard?.instantiateViewController(withIdentifier: "SearchAddressViewController") as! SearchAddressViewController
+                move.isFromHome = true
+                navigationController?.pushViewController(move, animated: true)
+            }
+            else if indexPath.row == 1
+            {
+                let move: SearchAddressViewController = storyboard?.instantiateViewController(withIdentifier: "SearchAddressViewController") as! SearchAddressViewController
+                move.isFromHome = false
+                navigationController?.pushViewController(move, animated: true)
+            }
+            else if indexPath.row == 2
+            {
+                self.locationPopup(false)
+                self.redirectPinLocation()
+            }
+            else if indexPath.row == 3
+            {
+                let move: RouteDrawViewController = storyboard?.instantiateViewController(withIdentifier: "RouteDrawViewController") as! RouteDrawViewController
+                move.pickupLatLng = CLLocationCoordinate2DMake((locationManager.location?.coordinate.latitude)!, (locationManager.location?.coordinate.longitude)!)
+                move.destinationLatLng = CLLocationCoordinate2DMake((locationManager.location?.coordinate.latitude)!, (locationManager.location?.coordinate.longitude)!)
+                navigationController?.pushViewController(move, animated: false)
+            }
         }
     }
 
     // MARK: - CZPicker Delegate
 
+    
     //Picker Methods
     func numberOfRows(in pickerView: CZPickerView!) -> Int {
-        
         if pickerView.tag == 101 {
             return arrFromvalues.count
         }else{
@@ -923,7 +1246,6 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     }
     
     func czpickerView(_ pickerView: CZPickerView!, titleForRow row: Int) -> String! {
-        
         if pickerView.tag == 101 {
             return arrFromvalues[row] as! String
         }else{
@@ -933,7 +1255,6 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     
     func czpickerView(_ pickerView: CZPickerView!, didConfirmWithItemAtRow row: Int){
         if pickerView.tag == 101 {
-            
             txtWhatTo.text = arrFromvalues[row] as? String
             
         }else{
@@ -957,6 +1278,8 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
             finalRatio = finalRatio - 1
             self.videoPlayerViewController.dismissButton.transform = CGAffineTransform(rotationAngle: .pi / -finalRatio)
             //print(.pi / -finalRatio)
+            
+
         }
     }
     
@@ -1054,19 +1377,17 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
 
 
 
-
-
 extension GMSCircle {
     func bounds () -> GMSCoordinateBounds {
         func locationMinMax(positive : Bool) -> CLLocationCoordinate2D {
             let sign:Double = positive ? 1 : -1
             let dx = sign * self.radius  / 6378000 * (180/M_PI)
             let lat = position.latitude + dx
-            let lon = position.longitude + dx / cos(position.latitude * M_PI/180)
+            let lon = position.longitude + dx / cos(position.latitude * .pi / 180)
             return CLLocationCoordinate2D(latitude: lat, longitude: lon)
         }
         
-        return GMSCoordinateBounds(coordinate: locationMinMax(positive: true),
-                                   coordinate: locationMinMax(positive: false))
+        return GMSCoordinateBounds(coordinate: locationMinMax(positive: true), coordinate: locationMinMax(positive: false))
     }
 }
+
