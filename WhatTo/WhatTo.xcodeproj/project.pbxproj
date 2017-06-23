@@ -68,6 +68,25 @@
 		9A40549E1EEED765003B93FD /* BottomBorderedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A40549B1EEED765003B93FD /* BottomBorderedTextField.swift */; };
 		9A4054A01EEED765003B93FD /* SSRadioButtonsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A40549D1EEED765003B93FD /* SSRadioButtonsController.swift */; };
 		9A4054A31EEED7C4003B93FD /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4054A21EEED7C4003B93FD /* Reachability.swift */; };
+		9A585D3C1EFCE38C00470FFC /* ARCarMovement.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A585D3B1EFCE38C00470FFC /* ARCarMovement.m */; };
+		9A585D3E1EFCE3B600470FFC /* coordinates.json in Resources */ = {isa = PBXBuildFile; fileRef = 9A585D3D1EFCE3B600470FFC /* coordinates.json */; };
+		9A585D421EFCE6C500470FFC /* plane.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A585D3F1EFCE6C500470FFC /* plane.png */; };
+		9A585D431EFCE6C500470FFC /* plane@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A585D401EFCE6C500470FFC /* plane@2x.png */; };
+		9A585D441EFCE6C500470FFC /* plane@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A585D411EFCE6C500470FFC /* plane@3x.png */; };
+		9A585D481EFCE75D00470FFC /* car.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A585D451EFCE75D00470FFC /* car.png */; };
+		9A585D491EFCE75D00470FFC /* car@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A585D461EFCE75D00470FFC /* car@2x.png */; };
+		9A585D4A1EFCE75D00470FFC /* car@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A585D471EFCE75D00470FFC /* car@3x.png */; };
+		9A585D4E1EFCFA2D00470FFC /* NewCar.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A585D4B1EFCFA2D00470FFC /* NewCar.png */; };
+		9A585D4F1EFCFA2D00470FFC /* NewCar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A585D4C1EFCFA2D00470FFC /* NewCar@2x.png */; };
+		9A585D501EFCFA2D00470FFC /* NewCar@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A585D4D1EFCFA2D00470FFC /* NewCar@3x.png */; };
+		9A585D531EFD29A800470FFC /* LFTPulseAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A585D521EFD29A800470FFC /* LFTPulseAnimation.swift */; };
+		9A585D571EFD332D00470FFC /* findingRide.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A585D541EFD332D00470FFC /* findingRide.png */; };
+		9A585D581EFD332D00470FFC /* findingRide@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A585D551EFD332D00470FFC /* findingRide@2x.png */; };
+		9A585D591EFD332D00470FFC /* findingRide@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A585D561EFD332D00470FFC /* findingRide@3x.png */; };
+		9A585D5B1EFD3AAB00470FFC /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A585D5A1EFD3AAB00470FFC /* RequestViewController.swift */; };
+		9A585D601EFD48BE00470FFC /* refreshing.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A585D5D1EFD48BE00470FFC /* refreshing.png */; };
+		9A585D611EFD48BE00470FFC /* refreshing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A585D5E1EFD48BE00470FFC /* refreshing@2x.png */; };
+		9A585D621EFD48BE00470FFC /* refreshing@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A585D5F1EFD48BE00470FFC /* refreshing@3x.png */; };
 		9A5F974D1EE941B200146FCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A5F974B1EE941B200146FCD /* Main.storyboard */; };
 		9A5F974F1EE941B200146FCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A5F974E1EE941B200146FCD /* Assets.xcassets */; };
 		9A5F97521EE941B200146FCD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A5F97501EE941B200146FCD /* LaunchScreen.storyboard */; };
@@ -186,6 +205,26 @@
 		9A40549B1EEED765003B93FD /* BottomBorderedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBorderedTextField.swift; sourceTree = "<group>"; };
 		9A40549D1EEED765003B93FD /* SSRadioButtonsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSRadioButtonsController.swift; sourceTree = "<group>"; };
 		9A4054A21EEED7C4003B93FD /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		9A585D3A1EFCE38C00470FFC /* ARCarMovement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCarMovement.h; sourceTree = "<group>"; };
+		9A585D3B1EFCE38C00470FFC /* ARCarMovement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARCarMovement.m; sourceTree = "<group>"; };
+		9A585D3D1EFCE3B600470FFC /* coordinates.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = coordinates.json; sourceTree = "<group>"; };
+		9A585D3F1EFCE6C500470FFC /* plane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plane.png; sourceTree = "<group>"; };
+		9A585D401EFCE6C500470FFC /* plane@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plane@2x.png"; sourceTree = "<group>"; };
+		9A585D411EFCE6C500470FFC /* plane@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plane@3x.png"; sourceTree = "<group>"; };
+		9A585D451EFCE75D00470FFC /* car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car.png; sourceTree = "<group>"; };
+		9A585D461EFCE75D00470FFC /* car@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "car@2x.png"; sourceTree = "<group>"; };
+		9A585D471EFCE75D00470FFC /* car@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "car@3x.png"; sourceTree = "<group>"; };
+		9A585D4B1EFCFA2D00470FFC /* NewCar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewCar.png; sourceTree = "<group>"; };
+		9A585D4C1EFCFA2D00470FFC /* NewCar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NewCar@2x.png"; sourceTree = "<group>"; };
+		9A585D4D1EFCFA2D00470FFC /* NewCar@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NewCar@3x.png"; sourceTree = "<group>"; };
+		9A585D521EFD29A800470FFC /* LFTPulseAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LFTPulseAnimation.swift; sourceTree = "<group>"; };
+		9A585D541EFD332D00470FFC /* findingRide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = findingRide.png; sourceTree = "<group>"; };
+		9A585D551EFD332D00470FFC /* findingRide@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "findingRide@2x.png"; sourceTree = "<group>"; };
+		9A585D561EFD332D00470FFC /* findingRide@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "findingRide@3x.png"; sourceTree = "<group>"; };
+		9A585D5A1EFD3AAB00470FFC /* RequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
+		9A585D5D1EFD48BE00470FFC /* refreshing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refreshing.png; sourceTree = "<group>"; };
+		9A585D5E1EFD48BE00470FFC /* refreshing@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refreshing@2x.png"; sourceTree = "<group>"; };
+		9A585D5F1EFD48BE00470FFC /* refreshing@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refreshing@3x.png"; sourceTree = "<group>"; };
 		9A5F97441EE941B200146FCD /* WhatTo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatTo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A5F974C1EE941B200146FCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9A5F974E1EE941B200146FCD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -355,6 +394,9 @@
 		9A2BDCD01EEAA25700F86690 /* Location */ = {
 			isa = PBXGroup;
 			children = (
+				9A585D541EFD332D00470FFC /* findingRide.png */,
+				9A585D551EFD332D00470FFC /* findingRide@2x.png */,
+				9A585D561EFD332D00470FFC /* findingRide@3x.png */,
 				9ABFFAED1EF91E9C00E037B7 /* location_ic.png */,
 				9ABFFAEE1EF91E9C00E037B7 /* location_ic@2x.png */,
 				9ABFFAEF1EF91E9C00E037B7 /* location_ic@3x.png */,
@@ -398,6 +440,15 @@
 		9A3741C61EEFC1C800738D7C /* MapPIN */ = {
 			isa = PBXGroup;
 			children = (
+				9A585D4B1EFCFA2D00470FFC /* NewCar.png */,
+				9A585D4C1EFCFA2D00470FFC /* NewCar@2x.png */,
+				9A585D4D1EFCFA2D00470FFC /* NewCar@3x.png */,
+				9A585D451EFCE75D00470FFC /* car.png */,
+				9A585D461EFCE75D00470FFC /* car@2x.png */,
+				9A585D471EFCE75D00470FFC /* car@3x.png */,
+				9A585D3F1EFCE6C500470FFC /* plane.png */,
+				9A585D401EFCE6C500470FFC /* plane@2x.png */,
+				9A585D411EFCE6C500470FFC /* plane@3x.png */,
 				9A3741D51EF008AA00738D7C /* current-location.png */,
 				9A3741D61EF008AA00738D7C /* current-location@2x.png */,
 				9A3741D71EF008AA00738D7C /* current-location@3x.png */,
@@ -446,6 +497,34 @@
 				9A4054A21EEED7C4003B93FD /* Reachability.swift */,
 			);
 			path = Reachability;
+			sourceTree = "<group>";
+		};
+		9A585D391EFCE38C00470FFC /* ARCarMovement */ = {
+			isa = PBXGroup;
+			children = (
+				9A585D3D1EFCE3B600470FFC /* coordinates.json */,
+				9A585D3A1EFCE38C00470FFC /* ARCarMovement.h */,
+				9A585D3B1EFCE38C00470FFC /* ARCarMovement.m */,
+			);
+			path = ARCarMovement;
+			sourceTree = "<group>";
+		};
+		9A585D511EFD29A800470FFC /* PulseAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				9A585D521EFD29A800470FFC /* LFTPulseAnimation.swift */,
+			);
+			path = PulseAnimation;
+			sourceTree = "<group>";
+		};
+		9A585D5C1EFD48B700470FFC /* Requesting */ = {
+			isa = PBXGroup;
+			children = (
+				9A585D5D1EFD48BE00470FFC /* refreshing.png */,
+				9A585D5E1EFD48BE00470FFC /* refreshing@2x.png */,
+				9A585D5F1EFD48BE00470FFC /* refreshing@3x.png */,
+			);
+			path = Requesting;
 			sourceTree = "<group>";
 		};
 		9A5F973B1EE941B200146FCD = {
@@ -518,6 +597,8 @@
 		9A5F975C1EE956BA00146FCD /* OtherClasses */ = {
 			isa = PBXGroup;
 			children = (
+				9A585D511EFD29A800470FFC /* PulseAnimation */,
+				9A585D391EFCE38C00470FFC /* ARCarMovement */,
 				9A76DE1A1EFB9E3E0055CFE1 /* AutoFieldTextField */,
 				9A791F761EF7A7C300DB8D71 /* AICustomViewControllerTransition */,
 				9A27E9791EF40381006B0235 /* GifImages_SWIFT */,
@@ -538,6 +619,7 @@
 				9A2BDCD01EEAA25700F86690 /* Location */,
 				9A3741C61EEFC1C800738D7C /* MapPIN */,
 				9A1BC26A1EE97E5500A9D802 /* Menu */,
+				9A585D5C1EFD48B700470FFC /* Requesting */,
 			);
 			path = Design;
 			sourceTree = "<group>";
@@ -571,6 +653,7 @@
 				9A2BDCEA1EEAB5AC00F86690 /* PinLocationViewController.swift */,
 				9A4054911EEED049003B93FD /* RouteDrawViewController.swift */,
 				9A3957401EF156AA002C0A68 /* ConfirmPickupViewController.swift */,
+				9A585D5A1EFD3AAB00470FFC /* RequestViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -770,9 +853,14 @@
 				9A2BDCDF1EEAA26700F86690 /* home@3x.png in Resources */,
 				9A2BDCDD1EEAA26700F86690 /* home.png in Resources */,
 				9ABFFAF11EF91E9C00E037B7 /* location_ic@2x.png in Resources */,
+				9A585D4E1EFCFA2D00470FFC /* NewCar.png in Resources */,
 				9A616B201EEBF564000DC318 /* Info-watchOS.plist in Resources */,
+				9A585D421EFCE6C500470FFC /* plane.png in Resources */,
 				9A74BE2E1EF28343007242C0 /* paytm.png in Resources */,
+				9A585D591EFD332D00470FFC /* findingRide@3x.png in Resources */,
 				9A1BC2741EE9822000A9D802 /* taxi.png in Resources */,
+				9A585D3E1EFCE3B600470FFC /* coordinates.json in Resources */,
+				9A585D601EFD48BE00470FFC /* refreshing.png in Resources */,
 				9A2BDCF11EEAB71F00F86690 /* mapCurrentLocation@3x.png in Resources */,
 				9A2BDCCF1EEA9B6000F86690 /* forword@3x.png in Resources */,
 				9A791F6F1EF79C8C00DB8D71 /* WhiteTopArrow@3x.png in Resources */,
@@ -790,6 +878,7 @@
 				9AC46A521EFA861A0049AF08 /* yellowPlane.png in Resources */,
 				9A791F7C1EF7ECF900DB8D71 /* share.png in Resources */,
 				9A74BE2D1EF28343007242C0 /* notes@3x.png in Resources */,
+				9A585D621EFD48BE00470FFC /* refreshing@3x.png in Resources */,
 				9A616B1D1EEBF564000DC318 /* Info-iOS.plist in Resources */,
 				9A74BE431EF29B3C007242C0 /* Cell_Account.xib in Resources */,
 				9A74BE3D1EF29924007242C0 /* edit_icon@2x.png in Resources */,
@@ -802,14 +891,21 @@
 				9A74BE351EF283BE007242C0 /* Cell_AddPayment.xib in Resources */,
 				9A2BDCCC1EEA9B6000F86690 /* back@3x.png in Resources */,
 				9A2BDCDC1EEAA26700F86690 /* briefcase@3x.png in Resources */,
+				9A585D491EFCE75D00470FFC /* car@2x.png in Resources */,
+				9A585D4F1EFCFA2D00470FFC /* NewCar@2x.png in Resources */,
 				9A2BDCEF1EEAB71F00F86690 /* mapCurrentLocation.png in Resources */,
+				9A585D441EFCE6C500470FFC /* plane@3x.png in Resources */,
+				9A585D4A1EFCE75D00470FFC /* car@3x.png in Resources */,
 				9AC46A501EFA84880049AF08 /* cloud-icon.png in Resources */,
 				9A4054991EEED2FE003B93FD /* visa_icon@3x.png in Resources */,
 				9A791F6D1EF79C8C00DB8D71 /* WhiteTopArrow.png in Resources */,
 				9A1BC2761EE9822000A9D802 /* taxi@3x.png in Resources */,
 				9A3741CA1EEFC1CF00738D7C /* map_pin.png in Resources */,
+				9A585D581EFD332D00470FFC /* findingRide@2x.png in Resources */,
 				9A5F97521EE941B200146FCD /* LaunchScreen.storyboard in Resources */,
 				9A40548F1EEE64B9003B93FD /* pin@2x.png in Resources */,
+				9A585D431EFCE6C500470FFC /* plane@2x.png in Resources */,
+				9A585D481EFCE75D00470FFC /* car.png in Resources */,
 				9A791F7E1EF7ECF900DB8D71 /* share@3x.png in Resources */,
 				9A2BDCCA1EEA9B6000F86690 /* back.png in Resources */,
 				9A791F6E1EF79C8C00DB8D71 /* WhiteTopArrow@2x.png in Resources */,
@@ -817,7 +913,9 @@
 				9A27E98E1EF4043C006B0235 /* PreMask-Animation.gif in Resources */,
 				9A3741CC1EEFC1CF00738D7C /* map_pin@3x.png in Resources */,
 				9A2BDCDB1EEAA26700F86690 /* briefcase@2x.png in Resources */,
+				9A585D501EFCFA2D00470FFC /* NewCar@3x.png in Resources */,
 				9A74BE3E1EF29924007242C0 /* edit_icon@3x.png in Resources */,
+				9A585D571EFD332D00470FFC /* findingRide.png in Resources */,
 				9A2BDCE01EEAA26700F86690 /* pinLocation.png in Resources */,
 				9A74BE2A1EF28343007242C0 /* credit-card@3x.png in Resources */,
 				9A5F974F1EE941B200146FCD /* Assets.xcassets in Resources */,
@@ -836,6 +934,7 @@
 				9A1BC26E1EE97E9C00A9D802 /* menuicon.png in Resources */,
 				9A74BE2B1EF28343007242C0 /* notes.png in Resources */,
 				9A4054901EEE64B9003B93FD /* pin@3x.png in Resources */,
+				9A585D611EFD48BE00470FFC /* refreshing@2x.png in Resources */,
 				9A74BE1D1EF27CD6007242C0 /* cross@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -897,10 +996,12 @@
 			files = (
 				9A616B151EEBF506000DC318 /* GoogleMapsRestClient.swift in Sources */,
 				9A40549E1EEED765003B93FD /* BottomBorderedTextField.swift in Sources */,
+				9A585D5B1EFD3AAB00470FFC /* RequestViewController.swift in Sources */,
 				9A2BDCEB1EEAB5AC00F86690 /* PinLocationViewController.swift in Sources */,
 				9A616B211EEBF564000DC318 /* SwiftyJSON.swift in Sources */,
 				9A4054A01EEED765003B93FD /* SSRadioButtonsController.swift in Sources */,
 				9A4054921EEED049003B93FD /* RouteDrawViewController.swift in Sources */,
+				9A585D531EFD29A800470FFC /* LFTPulseAnimation.swift in Sources */,
 				9A5F976B1EE9684A00146FCD /* Constants.swift in Sources */,
 				9A76DE201EFB9E3E0055CFE1 /* AutoCompleteTextField.swift in Sources */,
 				9A5F97671EE957D000146FCD /* MainViewController.swift in Sources */,
@@ -925,6 +1026,7 @@
 				9A2BDCF61EEAD26A00F86690 /* GoogleMapsAPIKey.swift in Sources */,
 				9A4054A31EEED7C4003B93FD /* Reachability.swift in Sources */,
 				9A5F97621EE9572900146FCD /* AppDelegate.swift in Sources */,
+				9A585D3C1EFCE38C00470FFC /* ARCarMovement.m in Sources */,
 				9A3957411EF156AA002C0A68 /* ConfirmPickupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

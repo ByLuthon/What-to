@@ -13,6 +13,7 @@ import GoogleMaps
 import GooglePlaces
 
 @UIApplicationMain
+
 class AppDelegate: UIResponder, UIApplicationDelegate,UITableViewDelegate,UITableViewDataSource,CLLocationManagerDelegate {
 
     var window: UIWindow?
@@ -50,6 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UITableViewDelegate,UITabl
         self.locationManager.delegate = self;
         self.locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         self.locationManager.requestAlwaysAuthorization()
+        
         
         //SIDE Menu
         self.createSideMenu()
@@ -120,6 +122,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UITableViewDelegate,UITabl
         let viewTopProfile = UIView(frame: CGRect(x: CGFloat(0), y: CGFloat(0), width: CGFloat(Constants.WIDTH - 80), height: CGFloat(100)))
         viewTopProfile.backgroundColor = UIColor.black
         sidebarview.addSubview(viewTopProfile)
+        
+        
         
         let imgprofile = UIImageView(frame: CGRect(x: CGFloat(10), y: CGFloat(30), width: CGFloat(60), height: CGFloat(60)))
         imgprofile.image = UIImage(named: "emptyProfilePic.png")

@@ -55,6 +55,9 @@ class AddPamentViewController: UIViewController, UITableViewDelegate,UITableView
     }
     
     @IBAction func close(_ sender: Any) {
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "FindNearestDriver"), object: nil, userInfo: nil)
+
         dismiss(animated: true, completion: nil)
     }
     /*

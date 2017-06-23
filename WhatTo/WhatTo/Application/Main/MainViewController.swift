@@ -15,7 +15,7 @@ import GooglePlaces
 import CZPicker
 
 
-class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerDelegate,GMSMapViewDelegate, UITableViewDelegate,UITableViewDataSource, CZPickerViewDelegate, CZPickerViewDataSource {
+class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerDelegate,GMSMapViewDelegate, UITableViewDelegate,UITableViewDataSource, CZPickerViewDelegate, CZPickerViewDataSource, ARCarMovementDelegate {
     
     @IBOutlet weak var subview_work: UIView!
     @IBOutlet weak var subview_workimage: UIView!
@@ -47,10 +47,10 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     var isCurrentLocationTextfirldEditing = Bool()
 
     
+    //Location Screen
     var arrLocation: NSMutableArray!
     var arrFromvalues: NSMutableArray!
     var arrLocationList = NSMutableArray()
-    
     
     @IBOutlet var viewLocation: UIView!
     @IBOutlet weak var viewLocationHeader: UIView!
@@ -58,17 +58,24 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     @IBOutlet weak var tbl: UITableView!
     @IBOutlet weak var txtWhatTo: UITextField!
     
+    
+    //Autocompate Textfield
     @IBOutlet weak var txtCurrentLocation: AutoCompleteTextField!
     @IBOutlet weak var txtWhereTo: AutoCompleteTextField!
-    
     var responseData:NSMutableData?
     var selectedPointAnnotation:MKPointAnnotation?
     var dataTask:URLSessionDataTask?
     
-    /*
-    fileprivate let googleMapsKey = "AIzaSyDg2tlPcoqxx2Q2rfjhsAKS-9j0n3JA_a4"
-    fileprivate let baseURLString = "https://maps.googleapis.com/maps/api/place/autocomplete/json"
- */
+    
+    //Car Animation
+    var driverMarker: GMSMarker!
+    var moveMent: ARCarMovement!
+    var coordinateArr = NSArray()
+    var oldCoordinate: CLLocationCoordinate2D!
+    var timer: Timer! = nil
+    var counter: NSInteger!
+
+
     
     
     //MessageViewAnimation
@@ -133,7 +140,7 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     var videoPlayerViewControllerInitialFrame: CGRect?
     
     
-    //MARK:- viewDidLoad - INIT
+    //MARK:- VIEWDIDLOAD - INIT
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -148,6 +155,7 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         
         self.setMessageViewAnimation()
         self.zoomToRegion()
+        self.setCarAnimation()
         
         configureTextField()
         handleTextFieldInterfaces()
@@ -321,8 +329,91 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         // Dispose of any resources that can be recreated.
     }
     
-    //MARK:- Messageview
+    //MARK:- CAR MOVEMENT ANIMATION
+    func setCarAnimation()
+    {
+        moveMent = ARCarMovement()
+        moveMent.delegate = self
+        
+
+        do {
+            if let file = Bundle.main.url(forResource: "coordinates", withExtension: "json") {
+                let data = try Data(contentsOf: file)
+                let json = try JSONSerialization.jsonObject(with: data, options: [])
+                if let object = json as? [String: Any] {
+                    // json is a dictionary
+                    print(object)
+                } else if let object = json as? [Any] {
+                    // json is an array
+                    coordinateArr = NSArray(array: object)
+                } else {
+                    print("JSON is invalid")
+                }
+            } else {
+                print("no file")
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+        
+        //set old coordinate
+        //
+        oldCoordinate = CLLocationCoordinate2DMake(40.7416627, -74.0049708)
+        
+        // Creates a marker in the center of the map.
+        driverMarker = GMSMarker()
+        driverMarker.position = oldCoordinate
+        driverMarker.icon = UIImage(named: "NewCar.png")
+        driverMarker.map = self.mapview
+        
+        //set counter value 0
+        //
+        counter = 0
+        
+        //start the timer, change the interval based on your requirement
+        //
+        timer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(self.timerTriggered), userInfo: nil, repeats: true)
+    }
+
+    func timerTriggered()
+    {
+        if counter < coordinateArr.count
+        {
+            
+            let dict = coordinateArr[counter] as? Dictionary<String,AnyObject>
+            
+            let newCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2DMake(CLLocationDegrees(dict!["lat"] as! Float), CLLocationDegrees(dict!["long"] as! Float))
+            /**
+             *  You need to pass the created/updating marker, old & new coordinate, mapView and bearing value from driver
+             *  device/backend to turn properly. Here coordinates json files is used without new bearing value. So that
+             *  bearing won't work as expected.
+             */
+            moveMent.arCarMovement(driverMarker, withOldCoordinate: oldCoordinate, andNewCoordinate: newCoordinate, inMapview: mapview, withBearing: 0)
+            oldCoordinate = newCoordinate
+            counter = counter + 1
+            //increase the value to get all index position from array
+        }
+        else {
+            timer.invalidate()
+            timer = nil
+        }
+    }
     
+    func arCarMovement(_ movedMarker: GMSMarker)
+    {
+        driverMarker = movedMarker
+        driverMarker.map = mapview
+        
+        //animation to make car icon in center of the mapview
+        //
+        let updatedCamera = GMSCameraUpdate.setTarget(driverMarker.position, zoom: 15.0)
+        mapview.animate(with: updatedCamera)
+    }
+    
+
+    
+    //MARK:- MESSAGE VIEW ANIMATION
     func setMessageViewAnimation()
     {
         customTransitioningDelegate.transitionPresent = { [weak self] (fromViewController: UIViewController, toViewController: UIViewController, containerView: UIView, transitionType: TransitionType, completion: @escaping () -> Void) in
@@ -461,8 +552,9 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
             let xScale = 1 - (percentage * (1 - finalXScale))
             let yScale = 1 - (percentage * (1 - finalYScale))
             
+            //print("X:\(xScale)")
+            //print("Y:\(yScale)")
             self?.subviewWhatTo.transform  = CGAffineTransform(scaleX:(1 - xScale + 0.90), y: (1 - xScale + 0.90))
-            
             videoPlayerViewController.view.transform = CGAffineTransform(scaleX: xScale, y: 1)
             
             let finalXPos = weakSelf.thumbnailVideoContainerView.frame.minX
@@ -492,7 +584,7 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         //self.customTransitioningDelegate.finalizeInteractiveTransition(isTransitionCompleted: false)
     }
     
-    //MARK:- AutoComplate TextField
+    //MARK:- AUTOCOMPATE TEXTFIELD
     func configureTextField()
     {
         /*
@@ -567,7 +659,6 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
                 }
             })
         }
-         
          */
     }
     
@@ -575,6 +666,7 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     func fetchAutocompletePlaces(_ inputText : String, autoTextField : AutoCompleteTextField)
     {
         let urlString = "https://maps.googleapis.com/maps/api/place/autocomplete/json?key=\(GoogleMapsRestClient.GMS_API_KEY)&input=\(inputText)"
+        
         let s = (CharacterSet.urlQueryAllowed as NSCharacterSet).mutableCopy() as! NSMutableCharacterSet
         s.addCharacters(in: "+&")
         if let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: s as CharacterSet) {
@@ -600,6 +692,7 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
                                         {
                                             print(dict)
 
+                                            //let aStr = String(format: "%@%x", "timeNow in hex: ", timeNow)
                                             let tempdict : [String : Any] = [
                                                 "place_name":dict.object(forKey: "description"),
                                                 "place_address":dict.object(forKey: "description"),
@@ -657,7 +750,7 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     }
      */
     
-    //MARK:- Menu
+    //MARK:- MENU
     @IBAction func menuTapped(_ sender: Any)
     {
         Constants.app_delegate.openSideMenu()
@@ -674,7 +767,7 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         navigationController?.pushViewController(move, animated: false)
     }
     
-    //MARK:- Zoom to region
+    //MARK:- ZOOM TO REGION (MAPVIEW)
     func zoomToRegion() {
         
         /*
@@ -762,8 +855,9 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         locationManager = manager
         //fvc.locationLabel.text = ("Location \r\n Latitude: \(coord?.latitude) \r\n Longitude: \(coord?.longitude)")
     }
-    // MARK: - mapView Delegate
     
+    
+    // MARK: - MAPVIEW DELEGATE
     @IBAction func currentLocation(_ sender: Any)
     {
         isLocationTapped = true
@@ -817,7 +911,7 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         
     }
     
-    // MARK: - pickup
+    // MARK: - PICKUP
     @IBAction func pickupTapped(_ sender: Any) {
         /*
          let modalViewController = PickupTimeViewController()
@@ -853,7 +947,7 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         }
     }
     
-    // MARK: - IBAction
+    // MARK: - IBACTION
     @IBAction func fromToTapped(_ sender: Any)
     {
         
@@ -900,8 +994,8 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         navigationController?.pushViewController(move, animated: true)
     }
     
-    // MARK: - LocationPopup
-    
+
+    // MARK: - LOCATION POPUP
     func locationPopup(_ isopen : Bool)
     {
         Constants.animatewithShow(show: isopen, with: viewLocation)
@@ -992,6 +1086,11 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     
     @IBAction func fromTapped(_ sender: Any)
     {
+        txtCurrentLocation.resignFirstResponder()
+        txtWhereTo.resignFirstResponder()
+        txtWhatTo.resignFirstResponder()
+        
+        
         czPickerView = CZPickerView(headerTitle: "What To", cancelButtonTitle: "Cancel", confirmButtonTitle: "Confirm")
         czPickerView?.delegate = self
         czPickerView?.dataSource = self
@@ -1026,7 +1125,7 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         viewMessage.isHidden = true
     }
     
-    // MARK: - Tableview Delegate
+    // MARK: - TABLEVIEW DELEGATE
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -1233,10 +1332,8 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         }
     }
 
-    // MARK: - CZPicker Delegate
-
     
-    //Picker Methods
+    // MARK: - CZPICKER DELEGATE
     func numberOfRows(in pickerView: CZPickerView!) -> Int {
         if pickerView.tag == 101 {
             return arrFromvalues.count
@@ -1263,7 +1360,7 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     }
     
     
-    // MARK: - MessageView Delegate
+    // MARK: - MESSAGEVIEW DELEGATE
     func rotateButton(radiousbtn: CGFloat)
     {
         var finalRatio = 4 - radiousbtn

@@ -308,7 +308,7 @@ class PinLocationViewController: UIViewController ,MKMapViewDelegate,CLLocationM
             if response != nil {
                 
                 let responceArr = response!["results"]
-                print(responceArr)
+                //print(responceArr)
 
                 if responceArr.count > 0
                 {
@@ -316,11 +316,23 @@ class PinLocationViewController: UIViewController ,MKMapViewDelegate,CLLocationM
                     
                     var formattedAddress = "\(address_components[0])"
                     var counter = 1
-                    for i in address_components{
-                        if(counter < 3){
-                            formattedAddress.append(", \(address_components[counter])")
-                            counter = counter + 1
-                        }else{
+                    for i in address_components
+                    {
+                        print(i)
+                        if(counter < 3)
+                        {
+                            if counter == address_components.count
+                            {
+                                
+                            }
+                            else
+                            {
+                                formattedAddress.append(", \(address_components[counter])")
+                                counter = counter + 1
+                            }
+                        }
+                        else
+                        {
                             break
                         }
                     }
@@ -352,6 +364,10 @@ class PinLocationViewController: UIViewController ,MKMapViewDelegate,CLLocationM
                         //print(params);
                         //self.drawRoute(params: params)
                     }
+                }
+                else
+                {
+                    self.txtPinLocation.text = "Loading..."
                 }
                 
 
