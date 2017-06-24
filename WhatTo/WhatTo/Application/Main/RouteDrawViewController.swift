@@ -275,6 +275,14 @@ class RouteDrawViewController: UIViewController ,CLLocationManagerDelegate,GMSMa
     }
     
     //MARK:- IBACTIONS
+    
+    @IBAction func fareTapped(_ sender: Any)
+    {
+        let move = self.storyboard?.instantiateViewController(withIdentifier: "FareViewController") as! FareViewController
+        present(move, animated: true, completion: nil)
+    }
+    
+    
     @IBAction func pickupTimeTaed(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "PickupTimeViewController") as! PickupTimeViewController
         vc.modalPresentationStyle = .overCurrentContext

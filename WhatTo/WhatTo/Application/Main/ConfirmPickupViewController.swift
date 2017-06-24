@@ -77,6 +77,11 @@ class ConfirmPickupViewController: UIViewController, MKMapViewDelegate,CLLocatio
         })
         
         
+        NotificationCenter.default.addObserver(self, selector: #selector(self.driverLocationFind), name: NSNotification.Name(rawValue: "FindNearestDriver"), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.BackToMainScreen), name: NSNotification.Name(rawValue: "redirectMainScreen"), object: nil)
+
+        
         self.zoomToRegion()
         self.getMapsDetails()
         
@@ -84,11 +89,6 @@ class ConfirmPickupViewController: UIViewController, MKMapViewDelegate,CLLocatio
     }
     override func viewWillAppear(_ animated: Bool)
     {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.driverLocationFind), name: NSNotification.Name(rawValue: "FindNearestDriver"), object: nil)
-
-        NotificationCenter.default.addObserver(self, selector: #selector(self.BackToMainScreen), name: NSNotification.Name(rawValue: "redirectMainScreen"), object: nil)
-
-        
         super.viewWillAppear(animated) // No need for semicolon
     }
 
@@ -167,7 +167,8 @@ class ConfirmPickupViewController: UIViewController, MKMapViewDelegate,CLLocatio
     
     func BackToMainScreen()
     {
-        /*
+        print(self.navigationController!.viewControllers)
+        
         for controller in self.navigationController!.viewControllers as Array
         {
             if controller.isKind(of: MainViewController.self)
@@ -176,13 +177,14 @@ class ConfirmPickupViewController: UIViewController, MKMapViewDelegate,CLLocatio
                 break
             }
         }
-         */
         
         Constants.animatewithShow(show: false, with: viewFindDriver)
     }
   
     func redirectRequestingScreen()
     {
+        viewFindDriver.isHidden = true
+        
         let move = self.storyboard?.instantiateViewController(withIdentifier: "RequestViewController") as! RequestViewController
         self.present(move, animated: true, completion: nil)
     }

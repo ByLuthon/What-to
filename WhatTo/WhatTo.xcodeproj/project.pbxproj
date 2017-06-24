@@ -134,6 +134,12 @@
 		9A791F7C1EF7ECF900DB8D71 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A791F791EF7ECF900DB8D71 /* share.png */; };
 		9A791F7D1EF7ECF900DB8D71 /* share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A791F7A1EF7ECF900DB8D71 /* share@2x.png */; };
 		9A791F7E1EF7ECF900DB8D71 /* share@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A791F7B1EF7ECF900DB8D71 /* share@3x.png */; };
+		9AAC9DB91EFE45F100C8951B /* FareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAC9DB81EFE45F100C8951B /* FareViewController.swift */; };
+		9AAC9DBB1EFE785F00C8951B /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAC9DBA1EFE785F00C8951B /* PaymentViewController.swift */; };
+		9AAC9DBF1EFE7B5D00C8951B /* PaymentsRewards.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AAC9DBC1EFE7B5D00C8951B /* PaymentsRewards.png */; };
+		9AAC9DC01EFE7B5D00C8951B /* PaymentsRewards@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AAC9DBD1EFE7B5D00C8951B /* PaymentsRewards@2x.png */; };
+		9AAC9DC11EFE7B5D00C8951B /* PaymentsRewards@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9AAC9DBE1EFE7B5D00C8951B /* PaymentsRewards@3x.png */; };
+		9AAC9DC41EFE920900C8951B /* FreeRidesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAC9DC31EFE920900C8951B /* FreeRidesViewController.swift */; };
 		9ABFFAF01EF91E9C00E037B7 /* location_ic.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABFFAED1EF91E9C00E037B7 /* location_ic.png */; };
 		9ABFFAF11EF91E9C00E037B7 /* location_ic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABFFAEE1EF91E9C00E037B7 /* location_ic@2x.png */; };
 		9ABFFAF21EF91E9C00E037B7 /* location_ic@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9ABFFAEF1EF91E9C00E037B7 /* location_ic@3x.png */; };
@@ -277,6 +283,12 @@
 		9A791F7A1EF7ECF900DB8D71 /* share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share@2x.png"; sourceTree = "<group>"; };
 		9A791F7B1EF7ECF900DB8D71 /* share@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share@3x.png"; sourceTree = "<group>"; };
 		9A791F811EF7FA3800DB8D71 /* WhatTo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WhatTo.entitlements; sourceTree = "<group>"; };
+		9AAC9DB81EFE45F100C8951B /* FareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FareViewController.swift; sourceTree = "<group>"; };
+		9AAC9DBA1EFE785F00C8951B /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
+		9AAC9DBC1EFE7B5D00C8951B /* PaymentsRewards.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PaymentsRewards.png; sourceTree = "<group>"; };
+		9AAC9DBD1EFE7B5D00C8951B /* PaymentsRewards@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PaymentsRewards@2x.png"; sourceTree = "<group>"; };
+		9AAC9DBE1EFE7B5D00C8951B /* PaymentsRewards@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PaymentsRewards@3x.png"; sourceTree = "<group>"; };
+		9AAC9DC31EFE920900C8951B /* FreeRidesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FreeRidesViewController.swift; sourceTree = "<group>"; };
 		9ABFFAED1EF91E9C00E037B7 /* location_ic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = location_ic.png; sourceTree = "<group>"; };
 		9ABFFAEE1EF91E9C00E037B7 /* location_ic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location_ic@2x.png"; sourceTree = "<group>"; };
 		9ABFFAEF1EF91E9C00E037B7 /* location_ic@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location_ic@3x.png"; sourceTree = "<group>"; };
@@ -462,6 +474,9 @@
 		9A4054931EEED2F4003B93FD /* Payment */ = {
 			isa = PBXGroup;
 			children = (
+				9AAC9DBC1EFE7B5D00C8951B /* PaymentsRewards.png */,
+				9AAC9DBD1EFE7B5D00C8951B /* PaymentsRewards@2x.png */,
+				9AAC9DBE1EFE7B5D00C8951B /* PaymentsRewards@3x.png */,
 				9A74BE1F1EF28343007242C0 /* credit-card.png */,
 				9A74BE201EF28343007242C0 /* credit-card@2x.png */,
 				9A74BE211EF28343007242C0 /* credit-card@3x.png */,
@@ -572,6 +587,7 @@
 				9A5F975F1EE956E800146FCD /* Login-Signup */,
 				9A5F97651EE9575400146FCD /* Main */,
 				9A74BE161EF26E3A007242C0 /* Payment */,
+				9AAC9DC21EFE8A4F00C8951B /* Trip */,
 				9A791F671EF79AC600DB8D71 /* Message */,
 				9A74BE361EF29683007242C0 /* Profile */,
 			);
@@ -675,7 +691,9 @@
 			isa = PBXGroup;
 			children = (
 				9A74BE311EF283A5007242C0 /* cell */,
+				9AAC9DBA1EFE785F00C8951B /* PaymentViewController.swift */,
 				9A74BE171EF26E4E007242C0 /* AddPamentViewController.swift */,
+				9AAC9DB81EFE45F100C8951B /* FareViewController.swift */,
 			);
 			path = Payment;
 			sourceTree = "<group>";
@@ -738,6 +756,7 @@
 			isa = PBXGroup;
 			children = (
 				9A791F681EF79ADD00DB8D71 /* messageViewController.swift */,
+				9AAC9DC31EFE920900C8951B /* FreeRidesViewController.swift */,
 			);
 			path = Message;
 			sourceTree = "<group>";
@@ -748,6 +767,13 @@
 				9A791F771EF7A7C300DB8D71 /* AICustomViewControllerTransition.swift */,
 			);
 			path = AICustomViewControllerTransition;
+			sourceTree = "<group>";
+		};
+		9AAC9DC21EFE8A4F00C8951B /* Trip */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Trip;
 			sourceTree = "<group>";
 		};
 		C982CBAABEFDB8229F095827 /* Frameworks */ = {
@@ -870,6 +896,8 @@
 				9A74BE301EF28343007242C0 /* paytm@3x.png in Resources */,
 				9A791F7D1EF7ECF900DB8D71 /* share@2x.png in Resources */,
 				9A3741D21EEFE1D000738D7C /* Cell_HomeWork.xib in Resources */,
+				9AAC9DC01EFE7B5D00C8951B /* PaymentsRewards@2x.png in Resources */,
+				9AAC9DBF1EFE7B5D00C8951B /* PaymentsRewards.png in Resources */,
 				9A3741D81EF008AA00738D7C /* current-location.png in Resources */,
 				9A616B1F1EEBF564000DC318 /* Info-tvOS.plist in Resources */,
 				9A2BDCC11EEA832B00F86690 /* emptyProfilePic.png in Resources */,
@@ -909,6 +937,7 @@
 				9A791F7E1EF7ECF900DB8D71 /* share@3x.png in Resources */,
 				9A2BDCCA1EEA9B6000F86690 /* back.png in Resources */,
 				9A791F6E1EF79C8C00DB8D71 /* WhiteTopArrow@2x.png in Resources */,
+				9AAC9DC11EFE7B5D00C8951B /* PaymentsRewards@3x.png in Resources */,
 				9A1BC26F1EE97E9C00A9D802 /* menuicon@2x.png in Resources */,
 				9A27E98E1EF4043C006B0235 /* PreMask-Animation.gif in Resources */,
 				9A3741CC1EEFC1CF00738D7C /* map_pin@3x.png in Resources */,
@@ -999,8 +1028,11 @@
 				9A585D5B1EFD3AAB00470FFC /* RequestViewController.swift in Sources */,
 				9A2BDCEB1EEAB5AC00F86690 /* PinLocationViewController.swift in Sources */,
 				9A616B211EEBF564000DC318 /* SwiftyJSON.swift in Sources */,
+				9AAC9DB91EFE45F100C8951B /* FareViewController.swift in Sources */,
 				9A4054A01EEED765003B93FD /* SSRadioButtonsController.swift in Sources */,
+				9AAC9DBB1EFE785F00C8951B /* PaymentViewController.swift in Sources */,
 				9A4054921EEED049003B93FD /* RouteDrawViewController.swift in Sources */,
+				9AAC9DC41EFE920900C8951B /* FreeRidesViewController.swift in Sources */,
 				9A585D531EFD29A800470FFC /* LFTPulseAnimation.swift in Sources */,
 				9A5F976B1EE9684A00146FCD /* Constants.swift in Sources */,
 				9A76DE201EFB9E3E0055CFE1 /* AutoCompleteTextField.swift in Sources */,

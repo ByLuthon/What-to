@@ -169,7 +169,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UITableViewDelegate,UITabl
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
         let vc = storyboard.instantiateViewController(withIdentifier: "EditAccountViewController") as! EditAccountViewController
-        //self.present(vc, animated: true, completion: nil)
         self.window?.rootViewController?.present(vc, animated: true, completion: nil)
     }
 
@@ -225,6 +224,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UITableViewDelegate,UITabl
         cell?.selectionStyle = UITableViewCellSelectionStyle.none
 
         return cell!
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        //let dictCell = arrPaymentList.object(at: indexPath.row) as! NSDictionary
+        self.closeSideMenu()
+
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+
+        if indexPath.row == 0
+        {
+            let vc = storyboard.instantiateViewController(withIdentifier: "PaymentViewController") as! PaymentViewController
+            self.window?.rootViewController?.present(vc, animated: true, completion: nil)
+        }
+        else if indexPath.row == 1
+        {
+            
+        }
+        else if indexPath.row == 2
+        {
+            let vc = storyboard.instantiateViewController(withIdentifier: "FreeRidesViewController") as! FreeRidesViewController
+            self.window?.rootViewController?.present(vc, animated: true, completion: nil)
+        }
+        else if indexPath.row == 3
+        {
+            
+        }
     }
 
     
