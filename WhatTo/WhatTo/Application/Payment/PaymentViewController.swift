@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PaymentViewController: UIViewController, UITableViewDelegate,UITableViewDataSource {
+class PaymentViewController: UIViewController, UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate {
 
     
     
@@ -18,9 +18,16 @@ class PaymentViewController: UIViewController, UITableViewDelegate,UITableViewDa
     var arrPayment = NSMutableArray()
     var arrPramotions = NSMutableArray()
 
+    @IBOutlet var viewPromoCode: UIView!
+    @IBOutlet weak var subviewPromoCode: UIView!
+    @IBOutlet weak var txtGiftCode: UITextField!
+    @IBOutlet weak var btnCodeCancel: UIButton!
+    @IBOutlet weak var btnCodeAdd: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.isNavigationBarHidden = true
+
         self.setInitParam()
         // Do any additional setup after loading the view.
     }
@@ -66,6 +73,19 @@ class PaymentViewController: UIViewController, UITableViewDelegate,UITableViewDa
             self.tbl.isHidden = false
             self.tbl.frame = CGRect(x:CGFloat(0), y: Constants.HEIGHT - self.tbl.frame.size.height, width: CGFloat(Constants.WIDTH), height: self.tbl.frame.size.height)
         })
+        
+        
+        //GiftCode
+        viewPromoCode.frame = CGRect(x: 0, y: 0, width: Constants.WIDTH, height: Constants.HEIGHT)
+        view.addSubview(viewPromoCode)
+        viewPromoCode.isHidden = true
+        subviewPromoCode.frame = CGRect(x: 0 , y: Constants.HEIGHT, width: Constants.WIDTH, height: subviewPromoCode.frame.size.height)
+        txtGiftCode.delegate = self
+        
+        Constants.shaodow(on: subviewPromoCode)
+        Constants.setBorderTo(btnCodeAdd, withBorderWidth: 0.5, radiousView: 2, color: UIColor.clear)
+        Constants.setBorderTo(btnCodeCancel, withBorderWidth: 0.5, radiousView: 2, color: UIColor.darkGray)
+
     }
 
     @IBAction func close(_ sender: Any)
@@ -114,6 +134,9 @@ class PaymentViewController: UIViewController, UITableViewDelegate,UITableViewDa
         lblusername.text = TempDictCell.value(forKey: "titleHeader") as? String
         lblusername.backgroundColor = UIColor.clear
         headerVw.addSubview(lblusername)
+        
+        
+        
         return headerVw
     }
     
@@ -140,6 +163,14 @@ class PaymentViewController: UIViewController, UITableViewDelegate,UITableViewDa
         lblusername.text = TempDictCell.value(forKey: "titleFooter") as? String
         lblusername.backgroundColor = UIColor.clear
         headerVw.addSubview(lblusername)
+        
+        let button:UIButton = UIButton(frame: lblusername.frame)
+        button.setTitle("", for: UIControlState.normal)
+        button.tag = section
+        button.addTarget(self, action:#selector(self.footerTapped), for: .touchUpInside)
+        headerVw.addSubview(button)
+
+        
         return headerVw
     }
 
@@ -178,4 +209,93 @@ class PaymentViewController: UIViewController, UITableViewDelegate,UITableViewDa
     {
         
     }
+    func footerTapped(sender: AnyObject)
+    {
+        print("you clicked on button \(sender.tag)")
+        
+        if sender.tag == 0
+        {
+            /*
+             let move = storyboard?.instantiateViewController(withIdentifier: "AddPamentViewController") as! AddPamentViewController
+             navigationController?.push(viewController: move, animated: true)*/
+            
+            let move = storyboard?.instantiateViewController(withIdentifier: "AddPamentViewController") as! AddPamentViewController
+            self.present(move, animated: true, completion: nil)
+        }
+        else
+        {
+            self.showGiftScreen()
+        }
+    }
+    
+    // MARK: - textField Delegate
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
+    {
+        let textFieldText: NSString = (textField.text ?? "") as NSString
+        let txtAfterUpdate = textFieldText.replacingCharacters(in: range, with: string)
+        self.enableAddButton(txtAfterUpdate)
+
+        return true
+    }
+
+    // MARK: - Gift/Promo code Delegate
+
+    func showGiftScreen()
+    {
+        Constants.animatewithShow(show: true, with: viewPromoCode)
+        self.enableAddButton("")
+        self.popupWithAnimation(_subview: subviewPromoCode, show: true)
+        
+        txtGiftCode.becomeFirstResponder()
+    }
+
+    func popupWithAnimation(_subview: UIView, show:Bool)  {
+        if show
+        {
+            _subview.frame = CGRect(x:CGFloat(0), y: Constants.HEIGHT, width: CGFloat(Constants.WIDTH), height: _subview.frame.size.height)
+            
+            UIView.beginAnimations("", context: nil)
+            UIView.setAnimationDuration(0.4)
+            _subview.frame = CGRect(x:CGFloat(0), y: Constants.HEIGHT - _subview.frame.size.height, width: CGFloat(Constants.WIDTH), height: _subview.frame.size.height)
+            UIView.commitAnimations()
+            UIView.animate(withDuration: 1.0, animations: {() -> Void in
+            })
+        }
+        else
+        {
+            UIView.beginAnimations("", context: nil)
+            UIView.setAnimationDuration(0.4)
+            _subview.frame = CGRect(x:CGFloat(0), y: Constants.HEIGHT, width: CGFloat(Constants.WIDTH), height: _subview.frame.size.height)
+            UIView.commitAnimations()
+        }
+    }
+
+    func enableAddButton(_ text : String)
+    {
+        if text == ""
+        {
+            btnCodeAdd.isEnabled = false
+            btnCodeAdd.backgroundColor = UIColor.gray
+        }
+        else
+        {
+            btnCodeAdd.isEnabled = true
+            btnCodeAdd.backgroundColor = UIColor.black
+        }
+    }
+    
+    
+    @IBAction func CancelCode(_ sender: Any)
+    {
+        Constants.animatewithShow(show: false, with: viewPromoCode)
+    }
+    
+    @IBAction func AddCode(_ sender: Any)
+    {
+        Constants.animatewithShow(show: false, with: viewPromoCode)
+    }
+    
+    
+    
+    
 }

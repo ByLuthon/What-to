@@ -235,11 +235,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UITableViewDelegate,UITabl
         if indexPath.row == 0
         {
             let vc = storyboard.instantiateViewController(withIdentifier: "PaymentViewController") as! PaymentViewController
+            //let navController = UINavigationController(rootViewController: vc)
             self.window?.rootViewController?.present(vc, animated: true, completion: nil)
+            //self.window?.rootViewController?.present(navController, animated: true, completion: nil)
         }
         else if indexPath.row == 1
         {
-            
+            let vc = storyboard.instantiateViewController(withIdentifier: "TripListViewController") as! TripListViewController
+            self.window?.rootViewController?.present(vc, animated: true, completion: nil)
         }
         else if indexPath.row == 2
         {

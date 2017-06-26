@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		607CB037B4209670F5B80184 /* Pods_WhatTo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E7F7FE23E2B18945E6704BA /* Pods_WhatTo.framework */; };
+		9A11EAC41F0123EA0089ED2C /* TripListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A11EAC31F0123EA0089ED2C /* TripListViewController.swift */; };
+		9A11EAC81F013A6F0089ED2C /* Cell_TripDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A11EAC61F013A6F0089ED2C /* Cell_TripDetails.swift */; };
+		9A11EAC91F013A6F0089ED2C /* Cell_TripDetails.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A11EAC71F013A6F0089ED2C /* Cell_TripDetails.xib */; };
 		9A1BC2641EE96F9E00A9D802 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1BC2631EE96F9E00A9D802 /* MapKit.framework */; };
 		9A1BC2661EE9704C00A9D802 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A1BC2651EE9704C00A9D802 /* CoreLocation.framework */; };
 		9A1BC2691EE9759400A9D802 /* splash.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 9A1BC2681EE9759400A9D802 /* splash.jpg */; };
@@ -150,6 +153,9 @@
 /* Begin PBXFileReference section */
 		40E939C5BB4EB59A59631411 /* Pods-WhatTo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatTo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhatTo/Pods-WhatTo.debug.xcconfig"; sourceTree = "<group>"; };
 		6E7F7FE23E2B18945E6704BA /* Pods_WhatTo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhatTo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A11EAC31F0123EA0089ED2C /* TripListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripListViewController.swift; sourceTree = "<group>"; };
+		9A11EAC61F013A6F0089ED2C /* Cell_TripDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cell_TripDetails.swift; sourceTree = "<group>"; };
+		9A11EAC71F013A6F0089ED2C /* Cell_TripDetails.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cell_TripDetails.xib; sourceTree = "<group>"; };
 		9A1BC2631EE96F9E00A9D802 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		9A1BC2651EE9704C00A9D802 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		9A1BC2681EE9759400A9D802 /* splash.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = splash.jpg; sourceTree = "<group>"; };
@@ -312,6 +318,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A11EAC51F0139C90089ED2C /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				9A11EAC61F013A6F0089ED2C /* Cell_TripDetails.swift */,
+				9A11EAC71F013A6F0089ED2C /* Cell_TripDetails.xib */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
 		9A1BC2621EE96F3A00A9D802 /* Launch */ = {
 			isa = PBXGroup;
 			children = (
@@ -772,6 +787,8 @@
 		9AAC9DC21EFE8A4F00C8951B /* Trip */ = {
 			isa = PBXGroup;
 			children = (
+				9A11EAC51F0139C90089ED2C /* cell */,
+				9A11EAC31F0123EA0089ED2C /* TripListViewController.swift */,
 			);
 			path = Trip;
 			sourceTree = "<group>";
@@ -923,6 +940,7 @@
 				9A585D4F1EFCFA2D00470FFC /* NewCar@2x.png in Resources */,
 				9A2BDCEF1EEAB71F00F86690 /* mapCurrentLocation.png in Resources */,
 				9A585D441EFCE6C500470FFC /* plane@3x.png in Resources */,
+				9A11EAC91F013A6F0089ED2C /* Cell_TripDetails.xib in Resources */,
 				9A585D4A1EFCE75D00470FFC /* car@3x.png in Resources */,
 				9AC46A501EFA84880049AF08 /* cloud-icon.png in Resources */,
 				9A4054991EEED2FE003B93FD /* visa_icon@3x.png in Resources */,
@@ -1044,6 +1062,7 @@
 				9A27E98C1EF4038D006B0235 /* iOSDevCenters+GIF.swift in Sources */,
 				9A2BDCE61EEAA32000F86690 /* Cell_setLocation.swift in Sources */,
 				9A74BE341EF283BE007242C0 /* Cell_AddPayment.swift in Sources */,
+				9A11EAC41F0123EA0089ED2C /* TripListViewController.swift in Sources */,
 				9A791F691EF79ADD00DB8D71 /* messageViewController.swift in Sources */,
 				9A616B111EEBCB60000DC318 /* SearchAddressViewController.swift in Sources */,
 				9A2BDCE91EEAAE6900F86690 /* PickupTimeViewController.swift in Sources */,
@@ -1060,6 +1079,7 @@
 				9A5F97621EE9572900146FCD /* AppDelegate.swift in Sources */,
 				9A585D3C1EFCE38C00470FFC /* ARCarMovement.m in Sources */,
 				9A3957411EF156AA002C0A68 /* ConfirmPickupViewController.swift in Sources */,
+				9A11EAC81F013A6F0089ED2C /* Cell_TripDetails.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
