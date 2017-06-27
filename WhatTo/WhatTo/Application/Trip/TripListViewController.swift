@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import CoreLocation
+import GoogleMaps
+import GooglePlaces
 
-class TripListViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource {
+
+class TripListViewController: UIViewController, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
     
     
     @IBOutlet weak var subviewHeader: UIView!
@@ -25,16 +29,23 @@ class TripListViewController: UIViewController, UIScrollViewDelegate, UITableVie
     var selectedTab: Int = 0
     var oldContentOffset = CGPoint.zero
     
+    var locationManager = CLLocationManager()
+    var CurrentLattitude: Double?
+    var CurrentLongitude: Double?
     
-    override func viewDidLoad() {
+    
+    // MARK: - viewDidLoad
+    
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         
         self.setInitParam()
-        
         // Do any additional setup after loading the view.
     }
     
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
@@ -42,6 +53,24 @@ class TripListViewController: UIViewController, UIScrollViewDelegate, UITableVie
     
     func setInitParam()
     {
+        locationManager = CLLocationManager()
+        locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        
+        UIView.animate(withDuration: 1.0, animations: {() -> Void in
+            if ((self.locationManager.location) != nil)
+            {
+                self.CurrentLattitude = self.locationManager.location?.coordinate.latitude
+                self.CurrentLongitude = self.locationManager.location?.coordinate.longitude
+            }
+            else
+            {
+            }
+        })
+        
+        
         scrl.frame = CGRect(x: CGFloat(0), y: subviewHeader.frame.size.height, width: CGFloat(Constants.WIDTH), height: CGFloat(Constants.HEIGHT - subviewHeader.frame.size.height))
         
         tblPast.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: CGFloat(Constants.WIDTH), height: CGFloat(scrl.frame.size.height))
@@ -52,10 +81,9 @@ class TripListViewController: UIViewController, UIScrollViewDelegate, UITableVie
         scrl.contentSize = CGSize(width: CGFloat(Constants.WIDTH * 2), height: CGFloat(0))
         scrl.isPagingEnabled = true
         
-        var scrollPoint = CGPoint(x: CGFloat(0), y: CGFloat(0))
+        let scrollPoint = CGPoint(x: CGFloat(0), y: CGFloat(0))
         scrl.setContentOffset(scrollPoint, animated: true)
         scrl.delegate = self
-        
     }
     /*
      // MARK: - Navigation
@@ -66,6 +94,9 @@ class TripListViewController: UIViewController, UIScrollViewDelegate, UITableVie
      // Pass the selected object to the new view controller.
      }
      */
+    
+    
+    
     @IBAction func close(_ sender: Any)
     {
         self.dismiss(animated: true, completion: nil)
@@ -73,7 +104,8 @@ class TripListViewController: UIViewController, UIScrollViewDelegate, UITableVie
     
     
     // MARK: - UnderLine Button
-    func setLineFrameUnderMenu(_ lbl: UILabel) {
+    func setLineFrameUnderMenu(_ lbl: UILabel)
+    {
         resetButtontitleColor()
         lbl.textColor = UIColor.white
     }
@@ -196,6 +228,27 @@ class TripListViewController: UIViewController, UIScrollViewDelegate, UITableVie
         }
         
     }
+    
+    
+    //MARK:- locationManager
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        
+        if status == .authorizedWhenInUse
+        {
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+    {
+        CurrentLattitude = manager.location?.coordinate.latitude
+        CurrentLongitude = manager.location?.coordinate.longitude
+        
+        self.locationManager.stopUpdatingLocation()
+    }
+    
+    
     // MARK: - TABLEVIEW DELEGATE
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -223,12 +276,23 @@ class TripListViewController: UIViewController, UIScrollViewDelegate, UITableVie
             cell?.selectionStyle = .none
         }
         
+        //cell?.mapview.animate(toLocation: CLLocationCoordinate2D(latitude: lat!, longitude: lan!))
+        cell?.mapview.isMyLocationEnabled = true
+        let camera = GMSCameraPosition.camera(withLatitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!, zoom: 15.0)
+        cell?.mapview.camera = camera
+        
+        
         
         return cell!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        
+        let move = self.storyboard?.instantiateViewController(withIdentifier: "TripDetailsViewController") as! TripDetailsViewController
+        //self.navigationController?.push(viewController: move, animated: true)
+        self.present(move, animated: true, completion: nil)
     }
+    
+    
+    
 }

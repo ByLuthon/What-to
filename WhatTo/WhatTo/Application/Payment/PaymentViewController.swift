@@ -43,7 +43,6 @@ class PaymentViewController: UIViewController, UITableViewDelegate,UITableViewDa
         let dictCase:[String:String] = ["title":"Cash", "icon":"notes.png"]
         let arrtemp1 : NSMutableArray = [dictDebit,dictCase]
         
-        
         let dictRewards:[String:String] = ["title":"Payments Rewards", "icon":"PaymentsRewards.png"]
         let arrtemp2 : NSMutableArray = [dictRewards]
 
@@ -194,7 +193,6 @@ class PaymentViewController: UIViewController, UITableViewDelegate,UITableViewDa
         
         let TempDictCell = arrPayment.object(at: indexPath.section) as! NSDictionary
         let TempArr = TempDictCell.value(forKey: "arrList") as! NSMutableArray
-        
         let dictCell = TempArr.object(at: indexPath.row) as! NSDictionary
         
         cell?.imgIcon.image = UIImage(named: dictCell.value(forKey: "icon") as! String)

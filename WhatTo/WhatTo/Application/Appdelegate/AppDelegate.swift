@@ -220,7 +220,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UITableViewDelegate,UITabl
         
         let dictCell = arrSideMenu.object(at: indexPath.row) as! NSDictionary
         cell?.textLabel?.text = dictCell.value(forKey: "title") as? String
-        cell?.textLabel?.textColor = UIColor.black
+        cell?.textLabel?.font = UIFont(name: "HelveticaNeue-Medium", size:16)
+        cell?.textLabel?.textColor = UIColor.darkGray
         cell?.selectionStyle = UITableViewCellSelectionStyle.none
 
         return cell!
@@ -251,7 +252,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UITableViewDelegate,UITabl
         }
         else if indexPath.row == 3
         {
-            
+            let vc = storyboard.instantiateViewController(withIdentifier: "HelpViewController") as! HelpViewController
+            self.window?.rootViewController?.present(vc, animated: true, completion: nil)
+        }
+        else if indexPath.row == 4
+        {
+            let vc = storyboard.instantiateViewController(withIdentifier: "SettingViewController") as! SettingViewController
+            self.window?.rootViewController?.present(vc, animated: true, completion: nil)
         }
     }
 

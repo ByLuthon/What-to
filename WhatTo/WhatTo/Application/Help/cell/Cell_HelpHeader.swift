@@ -1,15 +1,14 @@
 //
-//  Cell_TripDetails.swift
+//  Cell_HelpHeader.swift
 //  WhatTo
 //
-//  Created by macmini on 26/06/17.
+//  Created by macmini on 27/06/17.
 //  Copyright © 2017 qw. All rights reserved.
 //
 
 import UIKit
 
-class Cell_TripDetails: UITableViewCell {
-
+class Cell_HelpHeader: UITableViewCell {
 
     @IBOutlet weak var mapview: GMSMapView!
     

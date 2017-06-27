@@ -122,10 +122,6 @@ class PinLocationViewController: UIViewController ,MKMapViewDelegate,CLLocationM
             "key": GoogleMapsAPIKey.GEOCODING_API_KEY
         ]
         print(params)
-        
-
-        
-        
     }
 
     //MARK:- locationManager
