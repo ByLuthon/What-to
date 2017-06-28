@@ -94,6 +94,7 @@
 		9A40549E1EEED765003B93FD /* BottomBorderedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A40549B1EEED765003B93FD /* BottomBorderedTextField.swift */; };
 		9A4054A01EEED765003B93FD /* SSRadioButtonsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A40549D1EEED765003B93FD /* SSRadioButtonsController.swift */; };
 		9A4054A31EEED7C4003B93FD /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4054A21EEED7C4003B93FD /* Reachability.swift */; };
+		9A52CE691F038D6900FCEB71 /* DriverTermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A52CE681F038D6900FCEB71 /* DriverTermsViewController.swift */; };
 		9A585D3C1EFCE38C00470FFC /* ARCarMovement.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A585D3B1EFCE38C00470FFC /* ARCarMovement.m */; };
 		9A585D3E1EFCE3B600470FFC /* coordinates.json in Resources */ = {isa = PBXBuildFile; fileRef = 9A585D3D1EFCE3B600470FFC /* coordinates.json */; };
 		9A585D421EFCE6C500470FFC /* plane.png in Resources */ = {isa = PBXBuildFile; fileRef = 9A585D3F1EFCE6C500470FFC /* plane.png */; };
@@ -263,6 +264,7 @@
 		9A40549B1EEED765003B93FD /* BottomBorderedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomBorderedTextField.swift; sourceTree = "<group>"; };
 		9A40549D1EEED765003B93FD /* SSRadioButtonsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSRadioButtonsController.swift; sourceTree = "<group>"; };
 		9A4054A21EEED7C4003B93FD /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		9A52CE681F038D6900FCEB71 /* DriverTermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DriverTermsViewController.swift; sourceTree = "<group>"; };
 		9A585D3A1EFCE38C00470FFC /* ARCarMovement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCarMovement.h; sourceTree = "<group>"; };
 		9A585D3B1EFCE38C00470FFC /* ARCarMovement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARCarMovement.m; sourceTree = "<group>"; };
 		9A585D3D1EFCE3B600470FFC /* coordinates.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = coordinates.json; sourceTree = "<group>"; };
@@ -641,6 +643,14 @@
 			path = Reachability;
 			sourceTree = "<group>";
 		};
+		9A52CE671F038D4100FCEB71 /* Driver */ = {
+			isa = PBXGroup;
+			children = (
+				9A52CE681F038D6900FCEB71 /* DriverTermsViewController.swift */,
+			);
+			path = Driver;
+			sourceTree = "<group>";
+		};
 		9A585D391EFCE38C00470FFC /* ARCarMovement */ = {
 			isa = PBXGroup;
 			children = (
@@ -719,6 +729,7 @@
 				9A27A1F21F0274CA0055100C /* Help */,
 				9A74BE361EF29683007242C0 /* Profile */,
 				9A27A1FA1F0286910055100C /* setting */,
+				9A52CE671F038D4100FCEB71 /* Driver */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -1207,6 +1218,7 @@
 				9A74BE181EF26E4E007242C0 /* AddPamentViewController.swift in Sources */,
 				9A2BDCB71EEA73CA00F86690 /* UIButton+EventBlocks.m in Sources */,
 				9A27E9641EF3F1FD006B0235 /* LaunchViewController.swift in Sources */,
+				9A52CE691F038D6900FCEB71 /* DriverTermsViewController.swift in Sources */,
 				9A5F97641EE9573C00146FCD /* ViewController.swift in Sources */,
 				9A76DE211EFB9E3E0055CFE1 /* Location.swift in Sources */,
 				9A27A1E61F0257670055100C /* TripDetailsViewController.swift in Sources */,

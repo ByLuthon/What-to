@@ -351,7 +351,6 @@ class SettingViewController: UIViewController, UITableViewDelegate,UITableViewDa
                 cell?.backgroundColor = UIColor.white
                 cell?.selectionStyle = .none
             }
-            
             return cell!
         }
     }

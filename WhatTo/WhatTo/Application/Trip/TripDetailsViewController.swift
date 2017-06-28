@@ -88,7 +88,7 @@ class TripDetailsViewController: UIViewController, UITableViewDelegate,UITableVi
         Constants.setBorderTo(imgDriver, withBorderWidth: 1, radiousView: Float(imgDriver.frame.size.height / 2) , color: UIColor.gray)
         
         
-        arrHelp = ["I was incorrectly charged a cancellation fee","I was involved in an accident", "I loas an item", "I would like a refunf" , "My Driver was unprofessional", "My Vehical wasn't what i expected", "I can't request a ride", "I had a different issue"]
+        arrHelp = ["I was incorrectly charged a cancellation fee","I was involved in an accident", "I lost an item", "I would like a refund" , "My Driver was unprofessional", "My Vehical wasn't what i expected", "I can't request a ride", "I had a different issue"]
         
         let dictVehicalName:[String:String] = ["title":"UberX", "price":""]
         let dictSubTotal:[String:String] = ["title":"Subtotal", "price":"₹0.0"]

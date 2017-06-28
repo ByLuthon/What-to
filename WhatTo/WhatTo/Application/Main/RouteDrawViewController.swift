@@ -232,8 +232,7 @@ class RouteDrawViewController: UIViewController ,CLLocationManagerDelegate,GMSMa
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        let camera = GMSCameraPosition.camera(withLatitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!, zoom: 17.0)
-        
+        //let camera = GMSCameraPosition.camera(withLatitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!, zoom: 17.0)
         //mapview?.animate(to: camera)
         
         //Finally stop updating location otherwise it will come again and again in this delegate

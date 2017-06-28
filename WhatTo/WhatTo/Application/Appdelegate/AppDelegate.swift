@@ -153,10 +153,79 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UITableViewDelegate,UITabl
         sidebarview.addSubview(tbl)
         tbl.reloadData()
 
+        
+        let btnDriverWithUbser = UIButton(type: .custom)
+        btnDriverWithUbser.frame = CGRect(x: 0, y: Constants.HEIGHT - 70, width: subviewBG.frame.size.width, height: 35)
+        btnDriverWithUbser.setTitle("Driver with Uber", for: .normal)
+        btnDriverWithUbser.setTitleColor(UIColor(red: CGFloat(40/255), green: CGFloat(40/255), blue: CGFloat(40/255), alpha: 1), for: .normal)
+        btnDriverWithUbser.titleLabel?.font = UIFont(name: "HelveticaNeue-Medium", size:14)
+        btnDriverWithUbser.contentHorizontalAlignment = .left
+        btnDriverWithUbser.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 15.0, bottom: 0.0, right: 0.0)
+        btnDriverWithUbser.addTarget(self, action:#selector(self.DriverTapped), for: .touchUpInside)
+        sidebarview.addSubview(btnDriverWithUbser)
+        
+        
+        let btnLegel = UIButton(type: .custom)
+        btnLegel.frame = CGRect(x: 0, y: Constants.HEIGHT - 35, width: subviewBG.frame.size.width, height: 35)
+        btnLegel.setTitle("Legal", for: .normal)
+        btnLegel.setTitleColor(UIColor(red: CGFloat(40/255), green: CGFloat(40/255), blue: CGFloat(40/255), alpha: 1), for: .normal)
+        btnLegel.titleLabel?.font = UIFont(name: "HelveticaNeue-Medium", size:13)
+        btnLegel.addTarget(self, action:#selector(self.legalTapped), for: .touchUpInside)
+        btnLegel.contentHorizontalAlignment = .left
+        btnLegel.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: 15.0, bottom: 0.0, right: 0.0)
+        sidebarview.addSubview(btnLegel)
+
+        
         window?.addSubview(sidebarview)
         sidebarview.isHidden = true
     }
     
+    func DriverTapped(sender: UIButton!)
+    {
+        self.closeSideMenu()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "redirectDriverScreen"), object: nil, userInfo: nil)
+
+        /*
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "DriverTermsViewController") as! DriverTermsViewController
+        let navigation = self.window?.rootViewController as! UINavigationController
+        //navigation.push(viewController: vc, animated: true)
+
+        let viewControllers: [UIViewController] = navigation.viewControllers
+        
+        for aViewController:UIViewController in viewControllers
+        {
+            if aViewController is MainViewController
+            {
+                aViewController.navigationController?.push(viewController: vc, animated: true)
+            }
+        }
+         */
+        /*
+        print(self.window?.rootViewController)
+        let navigation = self.window?.rootViewController as! UINavigationController
+        
+        print(navigation)
+        print(self.window?.rootViewController?.navigationController)
+        print(self.window?.rootViewController?.navigationController?.viewControllers)
+        
+        let viewControllers: [UIViewController] = (self.window?.rootViewController?.navigationController?.viewControllers)!
+
+        for aViewController:UIViewController in viewControllers
+        {
+            if aViewController is MainViewController
+            {
+                aViewController.navigationController?.push(viewController: vc, animated: true)
+            }
+        }
+        */
+    }
+    
+    func legalTapped(sender: UIButton!)
+    {
+        
+    }
+
     func pressed(sender: UIButton!)
     {
         self.closeSideMenu()
@@ -220,7 +289,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UITableViewDelegate,UITabl
         
         let dictCell = arrSideMenu.object(at: indexPath.row) as! NSDictionary
         cell?.textLabel?.text = dictCell.value(forKey: "title") as? String
-        cell?.textLabel?.font = UIFont(name: "HelveticaNeue-Medium", size:16)
+        cell?.textLabel?.font = UIFont(name: "HelveticaNeue-Medium", size:14)
         cell?.textLabel?.textColor = UIColor.darkGray
         cell?.selectionStyle = UITableViewCellSelectionStyle.none
 

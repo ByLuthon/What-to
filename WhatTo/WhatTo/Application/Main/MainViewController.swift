@@ -165,6 +165,8 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
     
     override func viewWillAppear(_ animated: Bool)
     {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.DriverTapped), name: NSNotification.Name(rawValue: "redirectDriverScreen"), object: nil)
+
         self.setInitParam()
         
         if !isMessagescreenOpen
@@ -766,6 +768,14 @@ class MainViewController: UIViewController ,MKMapViewDelegate,CLLocationManagerD
         move.FromVC_NAME = "AddLocation"
         navigationController?.pushViewController(move, animated: false)
     }
+    
+    func DriverTapped()
+    {
+        let move: DriverTermsViewController = storyboard?.instantiateViewController(withIdentifier: "DriverTermsViewController") as! DriverTermsViewController
+        navigationController?.pushViewController(move, animated: false)
+    }
+    
+    
     
     //MARK:- ZOOM TO REGION (MAPVIEW)
     func zoomToRegion() {

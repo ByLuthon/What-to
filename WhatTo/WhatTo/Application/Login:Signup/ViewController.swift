@@ -26,7 +26,8 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
 
-    override func didReceiveMemoryWarning() {
+    override func didReceiveMemoryWarning()
+    {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
@@ -41,7 +42,6 @@ class ViewController: UIViewController {
         UIView.commitAnimations()
         UIView.animate(withDuration: 1.0, animations: {() -> Void in
         })
-
     }
     
     @IBAction func numberTapped(_ sender: Any)
